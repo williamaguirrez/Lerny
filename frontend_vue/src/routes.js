@@ -4,7 +4,9 @@ import NoEncontrado from './components/NoEncontrado.vue';
 import { store } from './store';
 
 export const routes = [
-    {path: '/', component: Home},
+    {
+        path: '/', component: Home
+    },
     {
         path: '/contacto', 
         component: Contacto,
@@ -15,5 +17,7 @@ export const routes = [
             next(store.state.auth);
         }),
     },
-    {path: '*', component: NoEncontrado},
+    {
+        path: '*', component: NoEncontrado
+    },
 ];

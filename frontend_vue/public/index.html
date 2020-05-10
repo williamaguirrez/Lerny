@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,5 +17,30 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyAV33FlhDRJGsH83oqDdhpxpo2bC1scXNE",
+        authDomain: "me310-sugar.firebaseapp.com",
+        databaseURL: "https://me310-sugar.firebaseio.com",
+        projectId: "me310-sugar",
+        storageBucket: "me310-sugar.appspot.com",
+        messagingSenderId: "1004615747365",
+        appId: "1:1004615747365:web:de1375120b7698a0fe7ccc"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // Referencia a la Base de Datos
+      //var db = firebase.database();
+    </script>
   </body>
 </html>
