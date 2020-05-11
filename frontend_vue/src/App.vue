@@ -5,6 +5,6 @@
 <script>
   import {mapMutations} from 'vuex';
   export default {
-    methods: mapMutations(['cambiar']),
+    methods: mapMutations(['cambiarDark']),
   };
 </script>
