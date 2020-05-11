@@ -1,11 +1,19 @@
 import Home from './components/Home.vue';
 import Contacto from './components/Contacto.vue';
 import NoEncontrado from './components/NoEncontrado.vue';
+import Login from './components/Login.vue';
+import Signup from './components/Signup.vue';
 import { store } from './store';
 
 export const routes = [
     {
         path: '/', component: Home
+    },
+    {
+        path: '/login', component: Login
+    },
+    {
+        path: '/signup', component: Signup
     },
     {
         path: '/contacto', 
