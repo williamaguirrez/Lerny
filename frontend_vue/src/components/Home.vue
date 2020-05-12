@@ -1,11 +1,13 @@
 <template>
 	<v-app id="inspire">
-        <MenuToolbar/>
-		<MenuResponsive/>
 		<div class="slides">
 			<div v-if="$vuetify.theme.isDark" class="slides font2">
+				<MenuToolbar/>
+				<MenuResponsive/>
 			</div>
 			<div v-else class="slides font">
+				<MenuToolbar/>
+				<MenuResponsive/>
 			</div>
 			<h1 class="text_slides">Transforma tu realidad
 				estudiando en cualquier 
@@ -178,13 +180,9 @@
 </script>
 
 <style>
-	.navbarw{
-		background-color: #00B3FF;
-	}
 	.slides{
-		position: relative;
 		width: 100%;
-		height: 659px;	
+		height: 750px;	
 	}
 	.slides.font{
 		background-image: url('../assets/slides/slider3.png');
@@ -198,21 +196,14 @@
 		background-repeat: no-repeat;
 		background-size: cover;
 	}
-	.text_slides{	
-		position: absolute;
-		left: 9.69%;
-		right: 31.04%;
-		top: 26%;
-		bottom: 80.06%;
+	.text_slides{
 		font-family: Maven Pro;
 		font-style: normal;
 		font-weight: bold;
 		font-size: 68px;
 		line-height: 72px;
-		/* or 117% */
 		letter-spacing: -1.5px;
-		/* LETRA */
-		color: #FFFFFF;
+		color: white;
 	}
 	.b_comenzar{
 		position: absolute;
