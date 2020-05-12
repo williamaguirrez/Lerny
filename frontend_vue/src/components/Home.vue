@@ -1,13 +1,7 @@
 <template>
 	<v-app id="inspire">
-		<v-toolbar color="elevation-0" class="navbarw">
-			<v-spacer></v-spacer>
-			<v-switch v-model="$vuetify.theme.dark" primary style="height: 23px"></v-switch>
-			<v-btn text to='/'>Inicio</v-btn>
-			<v-btn text>Nosotros</v-btn>
-			<v-btn text to='/signup'>Regístrate</v-btn>
-			<v-btn rounded color="primary" dark to='/login'>Ingresa</v-btn>
-		</v-toolbar>
+        <MenuToolbar/>
+		<MenuResponsive/>
 		<div class="slides">
 			<div v-if="$vuetify.theme.isDark" class="slides font2">
 			</div>
@@ -130,7 +124,7 @@
 							<v-text-field label="Contraseña" type="password" filled background-color="#ffffff"></v-text-field>
 							<v-btn rounded color="primary" dark>Programar</v-btn>
 							<p style="font-family: Maven Pro; font-style: normal; font-weight: 500;  font-size: 15px;">
-								¿Tiene una cuenta? <a style="font-weight: 800;"><router-link to='/login'>Inicia Sesión</router-link></a></p>
+								¿Tienes una cuenta? <a style="font-weight: 800;"><router-link to='/login'>Inicia Sesión</router-link></a></p>
 						</form>
 					</div>
 				</v-col>
@@ -169,10 +163,18 @@
 </template>
 
 <script>
-	import {mapMutations} from 'vuex';
-	export default {
-		methods: mapMutations(['cambiarDark']),
-	};
+	import MenuToolbar from './parts/MenuToolbar';
+	import MenuResponsive from './parts/MenuResponsive';
+    export default {
+    name: 'Home',
+    components: {
+		MenuToolbar,
+		MenuResponsive,
+    },
+    data: () => ({
+        //
+        }),
+    };
 </script>
 
 <style>
