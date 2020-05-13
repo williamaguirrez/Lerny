@@ -1,165 +1,112 @@
 <template>
 	<v-app id="inspire">
 		<div class="slides">
-			<div v-if="$vuetify.theme.isDark" class="slides font2">
+			<div :class="$vuetify.theme.dark ? 'slides font_dark' : 'slides font_light'">
 				<MenuToolbar/>
 				<MenuResponsive/>
+				<v-row style="width:100%;padding-left:10%;padding-right:10%;">
+					<v-col cols="12" sm="9">
+						<h1 class="text_slides" style="padding-top:16%;padding-left:15px;">Transforma tu realidad estudiando en cualquier lugar</h1>
+						<div style="width:170px;"> 
+							<v-btn rounded block color="boton_menu" style="margin-top:30px;" dark>Comenzar</v-btn>
+						</div>
+					</v-col>
+				</v-row>
 			</div>
-			<div v-else class="slides font">
-				<MenuToolbar/>
-				<MenuResponsive/>
-			</div>
-			<h1 class="text_slides">Transforma tu realidad
-				estudiando en cualquier 
-				lugar
-			</h1>
-			<v-btn rounded color="primary" dark class="b_comenzar">Comenzar</v-btn>
 		</div>
-		<div class="descubre">
-			<v-row no-gutters>
-				<v-col cols="12" sm="8">
-					<h2 class="t_descubre">
-						Descubre nuestras funcionalidades
-					</h2>
+		<div id="funcionalidadesHome" :class="$vuetify.theme.dark ? 'contenedor fondo_dark' : 'contenedor'">
+			<v-row>
+				<v-col cols="12" sm="11">
+					<h2 class="t_descubre titulo--text">Descubre nuestras funcionalidades</h2>
 				</v-col>
-				<v-col cols="12" sm="4">
-					<v-btn class="mx-2" fab dark color="indigo" style="float:right;">
+				<v-col cols="12" sm="1">
+					<v-btn class="mx-2" fab color="boton_menu" dark style="float:right;">
 						<v-icon dark>mdi-plus</v-icon>
 					</v-btn>
 				</v-col>
 			</v-row>
-			<v-row v-if="$vuetify.theme.isDark" no-gutters class="descubre_imagenes2">
-				<v-col cols="12" sm="4">
-					<div class="desc_imagenes2">
-						<div class="ww">
-						</div>
-					</div>
-				</v-col>
-				<v-col cols="12" sm="4">
-					<div class="desc_imagenes2">
-						<div class="ww">
-						</div>
-					</div>
-				</v-col>
-				<v-col cols="12" sm="4">
-					<div class="desc_imagenes2">
-						<div class="ww">
-						</div>
-					</div>
-				</v-col>
-			</v-row>
-			<v-row v-else no-gutters class="descubre_imagenes">
-				<v-col cols="12" sm="4">
-					<div class="desc_imagenes">
-						<div class="ww">
-						</div>
-					</div>
-				</v-col>
-				<v-col cols="12" sm="4">
-					<div class="desc_imagenes">
-						<div class="ww">
-						</div>
-					</div>
-				</v-col>
-				<v-col cols="12" sm="4">
-					<div class="desc_imagenes">
-						<div class="ww">
-						</div>
-					</div>
-				</v-col>
-			</v-row>
-			<v-row no-gutters class="descubre_descrip">
-				<v-col cols="12" sm="4">
-					<p class="text_descrip">Donde los empresarios ayudan a pagar la educación de nuestros estudiantes</p>
-				</v-col>
-				<v-col cols="12" sm="4">
-					<p class="text_descrip">Donde resolvemos tus dudas en un tiempo máximo de 24 horas</p>
-				</v-col>
-				<v-col cols="12" sm="4">
-					<p class="text_descrip">Aquí aplicarás lo aprendido en tus comunidades</p>
-				</v-col>
-			</v-row>
-			<br><br><br>
-			<v-row v-if="$vuetify.theme.isDark" no-gutters class="banner_func">
-				<v-col cols="12" sm="4" class="banner_descrip2">
-					<p class="banner_text text-center"><v-icon color="#ffffff" size="40px">home</v-icon>Rutas de Aprendizaje</p>
-				</v-col>
-				<v-col cols="12" sm="4" class="banner_descrip2 text-center" style="background: #5B418D;">
-					<p class="banner_text text-center"><v-icon color="#ffffff" size="40px">music_note</v-icon>Podcast Educativos</p>
-				</v-col>
-				<v-col cols="12" sm="4" class="banner_descrip2 text-center">
-					<p class="banner_text text-center"><v-icon color="#ffffff" size="40px">home</v-icon>Nuestros Contenidos</p>
-				</v-col>
-			</v-row>
-			<v-row v-else no-gutters class="banner_func">
-				<v-col cols="12" sm="4" class="banner_descrip">
-					<p class="banner_text text-center"><v-icon color="#ffffff" size="40px">home</v-icon>Rutas de Aprendizaje</p>
-				</v-col>
-				<v-col cols="12" sm="4" class="banner_descrip text-center" style="background: #005DA5;">
-					<p class="banner_text text-center"><v-icon color="#ffffff" size="40px">music_note</v-icon>Podcast Educativos</p>
-				</v-col>
-				<v-col cols="12" sm="4" class="banner_descrip text-center">
-					<p class="banner_text text-center"><v-icon color="#ffffff" size="40px">home</v-icon>Nuestros Contenidos</p>
-				</v-col>
-			</v-row>
+			<v-container class="pa-4 text-center">
+				<v-row class="fill-height" align="center" justify="center">
+					<template v-for="(item, i) in items">
+						<v-col :key="i" cols="12" md="4" class="boton_menu">
+							<v-hover v-slot:default="{ hover }" style="margin-bottom:10px;">
+								<v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }" >
+									<v-img :src="item.img" height="225px" class="align-end">
+										<v-card-title class="title white--text">
+											{{item.title}}
+										</v-card-title>
+									</v-img>      
+								</v-card>
+							</v-hover>
+						</v-col>
+					</template>	
+				</v-row>
+				<v-row class="fill-height" align="center" justify="center">
+					<template v-for="(item, i) in items">
+						<v-col :key="i" cols="12" md="4" style="background-color:#00102E;">
+							<v-row no-gutters class="descubre_descrip">
+								<p class="text_descrip" >{{item.description}}</p>
+							</v-row> 
+						</v-col>
+					</template>
+				</v-row>					
+			</v-container>
+			<div style="padding-left:10%; padding-right:10%; padding-top:5%; padding-bottom:5%">
+				<v-row>
+					<v-col cols="12" sm="4" class="boton_menu">
+						<p  style="padding-top:16px;" class="banner_text text-center"><v-icon color="#ffffff" size="40px">home</v-icon>Rutas de Aprendizaje</p>
+					</v-col>
+					<v-col cols="12" sm="4" class="boton_menuN">
+						<p style="padding-top:16px;" class="banner_text text-center"><v-icon color="#ffffff" size="40px">music_note</v-icon>Podcast Educativos</p>
+					</v-col>
+					<v-col cols="12" sm="4" class="boton_menu">
+						<p style="padding-top:16px;" class="banner_text text-center"><v-icon color="#ffffff" size="40px">home</v-icon>Nuestros Contenidos</p>
+					</v-col>
+				</v-row>
+			</div>		
 		</div>
-		<div v-if="$vuetify.theme.isDark" class="llamada_contacto2">
-			<h1 class="llamada_text">Sabemos que no siempre cuentas con internet!!</h1>
-			<v-row no-gutters>
-				<v-col cols="12" sm="6">
-					<div class="text_llamada">
-						<p>Si tienes algun inconveniente con tu red Wifi, 
-							Programa tus clases y te llamaremos para que sigas 
-							recibiendo educación de forma no remota, o si deseas 
-							comunicate en cualquier momento</p>
-						<br>
-						<v-btn rounded color="primary" dark>Llamar</v-btn>
-					</div>
-				</v-col>
-				<v-col cols="12" sm="6">
-					<br><br><br><br><br>
-					<div class="form_contacto">
-						<form>
-							<v-text-field label="Nombre" type="text" filled background-color="#ffffff"></v-text-field>
-							<v-text-field label="Número de Teléfono" type="telephone" filled background-color="#ffffff"></v-text-field>
-							<v-text-field label="E-mail" type="email" filled background-color="#ffffff"></v-text-field>
-							<v-text-field label="Contraseña" type="password" filled background-color="#ffffff"></v-text-field>
-							<v-btn rounded color="primary" dark>Programar</v-btn>
-							<p style="font-family: Maven Pro; font-style: normal; font-weight: 500;  font-size: 15px;">
-								¿Tienes una cuenta? <a style="font-weight: 800;"><router-link to='/login'>Inicia Sesión</router-link></a></p>
-						</form>
-					</div>
-				</v-col>
-			</v-row>
-		</div>
-		<div v-else class="llamada_contacto">
-			<h1 class="llamada_text">Sabemos que no siempre cuentas con internet!!</h1>
-			<v-row no-gutters>
-				<v-col cols="12" sm="6">
-					<div class="text_llamada">
-						<p>Si tienes algun inconveniente con tu red Wifi, 
-							Programa tus clases y te llamaremos para que sigas 
-							recibiendo educación de forma no remota, o si deseas 
-							comunicate en cualquier momento</p>
-						<br>
-						<v-btn rounded color="primary" dark>Llamar</v-btn>
-					</div>
-				</v-col>
-				<v-col cols="12" sm="6">
-					<br><br><br><br><br>
-					<div class="form_contacto">
-						<form>
-							<v-text-field label="Nombre" type="text" filled background-color="#ffffff"></v-text-field>
-							<v-text-field label="Número de Teléfono" type="telephone" filled background-color="#ffffff"></v-text-field>
-							<v-text-field label="E-mail" type="email" filled background-color="#ffffff"></v-text-field>
-							<v-text-field label="Contraseña" type="password" filled background-color="#ffffff"></v-text-field>
-							<v-btn rounded color="primary" dark>Programar</v-btn>
-							<p style="font-family: Maven Pro; font-style: normal; font-weight: 500;  font-size: 15px;">
-								¿Tiene una cuenta? <a style="font-weight: 800;"><router-link to='/login'>Inicia Sesión</router-link></a></p>
-						</form>
-					</div>
-				</v-col>
-			</v-row>
+
+		
+
+		<div id="sabemosInternet" :class="$vuetify.theme.dark ? 'llamada_contacto_dark' : 'llamada_contacto_light'" style="padding-left:5%; padding-right:5%;">
+			<div>
+				<v-row style="width:100%;">
+					<v-col cols="12" sm="9" style="margin-top:-20px;">
+						<h1 class="llamada_text titulo--text">Sabemos que no siempre cuentas con internet!!</h1>
+					</v-col>
+				</v-row>
+				<v-row class="">
+					<v-col cols="12" sm="6">
+						<div class="text_llamada" style="margin-top:15%; width:340px;margin-left:10%">
+							<p align="center" class="titulo--text">Si tienes algun inconveniente con tu red Wifi, 
+								Programa tus clases y te llamaremos para que sigas 
+								recibiendo educación de forma no remota, o si deseas 
+								comunicate en cualquier momento</p>
+							<br>
+							<div style="width:200px;margin-left:15%">
+								<v-btn rounded block large color="boton_menu1" class="sombraB" dark>Llamar</v-btn>
+							</div>
+						</div>
+					</v-col>
+					<v-col cols="12" sm="6">
+						<center>
+							<div style="width:370px; padding-top:30%;">
+								<form>
+									<v-text-field style="margin-bottom:-20px;" label="Nombre" type="text" solo rounded  prepend-inner-icon="account_circle"></v-text-field>
+									<v-text-field style="margin-bottom:-20px;" label="Número de Teléfono" type="telephone" solo rounded prepend-inner-icon="phone"></v-text-field>
+									<v-text-field style="margin-bottom:-20px;" label="E-mail" type="email"  solo rounded prepend-inner-icon="email"></v-text-field>
+									<v-text-field label="Contraseña" type="password" solo rounded prepend-inner-icon="vpn_key"></v-text-field>
+										<div style="width:200px;">
+											<v-btn block rounded color="boton_menu1" class="sombraB" dark>Programar</v-btn>
+										</div>
+								</form>
+								<p style="font-family: Maven Pro; font-style: normal; font-weight: 500;  font-size: 15px; margin-top:20px;">
+									¿Tiene una cuenta? <a style="font-weight: 800;"><router-link to='/login'>Inicia Sesión</router-link></a></p>
+							</div>
+						</center>
+					</v-col>
+				</v-row>
+			</div>
 		</div>
 	</v-app>
 </template>
@@ -174,23 +121,61 @@
 		MenuResponsive,
     },
     data: () => ({
+		items: [{
+				title: 'Programa de Apadrinamiento',
+				img: 'https://i2.wp.com/debtwisedentist.com/wp-content/uploads/2018/04/cytonn-photography-604681-unsplash-e1524114404983.jpg?resize=800%2C445',
+				description:'Donde los empresarios ayudan a pagar la educación de nuestros estudiantes',
+			},
+			{
+				title: 'Programa de acompañamiento',
+				img: 'http://www.crossroadslearning.ca/uploads/3/0/9/2/30924385/mimi-thian-vdxmsix-n6m-unsplash.jpg',
+				description: 'Donde resolvemos tus dudas en un tiempo máximo de 24 horas',
+			},
+			{
+				title: 'Programa de proyectos sociales',
+				img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
+				description: 'Aquí aplicarás lo aprendido en tus comunidades',
+			},
+		],
         //
         }),
     };
 </script>
 
 <style>
+	.contenedor.fondo_dark{
+		background-image: linear-gradient(#23036A, #001844);
+	}
+	.sombraB{
+		box-shadow: 0px 4px 31px rgba(0, 21, 33, 0.46);
+	}
+	.v-card {
+		transition: opacity .4s ease-in-out;
+	}
+	.v-card:not(.on-hover) {
+		opacity: 0.6;
+	}
+	.show-btns {
+		color: rgba(255, 255, 255, 1) !important;
+	}
+	.contenedor{
+		padding-top: 5%;
+		padding-left: 5%;
+		padding-right: 5%;
+		padding-bottom: 5%;
+		width: 100%;
+	}
 	.slides{
 		width: 100%;
 		height: 750px;	
 	}
-	.slides.font{
+	.slides.font_light{
 		background-image: url('../assets/slides/slider3.png');
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
 	}
-	.slides.font2{
+	.slides.font_dark{
 		background-image: url('../assets/slides/slider2.png');
 		background-position: center;
 		background-repeat: no-repeat;
@@ -205,77 +190,18 @@
 		letter-spacing: -1.5px;
 		color: white;
 	}
-	.b_comenzar{
-		position: absolute;
-		left: 9.69%;
-		right: 31.04%;
-		bottom: 80.06%;
-		top:67%;
-	}
-	.descubre{
-		position: relative;
-		width: 100%;
-		height: 780px;
-		padding-top: 5%;
-		padding-left: 5%;
-		padding-right: 5%;
-	}
 	.t_descubre{
-		width: 955px;
-		height: 72px;
-		left: 128px;
-		top: 1155px;
 		font-family: Maven Pro;
 		font-style: normal;
 		font-weight: 500;
 		font-size: 38px;
-		line-height: 72px;
-		/* identical to box height, or 120% */
+		line-height: 40px;
 		letter-spacing: -0.5px;
-		/* Background 2 menos oscuro */
 		color: #102855;
-	}
-	.descubre_imagenes{
-		width: 100%;
-		height: 330px;
-		background: #00A3EF;
-		padding-top: 3%;
-		padding-left: 3%;
-		padding-right: 3%;
-		padding-bottom: 3%;
-	}
-	.desc_imagenes{
-		width: 100%;
-		height: 100%;
-		background: #00A3EF;
-		padding-left: 3%;
-		padding-right: 3%;
-	}
-	.descubre_imagenes2{
-		width: 100%;
-		height: 330px;
-		background: #9369E3;
-		padding-top: 3%;
-		padding-left: 3%;
-		padding-right: 3%;
-		padding-bottom: 3%;
-	}
-	.desc_imagenes2{
-		width: 100%;
-		height: 100%;
-		background: #9369E3;
-		padding-left: 3%;
-		padding-right: 3%;
-	}
-	.ww{
-		background: rgb(251, 255, 0);
-		width: 100%;
-		height: 100%;
 	}
 	.descubre_descrip{
 		background: #00102E;
-		width: 100%;
-		height: 120px;
+		width: 100%;	
 	}
 	.text_descrip{
 		font-family: Maven Pro;
@@ -283,62 +209,37 @@
 		font-weight: 500;
 		font-size: 18px;
 		line-height: 27px;
-		/* or 136% */
 		letter-spacing: 0.18px;
 		color: #FFFFFF;
-		padding-right: 5%;
-		padding-top: 7%;
-		padding-left: 10%;
-	}
-	.banner_func{
-		width: 100%;
-		height: 90px;
-		padding-left: 7%;
-		padding-right: 7%;
-	}
-	.banner_descrip{
-		background: #00B3FF;
-		width: 100%;
-		height: 90px;
-	}
-	.banner_descrip2{
-		background: #9369E3;
-		width: 100%;
-		height: 90px;
+		padding-right: 2%;
+		padding-left: 2%;
+		padding-top: 20px;
+		padding-bottom: 4px;
 	}
 	.banner_text{
 		font-family: Maven Pro;
 		font-style: normal;
 		font-weight: bold;
 		font-size: 18px;
-		line-height: 29px;
 		color: #FFFFFF;
-		padding-top: 8%;
 	}
-	.llamada_contacto{
+	.llamada_contacto_light{
 		background-image: url('../assets/light_footer.png');
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
-		position: relative;
 		width: 100%;
-		height: 800px;
-		padding-left: 7%;
-		padding-right: 7%;
+		height: 700px;
 	}
-	.llamada_contacto2{
-		background-image: url('../assets/dark_footer.png');
+	.llamada_contacto_dark{
+		background-image: url('../assets/dark_footer2.png');
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
-		position: relative;
 		width: 100%;
-		height: 800px;
-		padding-left: 7%;
-		padding-right: 7%;
+		height: 700px;
 	}
 	.llamada_text{
-		padding-right: 25%;
 		font-family: Maven Pro;
 		font-style: normal;
 		font-weight: bold;
@@ -347,14 +248,7 @@
 		letter-spacing: -1.5px;
 		color: #102855;
 	}
-	.form_contacto{
-		width: 370px;
-		padding-top: 90px;
-		float: right;
-	}
 	.text_llamada{
-		width: 307px;
-		padding-top: 150px;
 		font-family: Maven Pro;
 		font-style: normal;
 		font-weight: 500;

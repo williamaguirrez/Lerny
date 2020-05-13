@@ -10,7 +10,7 @@
         <b style="width:10px;"/>
         <v-btn class="hidden-sm-and-down white--text" text to='/signup'>Regístrate</v-btn>
         <b style="width:10px;"/>
-        <v-btn class="hidden-sm-and-down" style="padding-left:30px;padding-right:30px" rounded color="primary" to='/login'>Ingresa</v-btn>
+        <v-btn class="hidden-sm-and-down" style="padding-left:30px;padding-right:30px" rounded color="boton_menu" dark to='/login'>Ingresa</v-btn>
         <v-btn class="hidden-md-and-up" icon @click.stop="$store.state.drawer = !$store.state.drawer">
             <v-icon>menu</v-icon>
         </v-btn>

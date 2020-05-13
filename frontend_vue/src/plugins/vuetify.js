@@ -10,5 +10,19 @@ export default new Vuetify({
     },
     theme: {
         dark: false,
+        themes: {
+            light: {
+                boton_menu: '#00A3EF',
+                boton_menuN: '005DA5',
+                boton_menu1: '#8D50F1',
+                titulo: '#102855',
+            },
+            dark: {
+                boton_menu: '#8D50F1',
+                boton_menuN: '5B418D',
+                boton_menu1: '#00A3EF',
+                titulo: '#FFFFFF',
+            }
+        }
     },
 });

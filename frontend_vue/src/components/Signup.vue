@@ -1,7 +1,7 @@
 <template>
 	<v-app id="inspire">
         <div class="slides">
-			<div class="slides font3">
+			<div :class="$vuetify.theme.dark ? 'slides font_light1' : 'slides font_dark1'">
                 <MenuToolbar/>
                 <MenuResponsive/>
                 <v-row style="width:100%;padding-left:10%;padding-right:10%;">
@@ -21,12 +21,12 @@
                                 <v-text-field solo rounded label="Confirmar Contraseña" prepend-inner-icon="vpn_key"></v-text-field>
                                 <div style="padding-left:15%;padding-right:15%">
                                     <center>
-                                        <v-btn style="margin-bottom:10px;" rounded block color="#9369E3" large dark>Comenzar</v-btn>
+                                        <v-btn style="margin-bottom:10px;" rounded block color="boton_menu1" dark large>Comenzar</v-btn>
                                     </center>
                                 </div>
                             </form>
                             <center>
-                                <p style="color:#9369E3; font-family: Maven Pro; font-style: normal; font-weight: 500; font-size: 15px;">
+                                <p style="color:boton_menu1; font-family: Maven Pro; font-style: normal; font-weight: 500; font-size: 15px;">
                                     ¿Tienes una cuenta? <a style="font-weight: 900;"><router-link to='/login'>Inicia</router-link></a>
                                 </p>
                             </center>
@@ -54,8 +54,14 @@
 </script>
 
 <style>
-    .slides.font3{
+    .slides.font_dark1{
 		background-image: url('../assets/slides/slider4.png');
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+    }
+    .slides.font_light1{
+		background-image: url('../assets/slides/slider5.png');
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
