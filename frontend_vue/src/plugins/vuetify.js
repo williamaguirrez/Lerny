@@ -16,7 +16,7 @@ export default new Vuetify({
                 boton_menuN: '005DA5',
                 boton_menu1: '#8D50F1',
                 titulo: '#102855',
-                fondo_menu: '#00FFFFFF',
+                fondo_menu: '#FFF',
             },
             dark: {
                 boton_menu: '#8D50F1',
