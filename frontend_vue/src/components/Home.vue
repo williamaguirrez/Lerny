@@ -14,100 +14,100 @@
 				</v-row>
 			</div>
 		</div>
-		<div id="funcionalidadesHome" :class="$vuetify.theme.dark ? 'contenedor fondo_dark' : 'contenedor'">
-			<v-row>
-				<v-col cols="12" sm="11">
-					<h2 class="t_descubre titulo--text">Descubre nuestras funcionalidades</h2>
-				</v-col>
-				<v-col cols="12" sm="1">
-					<v-btn class="mx-2" fab color="boton_menu" dark style="float:right;">
-						<v-icon dark>mdi-plus</v-icon>
-					</v-btn>
-				</v-col>
-			</v-row>
-			<v-container class="pa-4 text-center">
-				<v-row class="fill-height" align="center" justify="center">
-					<template v-for="(item, i) in items">
-						<v-col :key="i" cols="12" md="4" class="boton_menu">
-							<v-hover v-slot:default="{ hover }" style="margin-bottom:10px;">
-								<v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }" >
-									<v-img :src="item.img" height="225px" class="align-end">
-										<v-card-title class="title white--text">
-											{{item.title}}
-										</v-card-title>
-									</v-img>      
-								</v-card>
-							</v-hover>
-						</v-col>
-					</template>	
-				</v-row>
-				<v-row class="fill-height" align="center" justify="center">
-					<template v-for="(item, i) in items">
-						<v-col :key="i" cols="12" md="4" style="background-color:#00102E;">
-							<v-row no-gutters class="descubre_descrip">
-								<p class="text_descrip" >{{item.description}}</p>
-							</v-row> 
-						</v-col>
-					</template>
-				</v-row>					
-			</v-container>
-			<div style="padding-left:10%; padding-right:10%; padding-top:5%; padding-bottom:5%">
+			<div id="funcionalidadesHome" :class="$vuetify.theme.dark ? 'contenedor fondo_dark' : 'contenedor'">
 				<v-row>
-					<v-col cols="12" sm="4" class="boton_menu">
-						<p  style="padding-top:16px;" class="banner_text text-center"><v-icon color="#ffffff" size="40px">home</v-icon>Rutas de Aprendizaje</p>
+					<v-col cols="12" sm="11">
+						<h2 class="t_descubre titulo--text">Descubre nuestras funcionalidades</h2>
 					</v-col>
-					<v-col cols="12" sm="4" class="boton_menuN">
-						<p style="padding-top:16px;" class="banner_text text-center"><v-icon color="#ffffff" size="40px">music_note</v-icon>Podcast Educativos</p>
-					</v-col>
-					<v-col cols="12" sm="4" class="boton_menu">
-						<p style="padding-top:16px;" class="banner_text text-center"><v-icon color="#ffffff" size="40px">home</v-icon>Nuestros Contenidos</p>
-					</v-col>
-				</v-row>
-			</div>		
-		</div>
-
-		
-
-		<div id="sabemosInternet" :class="$vuetify.theme.dark ? 'llamada_contacto_dark' : 'llamada_contacto_light'" style="padding-left:5%; padding-right:5%;">
-			<div>
-				<v-row style="width:100%;">
-					<v-col cols="12" sm="9" style="margin-top:-20px;">
-						<h1 class="llamada_text titulo--text">Sabemos que no siempre cuentas con internet!!</h1>
+					<v-col cols="12" sm="1">
+						<v-btn class="mx-2" fab color="boton_menu" dark style="float:right;">
+							<v-icon dark>mdi-plus</v-icon>
+						</v-btn>
 					</v-col>
 				</v-row>
-				<v-row class="">
-					<v-col cols="12" sm="6">
-						<div class="text_llamada" style="margin-top:15%; width:340px;margin-left:10%">
-							<p align="center" class="titulo--text">Si tienes algun inconveniente con tu red Wifi, 
-								Programa tus clases y te llamaremos para que sigas 
-								recibiendo educación de forma no remota, o si deseas 
-								comunicate en cualquier momento</p>
-							<br>
-							<div style="width:200px;margin-left:15%">
-								<v-btn rounded block large color="boton_menu1" class="sombraB" dark>Llamar</v-btn>
-							</div>
-						</div>
-					</v-col>
-					<v-col cols="12" sm="6">
-						<center>
-							<div style="width:370px; padding-top:30%;">
-								<form>
-									<v-text-field style="margin-bottom:-20px;" label="Nombre" type="text" solo rounded  prepend-inner-icon="account_circle"></v-text-field>
-									<v-text-field style="margin-bottom:-20px;" label="Número de Teléfono" type="telephone" solo rounded prepend-inner-icon="phone"></v-text-field>
-									<v-text-field style="margin-bottom:-20px;" label="E-mail" type="email"  solo rounded prepend-inner-icon="email"></v-text-field>
-									<v-text-field label="Contraseña" type="password" solo rounded prepend-inner-icon="vpn_key"></v-text-field>
-										<div style="width:200px;">
-											<v-btn block rounded color="boton_menu1" class="sombraB" dark>Programar</v-btn>
-										</div>
-								</form>
-								<p style="font-family: Maven Pro; font-style: normal; font-weight: 500;  font-size: 15px; margin-top:20px;">
-									¿Tiene una cuenta? <a style="font-weight: 800;"><router-link to='/login'>Inicia Sesión</router-link></a></p>
-							</div>
-						</center>
-					</v-col>
-				</v-row>
+				<v-container class="pa-4 text-center">
+					<v-row class="fill-height" align="center" justify="center">
+						<template v-for="(item, i) in items">
+							<v-col :key="i" cols="12" md="4" class="boton_menu">
+								<v-hover v-slot:default="{ hover }" style="margin-bottom:10px;">
+									<v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }" >
+										<v-img :src="item.img" height="225px" class="align-end">
+											<v-card-title class="title white--text">
+												{{item.title}}
+											</v-card-title>
+										</v-img>      
+									</v-card>
+								</v-hover>
+							</v-col>
+						</template>	
+					</v-row>
+					<v-row class="fill-height" align="center" justify="center">
+						<template v-for="(item, i) in items">
+							<v-col :key="i" cols="12" md="4" style="background-color:#00102E;">
+								<v-row no-gutters class="descubre_descrip">
+									<p class="text_descrip" >{{item.description}}</p>
+								</v-row> 
+							</v-col>
+						</template>
+					</v-row>					
+				</v-container>
+				<div style="padding-left:10%; padding-right:10%; padding-top:5%; padding-bottom:5%">
+					<v-row>
+						<v-col cols="12" sm="4" class="boton_menu">
+							<p  style="padding-top:16px;" class="banner_text text-center"><v-icon color="#ffffff" size="40px">home</v-icon>Rutas de Aprendizaje</p>
+						</v-col>
+						<v-col cols="12" sm="4" class="boton_menuN">
+							<p style="padding-top:16px;" class="banner_text text-center"><v-icon color="#ffffff" size="40px">music_note</v-icon>Podcast Educativos</p>
+						</v-col>
+						<v-col cols="12" sm="4" class="boton_menu">
+							<p style="padding-top:16px;" class="banner_text text-center"><v-icon color="#ffffff" size="40px">home</v-icon>Nuestros Contenidos</p>
+						</v-col>
+					</v-row>
+				</div>		
 			</div>
-		</div>
+
+			
+
+			<div id="sabemosInternet" :class="$vuetify.theme.dark ? 'llamada_contacto_dark' : 'llamada_contacto_light'" style="padding-left:5%; padding-right:5%;">
+				<div>
+					<v-row style="width:100%;">
+						<v-col cols="12" sm="9" style="margin-top:-20px;">
+							<h1 class="llamada_text titulo--text">Sabemos que no siempre cuentas con internet!!</h1>
+						</v-col>
+					</v-row>
+					<v-row class="">
+						<v-col cols="12" sm="6">
+							<div class="text_llamada" style="margin-top:15%; width:340px;margin-left:10%">
+								<p align="center" class="titulo--text">Si tienes algun inconveniente con tu red Wifi, 
+									Programa tus clases y te llamaremos para que sigas 
+									recibiendo educación de forma no remota, o si deseas 
+									comunicate en cualquier momento</p>
+								<br>
+								<div style="width:200px;margin-left:15%">
+									<v-btn rounded block large color="boton_menu1" class="sombraB" dark>Llamar</v-btn>
+								</div>
+							</div>
+						</v-col>
+						<v-col cols="12" sm="6">
+							<center>
+								<div style="width:370px; padding-top:30%;">
+									<form>
+										<v-text-field style="margin-bottom:-20px;" label="Nombre" type="text" solo rounded  prepend-inner-icon="account_circle"></v-text-field>
+										<v-text-field style="margin-bottom:-20px;" label="Número de Teléfono" type="telephone" solo rounded prepend-inner-icon="phone"></v-text-field>
+										<v-text-field style="margin-bottom:-20px;" label="E-mail" type="email"  solo rounded prepend-inner-icon="email"></v-text-field>
+										<v-text-field label="Contraseña" type="password" solo rounded prepend-inner-icon="vpn_key"></v-text-field>
+											<div style="width:200px;">
+												<v-btn block rounded color="boton_menu1" class="sombraB" dark>Programar</v-btn>
+											</div>
+									</form>
+									<p style="font-family: Maven Pro; font-style: normal; font-weight: 500;  font-size: 15px; margin-top:20px;">
+										¿Tiene una cuenta? <a style="font-weight: 800;"><router-link to='/login'>Inicia Sesión</router-link></a></p>
+								</div>
+							</center>
+						</v-col>
+					</v-row>
+				</div>
+			</div>
 	</v-app>
 </template>
 

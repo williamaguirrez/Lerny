@@ -1,5 +1,5 @@
 <template>
-    <v-toolbar color="transparent" style="padding-left:5%; padding-right:5%;" flat>
+    <v-app-bar id="menuu" :color="offsetTop ? 'fondo_menu' : 'transparent'" style="padding-left:5%; padding-right:5%;" flat app>
         <v-switch class="hidden-md-and-up" v-model="$vuetify.theme.dark" primary style="height: 23px"></v-switch>
         <v-spacer></v-spacer>
         <v-switch class="hidden-sm-and-down" v-model="$vuetify.theme.dark" primary style="height: 23px"></v-switch>
@@ -14,13 +14,21 @@
         <v-btn class="hidden-md-and-up" icon @click.stop="$store.state.drawer = !$store.state.drawer">
             <v-icon>menu</v-icon>
         </v-btn>
-    </v-toolbar>
+    </v-app-bar>
 </template>
 
 <script>
     export default {
         name: 'MenuToolbar',
         data: () => ({
+            offsetTop: 0,
         }),
+        mounted()
+   {
+       var that = this;
+       window.addEventListener("scroll", function(){
+           that.offsetTop = window.scrollY;
+       });
+   },
     }
 </script>

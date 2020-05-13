@@ -16,12 +16,14 @@ export default new Vuetify({
                 boton_menuN: '005DA5',
                 boton_menu1: '#8D50F1',
                 titulo: '#102855',
+                fondo_menu: '#00FFFFFF',
             },
             dark: {
                 boton_menu: '#8D50F1',
                 boton_menuN: '5B418D',
                 boton_menu1: '#00A3EF',
                 titulo: '#FFFFFF',
+                fondo_menu: '#000',
             }
         }
     },
