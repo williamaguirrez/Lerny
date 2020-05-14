@@ -4,6 +4,7 @@ import NoEncontrado from './components/NoEncontrado.vue';
 import Login from './components/Login.vue';
 import Signup from './components/Signup.vue';
 import Nosotros from './components/Nosotros.vue';
+import Recuperar from './components/Recuperar.vue';
 import { store } from './store';
 
 export const routes = [
@@ -60,6 +61,22 @@ export const routes = [
         component: Nosotros, 
         meta: {
             title: 'Nosotros',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/recuperar', 
+        component: Recuperar, 
+        meta: {
+            title: 'Recuperar Cuenta',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
