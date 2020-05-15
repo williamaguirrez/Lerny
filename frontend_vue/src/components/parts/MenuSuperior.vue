@@ -2,16 +2,19 @@
     <v-app-bar id="menuu" :color="offsetTop ? isColor : 'transparent'" style="padding-left:5%; padding-right:5%;" flat app>
         <v-spacer></v-spacer>
         <v-switch v-model="$vuetify.theme.dark" primary style="height: 23px"></v-switch>
-        <b style="width:20px;"/>
-
-        <v-menu open-on-hover bottom left>
+        <b style="width:30px;"/>
+        <v-badge :content="messages" :value="messages" color="blue" overlap>
+            <v-icon large>notifications</v-icon>
+        </v-badge>
+        <b style="width:30px;"/>
+        <v-menu open-on-hover offset-y bottom left>
             <template v-slot:activator="{ on }">
-                    <v-avatar dark icon v-on="on">
+                <v-avatar dark icon v-on="on">
                     <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
                 </v-avatar>
             </template>
             <v-list>
-                <v-list-item v-for="(item, i) in items" :key="i" @click="" :to="item.url">
+                <v-list-item v-for="(item, i) in items" :key="i" :to="item.url">
                     <v-list-item-icon>
                         <v-icon>{{ item.icon }}</v-icon>
                     </v-list-item-icon>
@@ -27,15 +30,13 @@
     export default {
         name: 'MenuSuperior',
         data: () => ({
+            messages: 3,
+            show: false,
             offsetTop: 0,
             items: [
                 {   title: 'Ver Perfil', 
                     icon: 'account_circle',
                     url: '/perfil'
-                },
-                {   title: 'Configuración', 
-                    icon: 'settings',
-                    url: '/configuracion'
                 },
                 {   title: 'Membresías', 
                     icon: 'loyalty',
@@ -48,6 +49,10 @@
                 {   title: 'Mentores', 
                     icon: 'people_alt',
                     url: '/mentores'
+                },
+                {   title: 'Configuración', 
+                    icon: 'settings',
+                    url: '/configuracion'
                 },
                 {   title: 'Cerrar sesión', 
                     icon: 'power_settings_new',

@@ -1,6 +1,6 @@
 <template>
-    <v-container>
-        <v-navigation-drawer v-model="drawer" color="#001844b0" permanent absolute expand-on-hover dark>
+    <v-container fill-height>
+        <v-navigation-drawer v-model="drawer" :color="isColor" permanent app expand-on-hover dark>
             <v-list>
                 <v-list-item v-for="item in items" :key="item.title" link>
                     <v-list-item-icon>
@@ -29,6 +29,15 @@
                 { title: 'Buscar', icon: 'search' },
             ],
         }),
+        computed:{
+            isColor: function(){
+                if (this.$vuetify.theme.dark){
+                    return 'rgba(0, 0, 0, 0.747)';
+                }else{
+                    return 'rgba(0, 24, 88, 0.712)';
+                }
+            }
+        },
     }
 </script>
 

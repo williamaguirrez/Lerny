@@ -7,7 +7,7 @@
                 <v-row style="width:100%;padding-left:10%;padding-right:10%; padding-top:100px; justify-content:center">
                         <div class="signup_panel">
                             <center>
-                            <h2 style="padding-top:50px;" class="titulo1">Regístrate</h2>
+                                <h2 style="padding-top:50px;" class="titulo1">Regístrate</h2>
                             </center>
                             <div style="padding-left:70px; padding-right:70px;padding-top:50px;">
                                 <v-btn block color="primary" small style="margin-bottom:10px;">Registrar con GOOGLE</v-btn>
@@ -16,12 +16,12 @@
                             <v-divider style="margin-bottom:25px; margin-top:25px; margin-left:140px; margin-right:140px;" color="white"></v-divider>
                             <form>
                                 <v-row style="margin-bottom:-10px;">
-                                <v-col cols="12" sm="6">
-                                    <v-text-field style="margin-bottom:-40px;" solo rounded label="Nombre" prepend-inner-icon="people_alt"></v-text-field>
-                                </v-col>
-                                <v-col cols="12" sm="6">
-                                    <v-text-field style="margin-bottom:-20px;" solo rounded label="Apellido" prepend-inner-icon="person_pin"></v-text-field>
-                                </v-col>
+                                    <v-col cols="12" sm="6">
+                                        <v-text-field style="margin-bottom:-40px;" solo rounded label="Nombre" prepend-inner-icon="people_alt"></v-text-field>
+                                    </v-col>
+                                    <v-col cols="12" sm="6">
+                                        <v-text-field style="margin-bottom:-20px;" solo rounded label="Apellido" prepend-inner-icon="person_pin"></v-text-field>
+                                    </v-col>
                                 </v-row>
                                 <v-text-field style="margin-bottom:-20px;" solo rounded label="Correo Electrónico" prepend-inner-icon="email"></v-text-field>
                                 <v-text-field style="margin-bottom:-20px;" solo rounded label="Contraseña" prepend-inner-icon="vpn_key"></v-text-field>
