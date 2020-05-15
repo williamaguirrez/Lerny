@@ -5,6 +5,8 @@ import Login from './components/Login.vue';
 import Signup from './components/Signup.vue';
 import Nosotros from './components/Nosotros.vue';
 import Recuperar from './components/Recuperar.vue';
+import Clases from './components/Clases.vue';
+import Reproductor from './components/Reproductor.vue';
 import { store } from './store';
 
 export const routes = [
@@ -77,6 +79,38 @@ export const routes = [
         component: Recuperar, 
         meta: {
             title: 'Recuperar Cuenta',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/clases', 
+        component: Clases, 
+        meta: {
+            title: 'Clases',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/reproductor', 
+        component: Reproductor, 
+        meta: {
+            title: 'Curso',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'

@@ -63,7 +63,7 @@
 		font-style: normal;
 		font-weight: bold;
 		font-size: 45px;
-		line-height: 7px;
+		line-height: 40px;
 		letter-spacing: -1.5px;
 		color: white;
 	}

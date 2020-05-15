@@ -17,12 +17,6 @@
     </v-app-bar>
 </template>
 
-<style scoped>
-.a{
-    color:rgba(0, 24, 88, 0.712);
-}
-</style>
-
 <script>
     import vuetify from '../../plugins/vuetify';
     export default {
