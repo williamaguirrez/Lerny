@@ -43,8 +43,19 @@
 		//var db = firebase.database();
 		</script>
 		
-	
-		<script
+		<script type="text/javascript">
+			/* NOTE : Use web server to view HTML files as real-time update will not work if you directly open the HTML file in the browser. */
+			(function(d, m){
+			  var kommunicateSettings = {"appId":"3b14955bf6e5e6fb27a85f9d8a33b0586","popupWidget":true,"automaticChatOpenOnNavigation":true};
+			  var s = document.createElement("script"); s.type = "text/javascript"; s.async = true;
+			  s.src = "https://widget.kommunicate.io/v2/kommunicate.app";
+			  var h = document.getElementsByTagName("head")[0]; h.appendChild(s);
+			  window.kommunicate = m; m._globals = kommunicateSettings;
+			})(document, window.kommunicate || {});
+		</script>
+
+
+		<!-- <script
 			src="https://cdn.jsdelivr.net/gh/mishushakov/df-btn@latest/df-btn.min.js"
 			id="df-btn"
 			project='me310-sugar'
@@ -52,6 +63,6 @@
 			height="490px"
 			openText="Habla con Ally"
 			closeText="Cerrar">
-		</script>
+		</script> -->
 	</body>
 </html>
