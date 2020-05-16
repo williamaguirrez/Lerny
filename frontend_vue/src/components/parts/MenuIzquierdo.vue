@@ -1,8 +1,8 @@
 <template>
-    <v-container fill-height>
+    <v-container>
         <v-navigation-drawer v-model="drawer" :color="isColor" permanent app expand-on-hover dark>
             <v-list>
-                <v-list-item v-for="item in items" :key="item.title" link>
+                <v-list-item v-for="item in items" :key="item.title" :to="item.url">
                     <v-list-item-icon>
                         <v-icon>{{ item.icon }}</v-icon>
                     </v-list-item-icon>
@@ -21,12 +21,13 @@
         data: () => ({
             drawer: true,
             items: [
-                { title: 'Inicio', icon: 'home' },
-                { title: 'Mi perfil', icon: 'perm_identity' },
-                { title: 'Mis Cursos', icon: 'videocam' },
-                { title: 'Monitorias', icon: 'chat' },
-                { title: 'Llamadas', icon: 'phone' },
-                { title: 'Buscar', icon: 'search' },
+                { title: 'Inicio', icon: 'home', url: '/clases' },
+                { title: 'Mi perfil', icon: 'perm_identity', url: '/perfil' },
+                { title: 'Mis Cursos', icon: 'videocam', url: '/cursos' },
+                { title: 'Monitorias', icon: 'chat', url: '/monitorias' },
+                { title: 'Llamadas', icon: 'phone', url: '/phone' },
+                { title: 'Calendario', icon: 'event', url: '/phone' },
+                { title: 'Buscar', icon: 'search', url: '/buscar' },
             ],
         }),
         computed:{
@@ -43,6 +44,6 @@
 
 <style scoped>
     .aaa{
-        color: #001844b0;
+        color: #071838be;
     }
 </style>

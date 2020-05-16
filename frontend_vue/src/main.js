@@ -4,10 +4,14 @@ import vuetify from './plugins/vuetify';
 import VueRouter from 'vue-router';
 import { routes } from './routes';
 import { store } from './store';
+import { Plugin } from 'vue-responsive-video-background-player'
+
 
 Vue.config.productionTip = false
 
 Vue.use(VueRouter);
+Vue.use(Plugin);
+
 
 const router = new VueRouter({
   mode: 'history',
