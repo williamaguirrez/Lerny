@@ -4,7 +4,7 @@
         <v-switch v-model="$vuetify.theme.dark" primary style="height: 23px"></v-switch>
         <b style="width:30px;"/>
         <v-badge :content="messages" :value="messages" color="blue" overlap>
-            <v-icon large>notifications</v-icon>
+            <v-icon large color="white">notifications</v-icon>
         </v-badge>
         <b style="width:30px;"/>
         <v-menu open-on-hover offset-y bottom left>

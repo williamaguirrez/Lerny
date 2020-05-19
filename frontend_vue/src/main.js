@@ -4,14 +4,19 @@ import vuetify from './plugins/vuetify';
 import VueRouter from 'vue-router';
 import { routes } from './routes';
 import { store } from './store';
-import { Plugin } from 'vue-responsive-video-background-player'
-
+import { Plugin } from 'vue-responsive-video-background-player';
+import VuePlyr from 'vue-plyr';
 
 Vue.config.productionTip = false
 
 Vue.use(VueRouter);
 Vue.use(Plugin);
-
+Vue.use(VuePlyr, {
+  plyr: {
+    fullscreen: { enabled: true }
+  },
+  emit: ['ended']
+});
 
 const router = new VueRouter({
   mode: 'history',
