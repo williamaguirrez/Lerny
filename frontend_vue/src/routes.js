@@ -14,7 +14,7 @@ export const routes = [
         path: '/', 
         component: Home, 
         meta: {
-            title: 'Inicio',
+            title: 'Inicio | Lerny.co',
             metaTags: [{
                     name: 'description',
                     content: 'The about page of our example app.'
@@ -30,7 +30,7 @@ export const routes = [
         path: '/login',
         component: Login, 
         meta: {
-            title: 'Inicia Sesión',
+            title: 'Inicia Sesión | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
@@ -46,7 +46,7 @@ export const routes = [
         path: '/signup', 
         component: Signup, 
         meta: {
-            title: 'Regístrate',
+            title: 'Regístrate | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
@@ -62,7 +62,7 @@ export const routes = [
         path: '/nosotros', 
         component: Nosotros, 
         meta: {
-            title: 'Nosotros',
+            title: 'Nosotros | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
@@ -78,7 +78,7 @@ export const routes = [
         path: '/recuperar', 
         component: Recuperar, 
         meta: {
-            title: 'Recuperar Cuenta',
+            title: 'Recuperar Cuenta | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
@@ -94,7 +94,7 @@ export const routes = [
         path: '/clases', 
         component: Clases, 
         meta: {
-            title: 'Clases',
+            title: 'Clases | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
@@ -110,7 +110,7 @@ export const routes = [
         path: '/reproductor', 
         component: Reproductor, 
         meta: {
-            title: 'Curso',
+            title: 'Curso | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
@@ -125,7 +125,7 @@ export const routes = [
     {
         path: '/contacto', component: Contacto, 
         meta: {
-            title: 'Contacto',
+            title: 'Contacto | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
@@ -146,7 +146,7 @@ export const routes = [
         path: '*', 
         component: NoEncontrado,
         meta: {
-            title: 'Pagina no encontrada',
+            title: 'Pagina Error | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'

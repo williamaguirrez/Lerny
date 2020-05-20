@@ -5,7 +5,7 @@
 
         <!-- Menú Derecho Contenido del curso ---------------------------------------------------------------------- -->
         <v-container>
-            <v-navigation-drawer v-model="drawer" :color="isColor" permanent app width="500" expand-on-hover right dark>
+            <v-navigation-drawer v-model="drawer" :color="isColor" permanent app width="500" right expand-on-hover dark>
                 <v-list>
                     <v-list-item v-for="tema in temas" :key="tema.nomTemas">
                         <v-list-item-icon style="margin-right:5px; margin-top:2px; margin-bottom:2px">
@@ -21,7 +21,7 @@
                                         <v-timeline dense clipped style="padding-top:0px;">
                                             <v-timeline-item v-for="lesion in tema.lesiones" :key="lesion.nombre" :color="lesion.visto ? 'green' : 'grey' " icon-color="white" icon="done">
                                                 <v-row justify="space-between">
-                                                    <v-col cols="12">{{ lesion.nombre }}</v-col>
+                                                    <v-col cols="12"><router-link :to="lesion.url">{{ lesion.nombre }}</router-link></v-col>
                                                 </v-row>
                                             </v-timeline-item>
                                         </v-timeline>
@@ -62,11 +62,11 @@
                         </v-col>
                         <v-col cols="12" sm="10" style="padding-top:0px;">
                             <div style="float:right;">
-                                <v-btn outlined color="indigo"> ¿Problemas?</v-btn>
-                                <v-btn outlined color="indigo">
+                                <v-btn outlined color="indigo" @click.stop="dialog = true"> ¿Problemas?</v-btn>
+                                <v-btn outlined color="indigo" :to="temas[0].lesiones[0].urlAnterior">
                                     <v-icon left>skip_previous</v-icon>
                                 </v-btn>
-                                <v-btn outlined color="indigo">
+                                <v-btn outlined color="indigo" :to="temas[0].lesiones[0].urlSiguiente">
                                     <v-icon left>skip_next</v-icon> Siguiente Video
                                 </v-btn>
                             </div>
@@ -112,6 +112,28 @@
 			</v-row>
         </div> 
 
+        <!-- Modal de boton ¿Problemas? ------------------------------------------------------------------- -->
+        <v-row justify="center">
+            <v-dialog v-model="dialog" max-width="410">
+                <v-card>
+                    <v-card-title class="headline">¿Qué está mal en este contenido?</v-card-title>
+                    <v-card-text>
+                        Puede ser un problema de edición, algún archivo que falte o alguna propuesta de mejora. Estaremos muy atentos y lo resolveremos pronto. Por favor no envíes falsos reportes o duplicados.
+                        <v-textarea filled auto-grow label="Problema" rows="2" row-height="20"></v-textarea>
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="blue" text @click="dialog = false">
+                            Volver a Clase
+                        </v-btn>
+                        <v-btn color="blue" text @click="dialog = false">
+                            Enviar Reporte
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </v-row>
+
 		<!-- <form>
 			<script type="application/javascript" src="https://s3-us-west-2.amazonaws.com/epayco/v1.0/checkoutEpayco.js" 
                 class="epayco-button" 
@@ -150,8 +172,8 @@
                     descripcion: 'Juan Pablo García Cifuentes Director del Programa de Innovación por Diseño ME310 en alianza con Stanford University y la red SUGAR (Stanford University Global Alliance for Redesign) Profesor de la Facultad de Ingeniería de la Pontificia Universidad Javeriana Cali MOOC: Lánzate a la innovación con Design Thinking Pontificia Universidad Javeriana - Colombia',
                     visto: true,
                     url: '/',
-                    urlAnterior: '',
-                    urlSiguiente: '', 
+                    urlAnterior: '/',
+                    urlSiguiente: '/', 
                     aportes:[{
                     }],
                     preguntas:[{
@@ -166,8 +188,8 @@
                     descripcion: 'Juan Pablo García Cifuentes Director del Programa de Innovación por Diseño ME310 en alianza con Stanford University y la red SUGAR (Stanford University Global Alliance for Redesign) Profesor de la Facultad de Ingeniería de la Pontificia Universidad Javeriana Cali MOOC: Lánzate a la innovación con Design Thinking Pontificia Universidad Javeriana - Colombia',
                     visto: false,
                     url: '/',
-                    urlAnterior: '',
-                    urlSiguiente: '',
+                    urlAnterior: '/',
+                    urlSiguiente: '/',
                     aportes:[{
                     }],
                     preguntas:[{
@@ -186,8 +208,8 @@
                     descripcion: 'Juan Pablo García Cifuentes Director del Programa de Innovación por Diseño ME310 en alianza con Stanford University y la red SUGAR (Stanford University Global Alliance for Redesign) Profesor de la Facultad de Ingeniería de la Pontificia Universidad Javeriana Cali MOOC: Lánzate a la innovación con Design Thinking Pontificia Universidad Javeriana - Colombia',
                     visto: true,
                     url: '/',
-                    urlAnterior: '',
-                    urlSiguiente: '', 
+                    urlAnterior: '/',
+                    urlSiguiente: '/', 
                     aportes:[{
                     }],
                     preguntas:[{
@@ -202,8 +224,8 @@
                     descripcion: 'Juan Pablo García Cifuentes Director del Programa de Innovación por Diseño ME310 en alianza con Stanford University y la red SUGAR (Stanford University Global Alliance for Redesign) Profesor de la Facultad de Ingeniería de la Pontificia Universidad Javeriana Cali MOOC: Lánzate a la innovación con Design Thinking Pontificia Universidad Javeriana - Colombia',
                     visto: false,
                     url: '/',
-                    urlAnterior: '',
-                    urlSiguiente: '',
+                    urlAnterior: '/',
+                    urlSiguiente: '/',
                     aportes:[{
                     }],
                     preguntas:[{
@@ -214,6 +236,7 @@
             }],
             text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
             drawer: true,
+            dialog: false,
         }),
         computed:{
             isColor: function(){
@@ -233,7 +256,10 @@
 		padding-top: 5%;
 		padding-left: 5%;
 		padding-right: 5%;
-		padding-bottom: 5%;
-        
+		padding-bottom: 5%;   
 	}
+    a{
+        text-decoration: none;
+    }
+    
 </style>

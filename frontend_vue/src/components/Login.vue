@@ -73,4 +73,7 @@
         padding-left: 50px;
         padding-bottom: 50px;
     }
+    a{
+        text-decoration: none;
+    }
 </style>

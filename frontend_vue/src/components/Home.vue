@@ -146,6 +146,12 @@
     };
 </script>
 
+<style scoped>
+	.v-card:not(.on-hover) {
+			opacity: 0.6;
+	}
+</style>
+
 <style>
 	.contenedor.fondo_dark{
 		background-image: linear-gradient(#23036A, #001844);
@@ -156,9 +162,7 @@
 	.v-card {
 		transition: opacity .4s ease-in-out;
 	}
-	.v-card:not(.on-hover) {
-		opacity: 0.6;
-	}
+	
 	.show-btns {
 		color: rgba(255, 255, 255, 1) !important;
 	}
