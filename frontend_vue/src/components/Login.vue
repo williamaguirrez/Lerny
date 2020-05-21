@@ -10,8 +10,8 @@
                                 <h2 style="padding-top:50px;" class="titulo1">Iniciar Sesión</h2>
                             </center>
                             <div style="padding-left:30px; padding-right:30px;padding-top:50px;">
-                                <v-btn block color="primary" small style="margin-bottom:10px;">Iniciar con GOOGLE</v-btn>
-                                <v-btn block color="#425994" small dark>Iniciar con Facebook</v-btn>
+                                <v-btn block color="primary" small style="margin-bottom:10px;" @click="loginGoogle">Iniciar con GOOGLE</v-btn>
+                                <v-btn block color="#425994" small dark @click="loginFacebook">Iniciar con Facebook</v-btn>
                             </div>
                             <v-divider style="margin-bottom:25px; margin-top:25px; margin-left:80px; margin-right:80px;" color="white"></v-divider>
                             <v-form ref="form" v-model="valid" lazy-validation>
@@ -66,6 +66,10 @@
         },
         data: () => ({
             valid: true,
+            user:{
+                name: null,
+                email: null,
+            },
             ocultarPassword: false,
             email: '',
             contrasena: '',
@@ -83,7 +87,7 @@
                     firebase.auth().signInWithEmailAndPassword(this.email, this.contrasena)
                         .then(user => {
                             this.$router.push({ name: 'clases' })
-                            toastr.success('Bienvenido', {
+                            toastr.success('Hola ' + user.user.displayName, 'Bienvenido', {
                                 "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
                                 "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
                             });
@@ -96,6 +100,43 @@
                             this.$refs.form.reset();
                         })
                 }
+            },
+            loginGoogle(){
+                const provider = new firebase.auth.GoogleAuthProvider();
+                firebase.auth().signInWithPopup(provider)
+                .then(result => {
+                    const user = result.user
+                    this.user.name = user.displayName
+                    this.user.email = user.email
+                    this.$router.push({ name: 'clases' })
+                    toastr.success('Hola ' + this.user.name,'Bienvenido', {
+                                "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
+                                "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
+                            });
+                }).catch(err =>{
+                    toastr.error(err.message, 'Ocurrió un error', {
+                        "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
+                        "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
+                    });
+                    this.$refs.form.reset();
+                })
+            },
+            loginFacebook(){
+                const provider = new firebase.auth.FacebookAuthProvider();
+                firebase.auth().signInWithPopup(provider)
+                .then(result => {
+                    this.$router.push({ name: 'clases' })
+                    toastr.success('Hola ' + result.user.displayName,'Bienvenido', {
+                                "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
+                                "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
+                            });
+                }).catch(err =>{
+                    toastr.error(err.message, 'Ocurrió un error', {
+                        "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
+                        "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
+                    });
+                    this.$refs.form.reset();
+                })
             },
         }
     };

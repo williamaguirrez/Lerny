@@ -10,8 +10,8 @@
                                 <h2 style="padding-top:50px;" class="titulo1">Regístrate</h2>
                             </center>
                             <div style="padding-left:70px; padding-right:70px;padding-top:50px;">
-                                <v-btn block color="primary" small style="margin-bottom:10px;">Registrar con GOOGLE</v-btn>
-                                <v-btn block color="#425994" small dark>Registrar con Facebook</v-btn>
+                                <v-btn block color="primary" small style="margin-bottom:10px;" @click="loginGoogle">Registrar con GOOGLE</v-btn>
+                                <v-btn block color="#425994" small dark @click="loginFacebook">Registrar con Facebook</v-btn>
                             </div>
                             <v-divider style="margin-bottom:25px; margin-top:25px; margin-left:140px; margin-right:140px;" color="white"></v-divider>
                             <v-form ref="form" v-model="valid" lazy-validation>
@@ -132,7 +132,7 @@
             }
         },
         methods: {
-            submit () {
+            submit() {
                 if(this.$refs.form.validate()){
                     firebase.auth().createUserWithEmailAndPassword(this.email, this.contrasena1)
                         .then(user => {
@@ -153,7 +153,6 @@
                                     });
                                 })
                             }
-                            
                         }).catch(err =>{
                             toastr.error(err.message, 'Ocurrió un error', {
                                 "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
@@ -183,6 +182,40 @@
                         this.$refs.form.reset();
                     }); */
                 }
+            },
+            loginGoogle(){
+                const provider = new firebase.auth.GoogleAuthProvider();
+                firebase.auth().signInWithPopup(provider)
+                .then(result => {
+                    this.$router.push({ name: 'clases' })
+                    toastr.success('Hola ' + result.user.displayName,'Bienvenido', {
+                                "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
+                                "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
+                            });
+                }).catch(err =>{
+                    toastr.error(err.message, 'Ocurrió un error', {
+                        "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
+                        "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
+                    });
+                    this.$refs.form.reset();
+                })
+            },
+            loginFacebook(){
+                const provider = new firebase.auth.FacebookAuthProvider();
+                firebase.auth().signInWithPopup(provider)
+                .then(result => {
+                    this.$router.push({ name: 'clases' })
+                    toastr.success('Hola ' + result.user.displayName,'Bienvenido', {
+                                "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
+                                "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
+                            });
+                }).catch(err =>{
+                    toastr.error(err.message, 'Ocurrió un error', {
+                        "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
+                        "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
+                    });
+                    this.$refs.form.reset();
+                })
             },
         }
     };

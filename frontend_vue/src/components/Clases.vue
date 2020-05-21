@@ -112,7 +112,7 @@
                 descrip: 'Descubriras como innovar a partir del FlipKit, un conjunto de herramientas practicas y sencillas que te ayudarán en el diseño y desarrollo de soluciones innovadoras',
                 video: 'http://pespantelis.github.io/vue-videobg/demo/assets/timelapse.mp4',
                 info: '/clases',
-                reprod: '/clases'
+                reprod: '/reproductor'
             },
             tematicasParaTi: [{
                     titulo: 'Desarrollarás habilidades que te permiten realizar...',
