@@ -36,10 +36,9 @@ router.beforeEach((to, from, next)=>{
     const user = firebase.auth().currentUser;
     if (user){
       next();
+      store.state.inicializarDatosLogin(user.uid, user.displayName, user.email, user.photoURL);
     }else{
-      next({
-        name: 'login'
-      })
+      next({ name: 'login' });
     }
   }else{
     next();

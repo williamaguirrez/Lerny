@@ -85,7 +85,7 @@
 
 <script>
     import db from '@/firebase';
-    import firebase from 'firebase';
+    import firebase, { database } from 'firebase';
     import toastr from 'toastr';
     import MenuToolbar from './parts/MenuToolbar';
     import MenuResponsive from './parts/MenuResponsive';
@@ -136,84 +136,46 @@
                 if(this.$refs.form.validate()){
                     firebase.auth().createUserWithEmailAndPassword(this.email, this.contrasena1)
                         .then(user => {
-                            toastr.success('Gracias '+this.nombre , 'Registrado Correctamente', {
-                                "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
-                                "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
-                            });
+                            this.$store.state.mensajeExito('Gracias ' + this.nombre + ' '+ this.apellido, 'Registrado Correctamente');
                             if (user){
                                 user.user.updateProfile({
-                                    displayName: this.nombre + ' '+ this.apellido
+                                    displayName: this.nombre + ' '+ this.apellido,
+                                    photoURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS7FFrxhGko3hUyRhuXBo8cpFfx_cdN5z6syFiBHJBJNUyl2SFf&usqp=CAU',
                                 }).then((u) => {
                                     this.$refs.form.reset();
+                                    this.$store.state.guardarDatabase(user.user.uid, user.user.displayName, user.user.email, user.user.photoURL);
                                     this.$router.push({ name: 'login' });
                                 }).catch((err) =>{
-                                    toastr.error(err.message, 'Ocurrió un error', {
-                                        "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
-                                        "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
-                                    });
+                                    this.$store.state.mensajeError(err.message, 'Ocurrió un error');
                                 })
                             }
                         }).catch(err =>{
-                            toastr.error(err.message, 'Ocurrió un error', {
-                                "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
-                                "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
-                            });
+                            this.$store.state.mensajeError(err.message, 'Ocurrió un error');
                             this.$refs.form.reset();
                         })
-
-                    /* db.ref('/usuarios/' + this.username).set({
-                        nombre: this.nombre,
-                        apellido: this.apellido,
-                        celular: this.celular,
-                        username: this.username,
-                        email: this.email,
-                        contrasena: this.contrasena1,
-                    }).then( () => {
-                        toastr.success('Gracias '+this.nombre , 'Registrado Correctamente', {
-                            "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
-                            "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "300",
-                        });
-                        this.$refs.form.reset();
-                    }).catch( () => {
-                        toastr.error('Por favor inténtalo nuevamente', 'Ocurrió un error', {
-                            "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
-                            "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "300",
-                        });
-                        this.$refs.form.reset();
-                    }); */
                 }
             },
             loginGoogle(){
                 const provider = new firebase.auth.GoogleAuthProvider();
                 firebase.auth().signInWithPopup(provider)
-                .then(result => {
+                .then(user => {
+                    this.$store.state.mensajeExito('Hola ' + user.user.displayName, 'Bienvenido');
+                    this.$store.state.guardarDatabase(user.user.uid, user.user.displayName, user.user.email, user.user.photoURL);
                     this.$router.push({ name: 'clases' })
-                    toastr.success('Hola ' + result.user.displayName,'Bienvenido', {
-                                "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
-                                "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
-                            });
                 }).catch(err =>{
-                    toastr.error(err.message, 'Ocurrió un error', {
-                        "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
-                        "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
-                    });
+                    this.$store.state.mensajeError(err.message, 'Ocurrió un error');
                     this.$refs.form.reset();
                 })
             },
             loginFacebook(){
                 const provider = new firebase.auth.FacebookAuthProvider();
                 firebase.auth().signInWithPopup(provider)
-                .then(result => {
-                    this.$router.push({ name: 'clases' })
-                    toastr.success('Hola ' + result.user.displayName,'Bienvenido', {
-                                "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
-                                "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
-                            });
+                .then(user => {
+                    this.$store.state.mensajeExito('Hola ' + user.user.displayName, 'Bienvenido');
+                    this.$store.state.guardarDatabase(user.user.uid, user.user.displayName, user.user.email, user.user.photoURL);
+                    this.$router.push({ name: 'clases' });
                 }).catch(err =>{
-                    toastr.error(err.message, 'Ocurrió un error', {
-                        "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
-                        "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
-                    });
+                    this.$store.state.mensajeError(err.message, 'Ocurrió un error');
                     this.$refs.form.reset();
                 })
             },

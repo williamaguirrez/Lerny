@@ -10,7 +10,7 @@
         <v-menu open-on-hover offset-y bottom left>
             <template v-slot:activator="{ on }">
                 <v-avatar dark icon v-on="on">
-                    <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                    <img :src="$store.state.usuario.foto">
                 </v-avatar>
             </template>
             <v-list>

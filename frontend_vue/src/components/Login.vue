@@ -66,10 +66,6 @@
         },
         data: () => ({
             valid: true,
-            user:{
-                name: null,
-                email: null,
-            },
             ocultarPassword: false,
             email: '',
             contrasena: '',
@@ -85,56 +81,35 @@
             submit () {
                 if(this.$refs.form.validate()){
                     firebase.auth().signInWithEmailAndPassword(this.email, this.contrasena)
-                        .then(user => {
-                            this.$router.push({ name: 'clases' })
-                            toastr.success('Hola ' + user.user.displayName, 'Bienvenido', {
-                                "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
-                                "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
-                            });
-                            this.$refs.form.reset();
-                        }).catch(err =>{
-                            toastr.error(err.message, 'Ocurrió un error', {
-                                "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
-                                "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
-                            });
-                            this.$refs.form.reset();
-                        })
+                    .then(user => {
+                        this.$store.state.mensajeExito('Hola ' + user.user.displayName, 'Bienvenido')
+                        this.$router.push({ name: 'clases' })
+                        this.$refs.form.reset();
+                    }).catch(err =>{
+                        this.$store.state.mensajeError(err.message, 'Ocurrió un error')
+                        this.$refs.form.reset();
+                    })
                 }
             },
             loginGoogle(){
                 const provider = new firebase.auth.GoogleAuthProvider();
                 firebase.auth().signInWithPopup(provider)
-                .then(result => {
-                    const user = result.user
-                    this.user.name = user.displayName
-                    this.user.email = user.email
-                    this.$router.push({ name: 'clases' })
-                    toastr.success('Hola ' + this.user.name,'Bienvenido', {
-                                "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
-                                "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
-                            });
+                .then(user => {
+                    this.$router.push({ name: 'clases' });
+                    this.$store.state.mensajeExito('Hola ' + user.user.displayName, 'Bienvenido');
                 }).catch(err =>{
-                    toastr.error(err.message, 'Ocurrió un error', {
-                        "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
-                        "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
-                    });
+                    this.$store.state.mensajeError(err.message, 'Ocurrió un error');
                     this.$refs.form.reset();
                 })
             },
             loginFacebook(){
                 const provider = new firebase.auth.FacebookAuthProvider();
                 firebase.auth().signInWithPopup(provider)
-                .then(result => {
+                .then(user => {
+                    this.$store.state.mensajeExito('Hola ' + user.user.displayName, 'Bienvenido');
                     this.$router.push({ name: 'clases' })
-                    toastr.success('Hola ' + result.user.displayName,'Bienvenido', {
-                                "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
-                                "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
-                            });
                 }).catch(err =>{
-                    toastr.error(err.message, 'Ocurrió un error', {
-                        "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
-                        "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
-                    });
+                    this.$store.state.mensajeError(err.message, 'Ocurrió un error')
                     this.$refs.form.reset();
                 })
             },
