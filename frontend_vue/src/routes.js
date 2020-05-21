@@ -12,6 +12,7 @@ import { store } from './store';
 export const routes = [
     {
         path: '/', 
+        name: 'inicio',
         component: Home, 
         meta: {
             title: 'Inicio | Lerny.co',
@@ -28,6 +29,7 @@ export const routes = [
     },
     {
         path: '/login',
+        name: 'login',
         component: Login, 
         meta: {
             title: 'Inicia Sesión | Lerny.co',
@@ -44,6 +46,7 @@ export const routes = [
     },
     {
         path: '/signup', 
+        name: 'signup',
         component: Signup, 
         meta: {
             title: 'Regístrate | Lerny.co',
@@ -59,7 +62,8 @@ export const routes = [
         },
     },
     {
-        path: '/nosotros', 
+        path: '/nosotros',
+        name: 'nosotros',
         component: Nosotros, 
         meta: {
             title: 'Nosotros | Lerny.co',
@@ -75,7 +79,8 @@ export const routes = [
         },
     },
     {
-        path: '/recuperar', 
+        path: '/recuperar',
+        name: 'recuperar', 
         component: Recuperar, 
         meta: {
             title: 'Recuperar Cuenta | Lerny.co',
@@ -92,8 +97,10 @@ export const routes = [
     },
     {
         path: '/clases', 
+        name: 'clases',
         component: Clases, 
         meta: {
+            requeresAuth: true,
             title: 'Clases | Lerny.co',
             metaTags: [{
                 name: 'description',
@@ -108,8 +115,10 @@ export const routes = [
     },
     {
         path: '/reproductor', 
+        name: 'reproductor',
         component: Reproductor, 
         meta: {
+            requeresAuth: true,
             title: 'Curso | Lerny.co',
             metaTags: [{
                 name: 'description',
@@ -123,7 +132,9 @@ export const routes = [
         },
     },
     {
-        path: '/contacto', component: Contacto, 
+        path: '/contacto', 
+        name: 'contacto',
+        component: Contacto, 
         meta: {
             title: 'Contacto | Lerny.co',
             metaTags: [{

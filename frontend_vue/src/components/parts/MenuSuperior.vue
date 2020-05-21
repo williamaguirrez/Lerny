@@ -20,6 +20,12 @@
                     </v-list-item-icon>
                    <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item>
+                <v-list-item @click.prevent="cerrarSesion">
+                    <v-list-item-icon>
+                        <v-icon>power_settings_new</v-icon>
+                    </v-list-item-icon>
+                   <v-list-item-title>Cerrar Sesion</v-list-item-title>
+                </v-list-item>
             </v-list>
         </v-menu>
     </v-app-bar>
@@ -27,9 +33,11 @@
 
 <script>
     import vuetify from '../../plugins/vuetify';
+    import firebase from 'firebase';
     export default {
         name: 'MenuSuperior',
         data: () => ({
+            user: null,
             messages: 3,
             show: false,
             offsetTop: 0,
@@ -54,10 +62,6 @@
                     icon: 'settings',
                     url: '/configuracion'
                 },
-                {   title: 'Cerrar sesión', 
-                    icon: 'power_settings_new',
-                    url: '/'
-                },
             ],
         }),
         mounted(){
@@ -74,6 +78,22 @@
                     return 'rgba(0, 24, 88, 0.712)';
                 }
             }
-        }
+        },
+        methods: {
+            cerrarSesion(){
+                firebase.auth().signOut().then( () =>{
+                    this.$router.push({ name: 'inicio' })
+                })
+            }
+        },
+        created() {
+            firebase.auth().onAuthStateChanged(user => {
+                if (user){
+                    this.user = user
+                }else{
+                    this.user = null
+                }
+            })
+        },
     }
 </script>

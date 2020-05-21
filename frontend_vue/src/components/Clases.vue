@@ -26,14 +26,41 @@
         <div id="tematicas" :class="$vuetify.theme.dark ? 'contenedorClases fondo_dark' : 'contenedorClases'">
 			<v-row>
 				<v-col cols="12" sm="11">
-					<h2 class="t_descubre titulo--text">Temáticas que tenemos para ti...</h2>
-				</v-col>
-				<v-col cols="12" sm="1">
-					<v-btn class="mx-2" fab color="boton_menu" dark style="float:right;">
-						<v-icon dark>mdi-plus</v-icon>
-					</v-btn>
+					<h2 class="t_descubre titulo--text" style="line-height: 40px;">Temáticas que tenemos para ti...</h2>
 				</v-col>
 			</v-row>
+            <div class="wbody">
+                <section class="card">
+                        <template v-for="(item, i) in tematicasParaTi">
+						<div :key="i" class="card--content">
+							<v-hover v-slot:default="{ hover }" style="margin-bottom:10px;">
+								<v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }" >
+									<v-img :src="item.img" height="180px" class="align-end"></v-img> 
+                                    <v-card-text class="text--primary" style="margin-bottom:-15px;">
+                                        <p style="font-size:medium; font-weight: 500; margin-bottom:0px;" class="t_general text-center">{{ item.titulo }}</p>
+                                        <v-row style="margin-bottom:-10px;">
+                                            <v-col cols="12" sm="6">
+                                                <p style="font-size:medium; margin-bottom:0px;" class="t_general text-center" black--text>
+                                                    <v-icon size="20px" color="#673AB7">shopping_cart</v-icon> ${{ item.precio }}
+                                                </p>
+                                            </v-col>
+                                            <v-col cols="12" sm="6">
+                                                <p style="font-size:medium; margin-bottom:0px;" class="t_general text-center">
+                                                    <v-icon size="20px" color="#673AB7">favorite</v-icon> {{ item.likes }} likes
+                                                </p>
+                                            </v-col>
+                                        </v-row>
+                                    </v-card-text>
+                                    <v-card-actions>
+                                        <v-btn class="ma-2 mx-auto" rounded outlined color="#673AB7" style="padding-left:20px; padding-right:20px;">Comenzar</v-btn>
+                                    </v-card-actions>     
+								</v-card>
+							</v-hover>
+						</div>
+					</template>	
+                </section>
+            </div>
+            <!-- 
 			<v-container class="pa-4 text-center">
 				<v-row class="fill-height" align="center" justify="center">
 					<template v-for="(item, i) in tematicasParaTi">
@@ -64,7 +91,8 @@
 						</v-col>
 					</template>	
 				</v-row>					
-			</v-container>
+			</v-container> 
+            -->
         </div>   
     </v-app>
 </template>
@@ -110,6 +138,30 @@
                     precio: '30.000',
                     likes: '235',
                 },
+                 {
+                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
+                    img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
+                    precio: '30.000',
+                    likes: '235',
+                },
+                 {
+                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
+                    img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
+                    precio: '30.000',
+                    likes: '235',
+                },
+                 {
+                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
+                    img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
+                    precio: '30.000',
+                    likes: '235',
+                },
+                 {
+                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
+                    img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
+                    precio: '30.000',
+                    likes: '235',
+                },
             ],
             //
         }),
@@ -117,6 +169,32 @@
 </script>
 
 <style scoped>
+    .wbody {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card {
+        display: flex;
+        min-width: 100%;
+        min-height: 200px;
+        overflow-x: auto; 
+    }
+
+    .card::-webkit-scrollbar {
+        display: none;
+    }
+
+    .card--content {
+        min-width: 280px;
+        margin: 12px;
+    }
+
+    .v-card:not(.on-hover) {
+	    opacity: 0.6;
+	}
     .contenedorClases{
 		padding-top: 5%;
 		padding-left: 5%;

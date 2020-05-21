@@ -13,3 +13,22 @@
     methods: mapMutations(['cambiarDark']),
   };
 </script>
+
+<style>
+  .toast-success{
+    font-family: Maven Pro;
+    font-style: normal;
+    font-size: 15px;
+  }
+  .toast-error{
+    font-family: Maven Pro;
+    font-style: normal;
+    font-size: 15px;
+  }
+  .toast {
+    opacity: .9 !important;
+  }
+  #toast-container > div {
+    opacity: .9 !important; 
+  }
+</style>

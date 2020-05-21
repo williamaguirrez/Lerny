@@ -14,22 +14,63 @@
                                 <v-btn block color="#425994" small dark>Registrar con Facebook</v-btn>
                             </div>
                             <v-divider style="margin-bottom:25px; margin-top:25px; margin-left:140px; margin-right:140px;" color="white"></v-divider>
-                            <form>
+                            <v-form ref="form" v-model="valid" lazy-validation>
                                 <v-row style="margin-bottom:-10px;">
-                                    <v-col cols="12" sm="6">
-                                        <v-text-field style="margin-bottom:-40px;" solo rounded label="Nombre" prepend-inner-icon="people_alt"></v-text-field>
+                                    <v-col cols="12" sm="6" style="padding-right:2px;">
+                                        <!-- Input Nombre ----------------------------------------------------------->
+                                        <v-text-field style="margin-bottom:-7px;"
+                                            v-model="nombre" :rules="nombreRules"
+                                            solo rounded label="Nombre" required
+                                            prepend-inner-icon="people_alt">
+                                        </v-text-field>
                                     </v-col>
-                                    <v-col cols="12" sm="6">
-                                        <v-text-field style="margin-bottom:-20px;" solo rounded label="Apellido" prepend-inner-icon="person_pin"></v-text-field>
+                                    <v-col cols="12" sm="6" style="padding-left:2px;">
+                                        <!-- Input Apellido--------------------------------------------------------- -->
+                                        <v-text-field style="margin-bottom:-7px;"
+                                            v-model="apellido" :rules="apellidoRules"
+                                            solo rounded label="Apellido" required
+                                            prepend-inner-icon="person_pin">
+                                        </v-text-field>
                                     </v-col>
                                 </v-row>
-                                <v-text-field style="margin-bottom:-20px;" solo rounded label="Correo Electrónico" prepend-inner-icon="email"></v-text-field>
-                                <v-text-field style="margin-bottom:-20px;" solo rounded label="Contraseña" prepend-inner-icon="vpn_key"></v-text-field>
-                                <v-text-field solo rounded label="Confirmar Contraseña" prepend-inner-icon="vpn_key"></v-text-field>
+                                <!-- Input Correo Electronico------------------------------------------------------ -->
+                                <v-text-field style="margin-bottom:-7px;"
+                                    v-model="email" :rules="emailRules" required
+                                    solo rounded label="Correo Electrónico" 
+                                    prepend-inner-icon="email">
+                                </v-text-field>
+                                <v-row style="margin-bottom:-10px;">
+                                    <v-col cols="12" sm="6" style="padding-right:2px; margin-top:-11px;">
+                                        <!-- Input Contrasena1----------------------------------------------------- -->
+                                        <v-text-field style="margin-bottom:-7px;" 
+                                            v-model="contrasena1" :rules="contraRules" required
+                                            :append-icon="ocultarPassword1 ? 'mdi-eye' : 'mdi-eye-off'"
+                                            :type="ocultarPassword1 ? 'text' : 'password'" 
+                                            @click:append="ocultarPassword1 = !ocultarPassword1"
+                                            solo rounded label="Contraseña" 
+                                            prepend-inner-icon="vpn_key">
+                                        </v-text-field>
+                                    </v-col>
+                                    <v-col cols="12" sm="6" style="padding-left:2px; margin-top:-11px;">
+                                        <!-- Input Contrasena2----------------------------------------------------- -->
+                                        <v-text-field solo rounded required
+                                            v-model="contrasena2" :rules="contrasena2Rules"
+                                            :append-icon="ocultarPassword2 ? 'mdi-eye' : 'mdi-eye-off'"
+                                            :type="ocultarPassword2 ? 'text' : 'password'" 
+                                            @click:append="ocultarPassword2 = !ocultarPassword2"
+                                            label="Confirmar Contraseña" 
+                                            prepend-inner-icon="vpn_key">
+                                        </v-text-field>
+                                    </v-col>
+                                </v-row>
                                 <div style="padding-left:15%;padding-right:15%; margin-bottom:0px;">
-                                    <v-btn style="margin-bottom:10px;" rounded block color="boton_menu1" dark large>Registrar</v-btn>
+                                    <v-btn style="margin-bottom:10px;" 
+                                        :disabled="!valid" @click.prevent="submit"
+                                        rounded block color="boton_menu1" 
+                                        dark large>Registrar
+                                    </v-btn>
                                 </div>
-                            </form>
+                            </v-form>
                             <center>
                                 <p style="color:white; font-family: Maven Pro; font-style: normal; font-weight: 500; font-size:12px; margin-bottom:-5px;">
                                     ¿Ya tienes cuenta? <a style="font-weight: 900;"><router-link to='/login'>Inicia Sesión</router-link></a>
@@ -43,17 +84,107 @@
 </template>
 
 <script>
+    import db from '@/firebase';
+    import firebase from 'firebase';
+    import toastr from 'toastr';
     import MenuToolbar from './parts/MenuToolbar';
     import MenuResponsive from './parts/MenuResponsive';
+
+
     export default {
-    name: 'Signup',
-    components: {
-        MenuToolbar,
-        MenuResponsive,
-    },
-    data: () => ({
-        //
+        name: 'Signup',
+        components: {
+            MenuToolbar,
+            MenuResponsive,
+        },
+        data: () => ({
+            valid: true,
+            nombre: '',
+            apellido: '',
+            email: '',
+            contrasena1: '',
+            contrasena2: '',
+            ocultarPassword1: false,
+            ocultarPassword2: false,
+            nombreRules: [
+                v => !!v || 'El nombre es obligatorio',
+            ],
+            apellidoRules: [
+                v => !!v || 'El apellido es obligatorio',
+            ],
+            emailRules: [
+                v => !!v || 'El correo es obligatorio',
+                v => /.+@.+\..+/.test(v) || 'El correo debe ser válido',
+            ],
+            contraRules: [
+                v => !!v || 'Contraseña es obligatorio',
+            ],
         }),
+        computed: {
+            contrasena2Rules(){
+                const contrasena2Rules = []
+                if (this.contrasena1) {
+                    const contrasena2Rule =
+                    v => (!!v && v) === this.contrasena1 || 'Contraseñas no coinciden'
+                    contrasena2Rules.push(contrasena2Rule)
+                }
+                return contrasena2Rules
+            }
+        },
+        methods: {
+            submit () {
+                if(this.$refs.form.validate()){
+                    firebase.auth().createUserWithEmailAndPassword(this.email, this.contrasena1)
+                        .then(user => {
+                            toastr.success('Gracias '+this.nombre , 'Registrado Correctamente', {
+                                "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
+                                "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
+                            });
+                            if (user){
+                                user.user.updateProfile({
+                                    displayName: this.nombre + ' '+ this.apellido
+                                }).then((u) => {
+                                    this.$refs.form.reset();
+                                    this.$router.push({ name: 'login' });
+                                }).catch((err) =>{
+                                    toastr.error(err.message, 'Ocurrió un error', {
+                                        "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
+                                        "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
+                                    });
+                                })
+                            }
+                            
+                        }).catch(err =>{
+                            toastr.error(err.message, 'Ocurrió un error', {
+                                "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
+                                "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "600",
+                            });
+                            this.$refs.form.reset();
+                        })
+
+                    /* db.ref('/usuarios/' + this.username).set({
+                        nombre: this.nombre,
+                        apellido: this.apellido,
+                        celular: this.celular,
+                        username: this.username,
+                        email: this.email,
+                        contrasena: this.contrasena1,
+                    }).then( () => {
+                        toastr.success('Gracias '+this.nombre , 'Registrado Correctamente', {
+                            "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
+                            "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "300",
+                        });
+                        this.$refs.form.reset();
+                    }).catch( () => {
+                        toastr.error('Por favor inténtalo nuevamente', 'Ocurrió un error', {
+                            "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",
+                            "showMethod": "fadeIn", "hideMethod": "fadeOut", "showDuration": "300",
+                        });
+                        this.$refs.form.reset();
+                    }); */
+                }
+            },
+        }
     };
 </script>
 
