@@ -14,7 +14,7 @@
             <v-menu open-on-hover offset-y bottom left>
                 <template v-slot:activator="{ on }">
                     <v-avatar dark icon v-on="on">
-                        <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                        <img :src="$store.state.usuario.foto" alt="John">
                     </v-avatar>
                 </template>
                 <v-list>
@@ -57,9 +57,9 @@
                     icon: 'account_circle',
                     url: '/perfil'
                 },
-                {   title: 'Membresías', 
+                {   title: 'Mi Suscripción', 
                     icon: 'loyalty',
-                    url: '/membresias'
+                    url: '/mi-suscripcion'
                 },
                 {   title: 'Mis Compras',
                     icon: 'shopping_cart',

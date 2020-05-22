@@ -46,9 +46,9 @@
                     icon: 'account_circle',
                     url: '/perfil'
                 },
-                {   title: 'Membresías', 
+                {   title: 'Mi Suscripción', 
                     icon: 'loyalty',
-                    url: '/membresias'
+                    url: '/mi-suscripcion'
                 },
                 {   title: 'Mis Compras',
                     icon: 'shopping_cart',
