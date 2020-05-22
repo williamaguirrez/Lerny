@@ -6,11 +6,8 @@ import { routes } from './routes';
 import { store } from './store';
 import { Plugin } from 'vue-responsive-video-background-player';
 import VuePlyr from 'vue-plyr';
-import { firestorePlugin } from 'vuefire';
-import firebase from 'firebase'
+import firebase from 'firebase';
 
-Vue.use(firestorePlugin)
-/* import VueFire  from 'vuefire'; */
 
 let app = null
 
