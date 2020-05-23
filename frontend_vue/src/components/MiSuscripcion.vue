@@ -10,7 +10,7 @@
                 </v-avatar>
                 <h1>{{ $store.state.usuario.nombre }}</h1>
                 <p style="font-size: 18px; margin-bottom:0px">{{ $store.state.usuario.email }} </p>
-                <p style="font-size: 18px; margin-bottom:0px"><b style="font-weight: bold;">Puntos:</b>  {{ $store.state.usuario.puntos }} Lernys</p>
+                <p style="font-size: 18px; margin-bottom:0px"><b style="font-weight: bold;">Puntos:</b>  {{ $store.state.perfil.puntos }} Lernys</p>
                 <p style="font-size: 18px;"><b style="font-weight: bold;">Plan:</b> Lerny Freemium</p>
                 </center><br>
                 <v-card class="mx-auto" max-width="344" shaped elevation="24">

@@ -8,6 +8,7 @@ import Recuperar from './components/Recuperar.vue';
 import Clases from './components/Clases.vue';
 import Reproductor from './components/Reproductor.vue';
 import MiSuscripcion from './components/MiSuscripcion.vue';
+import Perfil from './components/Perfil.vue';
 import { store } from './store';
 
 export const routes = [
@@ -139,6 +140,24 @@ export const routes = [
         meta: {
             requeresAuth: true,
             title: 'Mi Suscripción | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/perfil', 
+        name: 'perfil',
+        component: Perfil, 
+        meta: {
+            requeresAuth: true,
+            title: 'Mi Perfil | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'

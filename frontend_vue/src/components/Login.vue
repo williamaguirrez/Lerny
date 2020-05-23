@@ -95,6 +95,7 @@
                 const provider = new firebase.auth.GoogleAuthProvider();
                 firebase.auth().signInWithPopup(provider)
                 .then(user => {
+                    this.$store.state.guardarDatabase(user.user.uid, user.user.displayName, user.user.email, user.user.photoURL);
                     this.$router.push({ name: 'clases' });
                     this.$store.state.mensajeExito('Hola ' + user.user.displayName, 'Bienvenido');
                 }).catch(err =>{
@@ -106,6 +107,7 @@
                 const provider = new firebase.auth.FacebookAuthProvider();
                 firebase.auth().signInWithPopup(provider)
                 .then(user => {
+                    this.$store.state.guardarDatabase(user.user.uid, user.user.displayName, user.user.email, user.user.photoURL);
                     this.$store.state.mensajeExito('Hola ' + user.user.displayName, 'Bienvenido');
                     this.$router.push({ name: 'clases' })
                 }).catch(err =>{
