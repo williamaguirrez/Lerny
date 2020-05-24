@@ -4,7 +4,7 @@
         <MenuSuperior/>
 
         <!-- Menú Derecho Contenido del curso ---------------------------------------------------------------------- -->
-        <v-container>
+        <!-- <v-container>
             <v-navigation-drawer v-model="drawer" :color="isColor" permanent app width="500" right expand-on-hover dark>
                 <v-list>
                     <v-list-item v-for="tema in temas" :key="tema.nomTemas">
@@ -32,14 +32,43 @@
                     </v-list-item>
                 </v-list>
             </v-navigation-drawer>
-        </v-container>
+        </v-container> -->
+        <v-container>
+            <v-navigation-drawer v-model="drawer" :color="isColor" permanent app width="500" right expand-on-hover dark>
+                <v-list>
+                    <v-list-item v-for="(item, i) in arregloTemas" :key="i">
+                        <v-list-item-icon style="margin-right:5px; margin-top:2px; margin-bottom:2px">
+                            <div class="my-2">
+                                <v-btn color="secondary" fab x-small dark style="font-size:14px;">{{ i }}</v-btn>
+                            </div>
+                        </v-list-item-icon>
+                        <v-list-item-content style="padding:0px">
+                            <v-expansion-panels>
+                                <v-expansion-panel>
+                                    <v-expansion-panel-header>{{ item[i].nomTema }}</v-expansion-panel-header>
+                                    <v-expansion-panel-content>
+                                        <v-timeline dense clipped style="padding-top:0px;">
+                                            <v-timeline-item v-for="(key, j) in item" :key="j" :color="true ? 'green' : 'grey' " icon-color="white" icon="done">
+                                                <v-row justify="space-between">
+                                                    <v-col cols="12"><router-link :to="key.url">{{ key.nomLeccion }}</router-link></v-col>
+                                                </v-row>
+                                            </v-timeline-item>
+                                        </v-timeline>
+                                    </v-expansion-panel-content>
+                                </v-expansion-panel>
+                            </v-expansion-panels>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-list>
+            </v-navigation-drawer>
+        </v-container> 
 
         <!-- Clase de un curso ------------------------------------------------------------------------------------- -->
         <div id="tematicas" :class="$vuetify.theme.dark ? 'contenedorClases fondo_dark' : 'contenedorClases'">
 			<v-row>
                 <!-- Titulo -->
 				<v-col cols="12" sm="11">
-					<h2 class="t_descubre titulo--text">Hola Isabella, nos alegra volver a verte</h2>
+					<h2 class="t_descubre titulo--text">Hola {{ this.$store.state.usuario.nombre }}, nos alegra volver a verte</h2>
 				</v-col>
 				<v-col cols="12" sm="1">
 				</v-col>
@@ -50,7 +79,7 @@
                     <vue-plyr>
                         <div class="plyr__video-embed">
                             <iframe
-                                :src="temas[0].lesiones[0].video"
+                                src="https://player.vimeo.com/video/76979871?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media"
                                 allowfullscreen allowtransparency allow="autoplay">
                             </iframe>
                         </div>
@@ -63,10 +92,10 @@
                         <v-col cols="12" sm="10" style="padding-top:0px;">
                             <div style="float:right;">
                                 <v-btn outlined color="indigo" @click.stop="dialog = true"> ¿Problemas?</v-btn>
-                                <v-btn outlined color="indigo" :to="temas[0].lesiones[0].urlAnterior">
+                                <v-btn outlined color="indigo" :to="urlAnterior">
                                     <v-icon left>skip_previous</v-icon>
                                 </v-btn>
-                                <v-btn outlined color="indigo" :to="temas[0].lesiones[0].urlSiguiente">
+                                <v-btn outlined color="indigo" :to="urlSiguiente">
                                     <v-icon left>skip_next</v-icon> Siguiente Video
                                 </v-btn>
                             </div>
@@ -76,11 +105,11 @@
                     <!-- Titulo y descripción del video -->
                     <div>
                         <h1 class="t_descubre" style="font-weight: bold; font-size:30px; margin-bottom:15px; margin-top:15px;">
-                            {{ temas[0].lesiones[0].nombre }}
+                            {{ nomLeccion }}
                         </h1>
                         <v-divider></v-divider>
                         <p style="font-size:16px; margin-bottom:0px; margin-top:15px;" class="t_general">
-                            {{ temas[0].lesiones[0].descripcion }}
+                            {{ descripcion }}
                         </p>
                     </div>
 				</v-col>
@@ -139,90 +168,77 @@
 <script>
     import MenuSuperior from './parts/MenuSuperior';
     import MenuIzquierdo from './parts/MenuIzquierdo';
+    import firebase from 'firebase';
     export default {
         name: 'Reproductor',
         components: {
             MenuSuperior,
             MenuIzquierdo,
         },
-    data: () => ({
-            nomCurso: 'Lanzate a la innovación con Design Thinking',
-            temas:[{
-                id: 1,
-                nomTema: 'Módulo 1 Introducción',
-                lesiones:[{
-                    id: 1,
-                    nombre: 'Prepárate para la experiencia Flip Kit',
-                    video: 'https://www.youtube.com/watch?v=7pnH6tzApqM',
-                    descripcion: 'Juan Pablo García Cifuentes Director del Programa de Innovación por Diseño ME310 en alianza con Stanford University y la red SUGAR (Stanford University Global Alliance for Redesign) Profesor de la Facultad de Ingeniería de la Pontificia Universidad Javeriana Cali MOOC: Lánzate a la innovación con Design Thinking Pontificia Universidad Javeriana - Colombia',
-                    visto: true,
-                    url: '/',
-                    urlAnterior: '/',
-                    urlSiguiente: '/', 
-                    aportes:[{
-                    }],
-                    preguntas:[{
-                    }],
-                    Recursos: [{
-                    }],
-                },
-                {
-                    id:2,
-                    nombre: 'Conceptos de definicion',
-                    video: 'https://www.youtube.com/watch?v=7pnH6tzApqM',
-                    descripcion: 'Juan Pablo García Cifuentes Director del Programa de Innovación por Diseño ME310 en alianza con Stanford University y la red SUGAR (Stanford University Global Alliance for Redesign) Profesor de la Facultad de Ingeniería de la Pontificia Universidad Javeriana Cali MOOC: Lánzate a la innovación con Design Thinking Pontificia Universidad Javeriana - Colombia',
-                    visto: false,
-                    url: '/',
-                    urlAnterior: '/',
-                    urlSiguiente: '/',
-                    aportes:[{
-                    }],
-                    preguntas:[{
-                    }],
-                    Recursos: [{
-                    }],
-                }],
-            },
-            {
-                id: 2,
-                nomTema: 'Módulo 2 Concepto',
-                lesiones:[{
-                    id: 3,
-                    nombre: 'Prepárate para la experiencia Flip Kit',
-                    video: 'https://www.youtube.com/watch?v=7pnH6tzApqM',
-                    descripcion: 'Juan Pablo García Cifuentes Director del Programa de Innovación por Diseño ME310 en alianza con Stanford University y la red SUGAR (Stanford University Global Alliance for Redesign) Profesor de la Facultad de Ingeniería de la Pontificia Universidad Javeriana Cali MOOC: Lánzate a la innovación con Design Thinking Pontificia Universidad Javeriana - Colombia',
-                    visto: true,
-                    url: '/',
-                    urlAnterior: '/',
-                    urlSiguiente: '/', 
-                    aportes:[{
-                    }],
-                    preguntas:[{
-                    }],
-                    Recursos: [{
-                    }],
-                },
-                {
-                    id:4,
-                    nombre: 'Conceptos de definicion',
-                    video: 'https://www.youtube.com/watch?v=7pnH6tzApqM',
-                    descripcion: 'Juan Pablo García Cifuentes Director del Programa de Innovación por Diseño ME310 en alianza con Stanford University y la red SUGAR (Stanford University Global Alliance for Redesign) Profesor de la Facultad de Ingeniería de la Pontificia Universidad Javeriana Cali MOOC: Lánzate a la innovación con Design Thinking Pontificia Universidad Javeriana - Colombia',
-                    visto: false,
-                    url: '/',
-                    urlAnterior: '/',
-                    urlSiguiente: '/',
-                    aportes:[{
-                    }],
-                    preguntas:[{
-                    }],
-                    Recursos: [{
-                    }],
+        created() {
+            this.idCurso = this.$route.params.idCurso;
+            this.idTema = this.$route.params.idTema;
+            this.idLeccion = this.$route.params.idLeccion;
+            firebase.database().ref('/cursos/' + this.idCurso + '/' + this.idTema + '/' + this.idLeccion).on('value', data =>{
+                if(data.val() != null){
+                    this.nomCurso = data.val().nomCurso;
+                    this.nomTema = data.val().nomTema;
+                    this.nomLeccion = data.val().nomLeccion;
+                    this.video = data.val().video;
+                    this.descripcion = data.val().descripcion;
+                    this.url = data.val().url;
+                    this.urlSiguiente = data.val().urlSiguiente;
+                    this.urlAnterior = data.val().urlAnterior;
+                }else{
+                    this.$router.push({ name: 'noencontrado' });
+                }
+            })
+            firebase.database().ref('/cursos/' + this.idCurso).on('value', data => {
+                if(data.val() != null){
+                    this.cargarIndice(data.val());
+                }
+            })
+        },
+        data: () => ({
+            idCurso: '',
+            nomCurso: '',
+            idTema:'',
+            nomTema:'',
+            idLeccion:'',
+            nomLeccion:'',
+            video:'',
+            descripcion:'',
+            visto:'',
+            url:'',
+            urlSiguiente:'',
+            urlAnterior:'',
+            arregloTemas:[{
+                arregloLesiones:[{
+                    idCurso: '1',
+                    nomCurso: '1',
+                    idTema:'1',
+                    nomTema:'1',
+                    idLeccion:'1',
+                    nomLeccion:'1',
+                    video:'1',
+                    descripcion:'1',
+                    visto:'1',
+                    url:'1',
+                    urlSiguiente:'1',
+                    urlAnterior:'1',
                 }],
             }],
             text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
             drawer: true,
             dialog: false,
         }),
+        watch:{
+            '$route'(to){
+                this.idCurso = to.params.idCurso;
+                this.idTema = to.params.idTema;
+                this.idLeccion = to.params.idLeccion;
+            }
+        },
         computed:{
             isColor: function(){
                 if (this.$vuetify.theme.dark){
@@ -231,6 +247,27 @@
                     return 'rgba(0, 24, 88, 0.712)';
                 }
             }
+        },
+        methods: {
+            cargarIndice(arregloTemas){
+                this.arregloTemas = JSON.parse(JSON.stringify(arregloTemas))   
+                console.log(this.arregloTemas)
+            }               
+                /*       
+                         this.arregloTemas[key].arregloLesiones[key1].push({
+                            idCurso: arregloTemas[key].arregloLesiones[key1].idCurso,
+                            nomCurso: arregloTemas[key].arregloLesiones[key1].nomCurso,
+                            idTema: arregloTemas[key].arregloLesiones[key1].idTema,
+                            nomTema: arregloTemas[key].arregloLesiones[key1].nomTema,
+                            idLeccion: arregloTemas[key].arregloLesiones[key1].idLeccion,
+                            nomLeccion: arregloTemas[key].arregloLesiones[key1].nomLeccion,
+                            video: arregloTemas[key].arregloLesiones[key1].video,
+                            descripcion: arregloTemas[key].arregloLesiones[key1].descripcion,
+                            url: arregloTemas[key].arregloLesiones[key1].url,
+                            urlSiguiente: arregloTemas[key].arregloLesiones[key1].urlSiguiente,
+                            urlAnterior:arregloTemas[key].arregloLesiones[key1].urlAnterior,
+                        }) */
+            
         },
     };
 </script>

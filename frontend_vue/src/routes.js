@@ -116,7 +116,7 @@ export const routes = [
         },
     },
     {
-        path: '/reproductor', 
+        path: '/curso/:idCurso/:idTema/:idLeccion', 
         name: 'reproductor',
         component: Reproductor, 
         meta: {
@@ -193,6 +193,7 @@ export const routes = [
     },
     {
         path: '*', 
+        name: 'noencontrado',
         component: NoEncontrado,
         meta: {
             title: 'Pagina Error | Lerny.co',

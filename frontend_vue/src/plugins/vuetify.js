@@ -9,7 +9,7 @@ export default new Vuetify({
         iconfont: 'md', // default - only for display purposes
     },
     theme: {
-        dark: false,
+        dark: true,
         themes: {
             light: {
                 boton_menu: '#00A3EF',

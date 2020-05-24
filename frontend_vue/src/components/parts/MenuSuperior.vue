@@ -47,7 +47,7 @@
                     <v-container>
                         <v-row>
                             <v-col cols="12" sm="6" md="4">
-                                <v-text-field label="Nombre y Apellido" v-model="datosPerfil.nombre" counter="40"></v-text-field>
+                                <v-text-field label="Nombre y Apellido" v-model="datosPerfil.nombre" disabled counter="40"></v-text-field>
                             </v-col>
                             <v-col cols="12" sm="6" md="4">
                                 <v-text-field label="Correo Electrónico" v-model="datosPerfil.correo" disabled></v-text-field>

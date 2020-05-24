@@ -68,6 +68,14 @@
                         <v-row>
                             <!-- Progreso en sus habilidades -------------------------------------------------------------- -->
                             <v-col cols="12" sm="6">
+                                <!-- Si es vacio Muestra letrero -->
+                                <div v-if="habilidaesProg.length == 0" class="tarjetas" style="height:150px; padding:10px; margin-bottom:10px;">
+                                    <h1 class="text-center" style="font-size:20px">
+                                        No tienes progresos<br><br>
+                                        Te invitamos a aprender con Lerny.
+                                    </h1>
+                                </div>
+                                <!-- Si hay contenido recorra el arreglo -->
                                 <div v-for="(item, i) in habilidaesProg" :key="i">
                                     <div class="tarjetas" style="height:100px; padding:10px; margin-bottom:10px;">
                                         <v-row>
@@ -88,6 +96,13 @@
                                 <div class="tarjetas" style="height:330px; padding:10px;">
                                     <p style="color:#BB86FC; margin-bottom:5px;" class="text-center">Habilidades adquiridas</p>
                                     <v-row style="padding-left:10%; padding-right:10%">
+                                        <!-- Si es vacio muestra el letrero -->
+                                        <div v-if="habilidadesAdq.length == 0">
+                                            <h1 class="text-center" style="font-size:20px">
+                                                <br><br>Aquí podrás visualizar las medallas de los cursos completados al 100%
+                                            </h1>
+                                        </div>
+                                        <!-- Si hay contenido recorre el arreglo -->
                                         <div v-for="(item, i) in habilidadesAdq" :key="i">
                                             <v-col cols="12" sm="4">
                                                 <center>
@@ -104,6 +119,14 @@
                     </v-col>
                     <!-- Padrinos --------------------------------------------------------------------------------------- -->
                     <v-col cols="12" sm="4">
+                        <!-- Si no hay padrinos en el arreglo muestra el letrero -->
+                        <div v-if="padrinos.length == 0" style="background-color:white; height:230px; margin:10px; padding:20px;">
+                            <h1 class="text-center" style="font-size:20px; color:black;">
+                                Aún no tienes Padrinos<br>
+                                Sigue adquiriendo conocimiento para que tengas más oportunidades
+                            </h1>
+                        </div>
+                        <!-- Recorre el arreglo si hay padrinos que te donaron -->
                         <div v-for="(item, i) in padrinos" :key="i">
                             <div style="background-color:white; height:200px; margin:10px; padding:20px;">
                                     <h1 style="font-size:23px; color:#23036A">{{ item.padrino }}</h1>
@@ -136,27 +159,48 @@
         },
         created() {
             firebase.database().ref('/perfiles/' + this.$store.state.usuario.uid).on('value', data =>{
-                    if(data.val() != null){
-                        this.datosUsuario.oficio = data.val().rol;
-                        this.datosUsuario.descripcion = data.val().descripcion;
-                        this.datosUsuario.habilidades = data.val().habilidades;
-                        this.datosUsuario.vistas = data.val().vistas;
-                        this.datosUsuario.puntos = data.val().puntos;
-                        this.datosUsuario.saldo = data.val().saldo;
-                        this.datosUsuario.rango = data.val().rango;
-                        this.datosUsuario.imgRango = data.val().imgRango;
-                    }
-                })  
+                if(data.val() != null){
+                    this.datosUsuario.oficio = data.val().rol;
+                    this.datosUsuario.descripcion = data.val().descripcion;
+                    this.datosUsuario.habilidades = data.val().habilidades;
+                    this.datosUsuario.vistas = data.val().vistas;
+                    this.datosUsuario.puntos = data.val().puntos;
+                    this.datosUsuario.saldo = data.val().saldo;
+                    this.datosUsuario.rango = data.val().rango;
+                    this.datosUsuario.imgRango = data.val().imgRango;
+                }
+            })
+            firebase.database().ref('/perfiles/'+ this.$store.state.usuario.uid + '/padrinos').on('value', data =>{
+                if(data.val() != null){
+                    this.cargarPadrinos( data.val());
+                }else{
+                    this.padrinos = [];
+                }
+            })
+            firebase.database().ref('/perfiles/'+ this.$store.state.usuario.uid + '/habilidadesAdquiridas').on('value', data =>{
+                if(data.val() != null){
+                    this.cargarHabilidades( data.val());
+                }else{
+                    this.habilidadesAdq = [];
+                }
+            })
+            firebase.database().ref('/perfiles/'+ this.$store.state.usuario.uid + '/progresoHabilidades').on('value', data =>{
+                if(data.val() != null){
+                    this.cargarProgreso( data.val());
+                }else{
+                    this.habilidaesProg = [];
+                }
+            })
         },
         data: () => ({
             datosUsuario:{
                 oficio: '',
-                vistas: '69',
+                vistas: 0,
                 descripcion: '',
                 habilidades: '',
-                saldo: '659',
-                rango: 'Liga Oro',
-                puntos: '600',
+                saldo: 0,
+                rango: '',
+                puntos: 0,
                 imgRango: '@/assets/medalla.png',
             },
             habilidadesAdq:[
@@ -187,6 +231,40 @@
                 },
             ],
         }),
+        methods: {
+            cargarPadrinos(padrinos){
+                this.padrinos = [];
+                for (let key in padrinos){
+                    this.padrinos.push({
+                        padrino: padrinos[key].padrino,
+                        nombre: padrinos[key].nombre,
+                        fecha: padrinos[key].fecha,
+                        mensaje: padrinos[key].mensaje,
+                        valorDonacion: padrinos[key].valorDonacion,
+                        evaluacion: padrinos[key].evaluacion,
+                    })
+                }
+            },
+            cargarHabilidades(habilidadesAdq){
+                this.habilidadesAdq = [];
+                for (let key in habilidadesAdq){
+                    this.habilidadesAdq.push({
+                        nombre: habilidadesAdq[key].nombre,
+                        url: habilidadesAdq[key].url,
+                        imagen: habilidadesAdq[key].imagen,
+                    })
+                }
+            },
+            cargarProgreso(habilidaesProg){
+                this.habilidaesProg = [];
+                for (let key in habilidaesProg){
+                    this.habilidaesProg.push({
+                        nombre: habilidaesProg[key].nombre,
+                        porcentaje: habilidaesProg[key].porcentaje,
+                    })
+                }
+            }
+        },
     };
 </script>
 

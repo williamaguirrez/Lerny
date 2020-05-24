@@ -69,10 +69,6 @@
                     icon: 'people_alt',
                     url: '/mentores'
                 },
-                {   title: 'Configuración', 
-                    icon: 'settings',
-                    url: '/configuracion'
-                },
             ],
         }),
         mounted(){
