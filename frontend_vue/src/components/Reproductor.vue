@@ -4,35 +4,6 @@
         <MenuSuperior/>
 
         <!-- Menú Derecho Contenido del curso ---------------------------------------------------------------------- -->
-        <!-- <v-container>
-            <v-navigation-drawer v-model="drawer" :color="isColor" permanent app width="500" right expand-on-hover dark>
-                <v-list>
-                    <v-list-item v-for="tema in temas" :key="tema.nomTemas">
-                        <v-list-item-icon style="margin-right:5px; margin-top:2px; margin-bottom:2px">
-                            <div class="my-2">
-                                <v-btn color="secondary" fab x-small dark style="font-size:14px;">{{ tema.id }}</v-btn>
-                            </div>
-                        </v-list-item-icon>
-                        <v-list-item-content style="padding:0px">
-                            <v-expansion-panels>
-                                <v-expansion-panel>
-                                    <v-expansion-panel-header>{{ tema.nomTema}}</v-expansion-panel-header>
-                                    <v-expansion-panel-content>
-                                        <v-timeline dense clipped style="padding-top:0px;">
-                                            <v-timeline-item v-for="lesion in tema.lesiones" :key="lesion.nombre" :color="lesion.visto ? 'green' : 'grey' " icon-color="white" icon="done">
-                                                <v-row justify="space-between">
-                                                    <v-col cols="12"><router-link :to="lesion.url">{{ lesion.nombre }}</router-link></v-col>
-                                                </v-row>
-                                            </v-timeline-item>
-                                        </v-timeline>
-                                    </v-expansion-panel-content>
-                                </v-expansion-panel>
-                            </v-expansion-panels>
-                        </v-list-item-content>
-                    </v-list-item>
-                </v-list>
-            </v-navigation-drawer>
-        </v-container> -->
         <v-container>
             <v-navigation-drawer v-model="drawer" :color="isColor" permanent app width="500" right expand-on-hover dark>
                 <v-list>
@@ -45,7 +16,7 @@
                         <v-list-item-content style="padding:0px">
                             <v-expansion-panels>
                                 <v-expansion-panel>
-                                    <v-expansion-panel-header>{{ item[i].nomTema }}</v-expansion-panel-header>
+                                    <v-expansion-panel-header>a</v-expansion-panel-header>
                                     <v-expansion-panel-content>
                                         <v-timeline dense clipped style="padding-top:0px;">
                                             <v-timeline-item v-for="(key, j) in item" :key="j" :color="true ? 'green' : 'grey' " icon-color="white" icon="done">
@@ -76,16 +47,36 @@
 			<v-row>
                 <!-- Reproductor -->
 				<v-col cols="12" sm="7" style="padding-right:0px;">
-                    <vue-plyr>
-                        <div class="plyr__video-embed">
-                            <iframe
-                                src="https://player.vimeo.com/video/76979871?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media"
-                                allowfullscreen allowtransparency allow="autoplay">
-                            </iframe>
-                        </div>
-                    </vue-plyr>
-
-                    <!-- Botones debjo del reproductor -->
+                        <template v-if="tipoVideo == 'youtube'">
+                            <vue-plyr :key="video">
+                            <div class="plyr__video-embed">
+                                <iframe
+                                    :src="video + '?iv_load_policy=3&modestbranding=1&playsinline=1&showinfo=0&rel=0&enablejsapi=1'"
+                                    allowfullscreen allowtransparency allow="autoplay">
+                                </iframe>
+                            </div>
+                            </vue-plyr>
+                        </template>
+                        <template v-else-if="tipoVideo == 'vimeo'">
+                            <vue-plyr :key="video">
+                            <div class="plyr__video-embed">
+                                <iframe
+                                    :src="video + '?loop=false&byline=false&portrait=false&title=false&speed=true&transparent=0&gesture=media'"
+                                    allowfullscreen allowtransparency allow="autoplay">
+                                </iframe>
+                            </div>
+                            </vue-plyr>
+                        </template>
+                        <template v-else-if="tipoVideo == 'web'">
+                            <vue-plyr :key="video">
+                            <video :src="video">
+                                <!-- <source src="video-720p.mp4" type="video/mp4" size="720"> -->
+                                <source :src="video" type="video/mp4" size="1080">
+                                <!-- <track kind="captions" label="English" srclang="es" src="captions-en.vtt" default> -->
+                            </video>
+                            </vue-plyr>
+                        </template>
+                    <!-- Botones debajo del reproductor -->
                     <v-row>
                         <v-col cols="12" sm="2" style="padding:0px;">    
                         </v-col>
@@ -176,28 +167,7 @@
             MenuIzquierdo,
         },
         created() {
-            this.idCurso = this.$route.params.idCurso;
-            this.idTema = this.$route.params.idTema;
-            this.idLeccion = this.$route.params.idLeccion;
-            firebase.database().ref('/cursos/' + this.idCurso + '/' + this.idTema + '/' + this.idLeccion).on('value', data =>{
-                if(data.val() != null){
-                    this.nomCurso = data.val().nomCurso;
-                    this.nomTema = data.val().nomTema;
-                    this.nomLeccion = data.val().nomLeccion;
-                    this.video = data.val().video;
-                    this.descripcion = data.val().descripcion;
-                    this.url = data.val().url;
-                    this.urlSiguiente = data.val().urlSiguiente;
-                    this.urlAnterior = data.val().urlAnterior;
-                }else{
-                    this.$router.push({ name: 'noencontrado' });
-                }
-            })
-            firebase.database().ref('/cursos/' + this.idCurso).on('value', data => {
-                if(data.val() != null){
-                    this.cargarIndice(data.val());
-                }
-            })
+            this.cargarCurso();
         },
         data: () => ({
             idCurso: '',
@@ -207,6 +177,7 @@
             idLeccion:'',
             nomLeccion:'',
             video:'',
+            tipoVideo:'',
             descripcion:'',
             visto:'',
             url:'',
@@ -233,10 +204,11 @@
             dialog: false,
         }),
         watch:{
-            '$route'(to){
+            $route(to, from){
                 this.idCurso = to.params.idCurso;
                 this.idTema = to.params.idTema;
                 this.idLeccion = to.params.idLeccion;
+                this.cargarCurso();
             }
         },
         computed:{
@@ -246,28 +218,37 @@
                 }else{
                     return 'rgba(0, 24, 88, 0.712)';
                 }
-            }
+            },
         },
         methods: {
             cargarIndice(arregloTemas){
-                this.arregloTemas = JSON.parse(JSON.stringify(arregloTemas))   
-                console.log(this.arregloTemas)
-            }               
-                /*       
-                         this.arregloTemas[key].arregloLesiones[key1].push({
-                            idCurso: arregloTemas[key].arregloLesiones[key1].idCurso,
-                            nomCurso: arregloTemas[key].arregloLesiones[key1].nomCurso,
-                            idTema: arregloTemas[key].arregloLesiones[key1].idTema,
-                            nomTema: arregloTemas[key].arregloLesiones[key1].nomTema,
-                            idLeccion: arregloTemas[key].arregloLesiones[key1].idLeccion,
-                            nomLeccion: arregloTemas[key].arregloLesiones[key1].nomLeccion,
-                            video: arregloTemas[key].arregloLesiones[key1].video,
-                            descripcion: arregloTemas[key].arregloLesiones[key1].descripcion,
-                            url: arregloTemas[key].arregloLesiones[key1].url,
-                            urlSiguiente: arregloTemas[key].arregloLesiones[key1].urlSiguiente,
-                            urlAnterior:arregloTemas[key].arregloLesiones[key1].urlAnterior,
-                        }) */
-            
+                this.arregloTemas = JSON.parse(JSON.stringify(arregloTemas));
+            },          
+            cargarCurso(){
+                this.idCurso = this.$route.params.idCurso;
+                this.idTema = this.$route.params.idTema;
+                this.idLeccion = this.$route.params.idLeccion;
+                firebase.database().ref('/cursos/' + this.idCurso + '/' + this.idTema + '/' + this.idLeccion).on('value', data =>{
+                    if(data.val() != null){
+                        this.nomCurso = data.val().nomCurso;
+                        this.nomTema = data.val().nomTema;
+                        this.nomLeccion = data.val().nomLeccion;
+                        this.video = data.val().video;
+                        this.descripcion = data.val().descripcion;
+                        this.url = data.val().url;
+                        this.urlSiguiente = data.val().urlSiguiente;
+                        this.urlAnterior = data.val().urlAnterior;
+                        this.tipoVideo = data.val().tipoVideo;
+                    }else{
+                        this.$router.push({ name: 'noencontrado' });
+                    }
+                })
+                firebase.database().ref('/cursos/' + this.idCurso).on('value', data => {
+                    if(data.val() != null){
+                        this.cargarIndice(data.val());
+                    }
+                })
+            },    
         },
     };
 </script>

@@ -34,8 +34,8 @@
                         <template v-for="(item, i) in tematicasParaTi">
 						<div :key="i" class="card--content">
 							<v-hover v-slot:default="{ hover }" style="margin-bottom:10px;">
-								<v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }" >
-									<v-img :src="item.img" height="180px" class="align-end"></v-img> 
+								<v-card :elevation="hover ? 12 : 2" width="280px" :class="{ 'on-hover': hover }" >
+									<v-img :src="item.img" height="180px"  class="align-end"></v-img> 
                                     <v-card-text class="text--primary" style="margin-bottom:-15px;">
                                         <p style="font-size:medium; font-weight: 500; margin-bottom:0px;" class="t_general text-center">{{ item.titulo }}</p>
                                         <v-row style="margin-bottom:-10px;">
@@ -52,7 +52,7 @@
                                         </v-row>
                                     </v-card-text>
                                     <v-card-actions>
-                                        <v-btn class="ma-2 mx-auto" rounded outlined color="#673AB7" style="padding-left:20px; padding-right:20px;">Comenzar</v-btn>
+                                        <v-btn class="ma-2 mx-auto" rounded outlined color="#673AB7" style="padding-left:20px; padding-right:20px;" :to="item.url">Comenzar</v-btn>
                                     </v-card-actions>     
 								</v-card>
 							</v-hover>
@@ -100,11 +100,19 @@
 <script>
     import MenuSuperior from './parts/MenuSuperior';
     import MenuIzquierdo from './parts/MenuIzquierdo';
+    import firebase from 'firebase';
     export default {
         name: 'Clases',
         components: {
             MenuSuperior,
             MenuIzquierdo,
+        },
+        created() {
+            firebase.database().ref('/cursos').on('value', data =>{
+                if(data.val() != null){
+                    this.cargarCursosTematica(data.val());
+                }
+            })
         },
         data: () => ({
             cursoRecomendacion:{
@@ -120,51 +128,31 @@
                     precio: '40.000',
                     likes: '555',
                 },
-                {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'http://www.crossroadslearning.ca/uploads/3/0/9/2/30924385/mimi-thian-vdxmsix-n6m-unsplash.jpg',
-                    precio: '50.000',
-                    likes: '325',
-                },
-                {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
-                    precio: '60.000',
-                    likes: '567',
-                },
-                {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
-                    precio: '30.000',
-                    likes: '235',
-                },
-                 {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
-                    precio: '30.000',
-                    likes: '235',
-                },
-                 {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
-                    precio: '30.000',
-                    likes: '235',
-                },
-                 {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
-                    precio: '30.000',
-                    likes: '235',
-                },
-                 {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
-                    precio: '30.000',
-                    likes: '235',
-                },
             ],
-            //
         }),
+        methods: {
+            cargarCursosTematica(cursos){
+                this.tematicasParaTi = []
+                for (let key in cursos){
+                    this.cargarDatosCursos(key);
+                    console.log(key);
+                }
+                console.log(this.tematicasParaTi);
+            },
+            cargarDatosCursos(curso){
+                firebase.database().ref('/cursos/'+ curso + '/01/' + '/01').on('value', data =>{
+                    if( data.val() != null){
+                        this.tematicasParaTi.push({
+                            titulo: data.val().nomCurso,
+                            img: data.val().imagen,
+                            precio: data.val().precio,
+                            likes: data.val().likes,
+                            url: data.val().url,
+                        })
+                    }
+                })
+            }
+        },
     };
 </script>
 
