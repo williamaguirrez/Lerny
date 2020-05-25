@@ -16,14 +16,14 @@
                    <v-col cols="12" sm="8" style="padding-left:0px" class="hidden-sm-and-down">
                        <h2>Perfil</h2>
                        <h3 style="font-size:23px; line-height:25px;">{{ $store.state.usuario.nombre }}</h3>
-                       <p>{{ datosUsuario.oficio }}<br>
+                       <p><b style="color:#BB86FC;">{{ datosUsuario.oficio }}</b><br>
                        {{ datosUsuario.vistas }} Vistas al Perfil</p>
                    </v-col>
                    <v-col cols="12" sm="8" style="padding-left:0px" class="hidden-md-and-up">
                        <center>
                        <h2>Perfil</h2>
                        <h3 style="font-size:23px; line-height:25px;">{{ $store.state.usuario.nombre }}</h3>
-                       <p>{{ datosUsuario.oficio }}<br>
+                       <p><b style="color:#BB86FC;">{{ datosUsuario.oficio }}</b><br>
                        {{ datosUsuario.vistas }} Vistas al Perfil</p>
                        </center>
                    </v-col>
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                                 <!-- Quiero ser Padrino -->
-                                <button class="tarjetas" style="height:63px; padding:5px; background-color:#8D50F1" to="/algunlado">
+                                <div v-ripple class="tarjetas" style="height:63px; padding:5px; background-color:#8D50F1">
                                     <div style="font-size:medium; margin-bottom:0px; ">
                                         <v-row>
                                             <v-col cols="12" sm="9" style="padding-top:0px">
@@ -71,7 +71,7 @@
                                             </v-col>
                                         </v-row>
                                     </div>
-                                </button>
+                                </div>
                             </v-col>
                             <!-- Rango y Puntaje ------------------------------------------------------------------------ -->
                             <v-col cols="12" sm="7" style="height:150px;">
@@ -135,9 +135,14 @@
                                         <div v-for="(item, i) in habilidadesAdq" :key="i">
                                             <v-col cols="12" sm="4">
                                                 <center>
-                                                    <v-avatar dark icon size="50">
-                                                        <img src="@/assets/medalla.png">
-                                                    </v-avatar>
+                                                    <v-tooltip bottom>
+                                                        <template v-slot:activator="{ on }">
+                                                            <v-avatar dark icon size="50">
+                                                                <img v-on="on" src="@/assets/medalla.png">
+                                                            </v-avatar>
+                                                        </template>
+                                                        <span>{{ item.nombre }}</span>
+                                                    </v-tooltip>
                                                 </center>
                                             </v-col>
                                         </div>
@@ -243,10 +248,6 @@
                 {
                     nombre: 'Progreso Temática 1',
                     porcentaje: 50,
-                },
-                {
-                    nombre: 'Progreso Temática 2',
-                    porcentaje: 15,
                 },
             ],
             padrinos:[

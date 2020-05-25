@@ -16,7 +16,7 @@
                         <v-list-item-content style="padding:0px">
                             <v-expansion-panels>
                                 <v-expansion-panel>
-                                    <v-expansion-panel-header>{{ item[i].nomTema }}</v-expansion-panel-header>
+                                    <v-expansion-panel-header>{{ i }}</v-expansion-panel-header>
                                     <v-expansion-panel-content>
                                         <v-timeline dense clipped style="padding-top:0px;">
                                             <v-timeline-item v-for="(key, j) in item" :key="j" :color="true ? 'green' : 'grey' " icon-color="white" icon="done">
