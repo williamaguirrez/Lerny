@@ -1,6 +1,9 @@
 <template>
     <v-app-bar id="menuu" :color="offsetTop ? isColor : 'transparent'" style="padding-left:5%; padding-right:5%;" flat app>
         <v-switch class="hidden-md-and-up" v-model="$vuetify.theme.dark" primary style="height: 23px"></v-switch>
+        <v-avatar class="profile" size="50" tile width="200px" height="60px">
+            <v-img src="@/assets/logo.png"></v-img>
+        </v-avatar>
         <v-spacer></v-spacer>
         <v-switch class="hidden-sm-and-down" v-model="$vuetify.theme.dark" primary style="height: 23px"></v-switch>
         <b style="width:20px;"/>
@@ -80,7 +83,7 @@
         computed:{
             isColor: function(){
                 if (this.$vuetify.theme.dark){
-                    return 'rgba(0, 0, 0, 0.747)';
+                    return 'rgba(0, 12, 44, 0.911)';
                 }else{
                     return 'rgba(0, 24, 88, 0.712)';
                 }

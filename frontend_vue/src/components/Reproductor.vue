@@ -16,7 +16,7 @@
                         <v-list-item-content style="padding:0px">
                             <v-expansion-panels>
                                 <v-expansion-panel>
-                                    <v-expansion-panel-header>a</v-expansion-panel-header>
+                                    <v-expansion-panel-header>{{ item[i].nomTema }}</v-expansion-panel-header>
                                     <v-expansion-panel-content>
                                         <v-timeline dense clipped style="padding-top:0px;">
                                             <v-timeline-item v-for="(key, j) in item" :key="j" :color="true ? 'green' : 'grey' " icon-color="white" icon="done">
@@ -233,8 +233,8 @@
                         this.nomCurso = data.val().nomCurso;
                         this.nomTema = data.val().nomTema;
                         this.nomLeccion = data.val().nomLeccion;
-                        this.video = data.val().video;
-                        this.descripcion = data.val().descripcion;
+                        this.video = data.val().videoTema;
+                        this.descripcion = data.val().descripcionTema;
                         this.url = data.val().url;
                         this.urlSiguiente = data.val().urlSiguiente;
                         this.urlAnterior = data.val().urlAnterior;

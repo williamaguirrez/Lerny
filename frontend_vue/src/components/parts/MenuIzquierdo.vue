@@ -1,13 +1,11 @@
 <template>
-    <v-container>
+    <v-container class="menu_letra">
         <v-navigation-drawer width="200" v-model="drawer" :color="isColor" permanent expand-on-hover app dark>
             <template v-slot:prepend>
                 <v-list>
-                    <v-list-item>
-                        <v-list-item-icon>
-                            <v-icon>menu</v-icon>
-                        </v-list-item-icon>
-                    </v-list-item>
+                    <v-avatar class="profile" size="50" tile width="50px" height="75px">
+                        <v-img src="@/assets/logo1.png"></v-img>
+                    </v-avatar>
                 </v-list>
             </template>
             <v-container fill-height fluid>
@@ -77,9 +75,9 @@
         computed:{
             isColor: function(){
                 if (this.$vuetify.theme.dark){
-                    return 'rgba(0, 0, 0, 0.747)';
+                    return 'rgba(0, 12, 44, 0.911)';
                 }else{
-                    return 'rgba(0, 24, 88, 0.712)';
+                    return 'rgba(0, 12, 44, 0.192)';
                 }
             }
         },
@@ -87,5 +85,13 @@
 </script>
 
 <style scoped>
-
+    .menu_letra{
+        padding-top: 45px;
+        padding-bottom: 20px;
+        padding-left: 80px;
+        padding-right: 20px;
+        font-family: Maven Pro;
+		font-style: normal;
+        color: rgba(0, 12, 44, 0.911);
+    }
 </style>

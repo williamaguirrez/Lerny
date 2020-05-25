@@ -154,7 +154,7 @@
         computed:{
             isColor: function(){
                 if (this.$vuetify.theme.dark){
-                    return 'rgba(0, 0, 0, 0.747)';
+                    return 'rgba(0, 12, 44, 0.911)';
                 }else{
                     return 'rgba(0, 24, 88, 0.712)';
                 }

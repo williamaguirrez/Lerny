@@ -129,15 +129,18 @@
                     likes: '555',
                 },
             ],
+            codsCursos: [],
         }),
         methods: {
             cargarCursosTematica(cursos){
-                this.tematicasParaTi = []
+                this.tematicasParaTi = [];
+                this.codsCursos = [];
                 for (let key in cursos){
                     this.cargarDatosCursos(key);
-                    console.log(key);
+                    this.codsCursos.push(key);
                 }
-                console.log(this.tematicasParaTi);
+                let posAletaroria =  Math.floor(Math.random() * this.codsCursos.length);
+                this.cargarCursoRecomendacion( this.codsCursos[posAletaroria] );
             },
             cargarDatosCursos(curso){
                 firebase.database().ref('/cursos/'+ curso + '/01/' + '/01').on('value', data =>{
@@ -149,6 +152,17 @@
                             likes: data.val().likes,
                             url: data.val().url,
                         })
+                    }
+                })
+            },
+            cargarCursoRecomendacion(curso){
+                firebase.database().ref('/cursos/' + curso + '/01/' +'/01').on('value', data => {
+                    if ( data.val() != null ){
+                        this.cursoRecomendacion.titulo = data.val().nomCurso;
+                        this.cursoRecomendacion.descrip = data.val().descripcionCurso;
+                        this.cursoRecomendacion.video = data.val().videoFondo;
+                        this.cursoRecomendacion.reprod = data.val().url;
+                        this.cursoRecomendacion.info = '/infoVideos';
                     }
                 })
             }

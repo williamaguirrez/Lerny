@@ -13,20 +13,28 @@
                        </center>
                    </v-col>
                    <!-- Información del Perfil ------------------------------------------------------------------------ -->
-                   <v-col cols="12" sm="8" style="padding-left:0px">
+                   <v-col cols="12" sm="8" style="padding-left:0px" class="hidden-sm-and-down">
                        <h2>Perfil</h2>
                        <h3 style="font-size:23px; line-height:25px;">{{ $store.state.usuario.nombre }}</h3>
                        <p>{{ datosUsuario.oficio }}<br>
                        {{ datosUsuario.vistas }} Vistas al Perfil</p>
                    </v-col>
+                   <v-col cols="12" sm="8" style="padding-left:0px" class="hidden-md-and-up">
+                       <center>
+                       <h2>Perfil</h2>
+                       <h3 style="font-size:23px; line-height:25px;">{{ $store.state.usuario.nombre }}</h3>
+                       <p>{{ datosUsuario.oficio }}<br>
+                       {{ datosUsuario.vistas }} Vistas al Perfil</p>
+                       </center>
+                   </v-col>
                    <!-- Descripcion ---------------------------------------------------------------------------------- -->
                    <div class="tarjetas" style="width:100%; height:170px; margin:10px; padding:15px;">
-                       <p style="color:#BB86FC; margin-bottom:5px;" >Descripción</p>
+                       <p style="color:#BB86FC; font-weight:500; margin-bottom:5px;" >Descripción</p>
                        <p>{{ datosUsuario.descripcion }}</p>
                    </div>
                    <!-- Mis habilidades ------------------------------------------------------------------------------ -->
                    <div class="tarjetas" style="width:100%; height:170px; margin:10px; padding:15px;">
-                       <p style="color:#BB86FC; margin-bottom:5px;" >Mis habilidades</p>
+                       <p style="color:#BB86FC; font-weight:500; margin-bottom:5px;" >Mis habilidades</p>
                        <p>{{ datosUsuario.habilidades }}</p>
                    </div>
                </v-row>
@@ -36,20 +44,41 @@
                     <v-col cols="12" sm="8">
                         <v-row>
                             <!-- Saldo -------------------------------------------------------------------------------- -->
-                            <v-col cols="12" sm="5" style="height:150px;">
-                                <div class="tarjetas" style="height:100%; padding:5px;">
-                                    <center><h1 style="font-size:20px;">Saldo</h1></center>
-                                    <p style="font-size:medium; margin-bottom:0px; font-size:30px;">
-                                        <v-icon size="60px" color="#8D50F1">monetization_on</v-icon> +${{ datosUsuario.saldo }} 
-                                    </p>
+                            <v-col cols="12" sm="5">
+                                <div class="tarjetas" style="height:63px; padding:5px; margin-bottom:10px;">
+                                    <div style="font-size:medium; margin-bottom:0px; ">
+                                        <v-row>
+                                            <v-col cols="12" sm="4" style="padding-top:0px">
+                                                <v-icon size="50px" color="#8D50F1">monetization_on</v-icon> 
+                                            </v-col>
+                                            <v-col cols="12" sm="8" style="padding-top:0px">
+                                                <p style="line-height:25px">Saldo<br>
+                                                    <b style="font-weight:200; font-size:25px">+${{ datosUsuario.saldo }}</b>    
+                                                </p>
+                                            </v-col>
+                                        </v-row>
+                                    </div>
                                 </div>
+                                <!-- Quiero ser Padrino -->
+                                <button class="tarjetas" style="height:63px; padding:5px; background-color:#8D50F1" to="/algunlado">
+                                    <div style="font-size:medium; margin-bottom:0px; ">
+                                        <v-row>
+                                            <v-col cols="12" sm="9" style="padding-top:0px">
+                                                <center><p style="line-height:23px; font-size:23px;">Quiero ser apadrinado</p></center>
+                                            </v-col>
+                                            <v-col cols="12" sm="3" style="padding:0px; margin-left:-15px;">
+                                                <v-icon size="50px" color="#23036A">star</v-icon> 
+                                            </v-col>
+                                        </v-row>
+                                    </div>
+                                </button>
                             </v-col>
                             <!-- Rango y Puntaje ------------------------------------------------------------------------ -->
                             <v-col cols="12" sm="7" style="height:150px;">
                                 <div class="tarjetas" style="height:100%; padding:5px;">
                                     <v-row>
                                         <v-col cols="12" sm="7">
-                                            <h1 class="text-right" style="margin-bottom:0px; font-size:30px;">
+                                            <h1 class="text-right" style="margin-bottom:0px; font-size:25px;">
                                                 {{ datosUsuario.rango }}
                                             </h1>
                                             <p class="text-right" style="font-size:medium; margin-top:-5px; font-size:25px;">
@@ -270,7 +299,7 @@
 
 <style scoped>
     .contenedor_perfil{
-        padding-top: 45px;
+        padding-top: 10px;
         padding-bottom: 20px;
         padding-left: 80px;
         padding-right: 20px;
