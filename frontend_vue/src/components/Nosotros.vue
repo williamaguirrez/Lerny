@@ -22,9 +22,12 @@
 					<h2 class="t_descubre2 ">Top 5</h2>
 				</v-col>
 				<v-col cols="12" sm="6">
+					<router-link to='/DescubreMas'>
 					<v-btn  x-large class="mx-2" fab color="boton_menu" dark style="float:right;">
 						<v-icon dark>mdi-plus</v-icon>
+						
 					</v-btn>
+					</router-link>
 				</v-col>
 			</v-row>
 			<!--Este es el la vaca -->

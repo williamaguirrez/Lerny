@@ -5,16 +5,24 @@ import Login from './components/Login.vue';
 import Signup from './components/Signup.vue';
 import Nosotros from './components/Nosotros.vue';
 import Recuperar from './components/Recuperar.vue';
+import DescubreMas from './components/DescubreMas';
 import Clases from './components/Clases.vue';
 import Reproductor from './components/Reproductor.vue';
+import MiSuscripcion from './components/MiSuscripcion.vue';
+import Perfil from './components/Perfil.vue';
+import PromoWallet from './components/PromoWallet.vue';
+import Ranking from './components/Ranking.vue';
+import Llamada from './components/Llamada.vue';
+import Monitorias from './components/Monitorias.vue';
 import { store } from './store';
 
 export const routes = [
     {
         path: '/', 
+        name: 'inicio',
         component: Home, 
         meta: {
-            title: 'Inicio',
+            title: 'Inicio | Lerny.co',
             metaTags: [{
                     name: 'description',
                     content: 'The about page of our example app.'
@@ -28,9 +36,10 @@ export const routes = [
     },
     {
         path: '/login',
+        name: 'login',
         component: Login, 
         meta: {
-            title: 'Inicia Sesión',
+            title: 'Inicia Sesión | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
@@ -44,9 +53,10 @@ export const routes = [
     },
     {
         path: '/signup', 
+        name: 'signup',
         component: Signup, 
         meta: {
-            title: 'Regístrate',
+            title: 'Regístrate | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
@@ -59,10 +69,11 @@ export const routes = [
         },
     },
     {
-        path: '/nosotros', 
+        path: '/nosotros',
+        name: 'nosotros',
         component: Nosotros, 
         meta: {
-            title: 'Nosotros',
+            title: 'Nosotros | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
@@ -75,10 +86,28 @@ export const routes = [
         },
     },
     {
-        path: '/recuperar', 
+        path: '/recuperar',
+        name: 'recuperar', 
         component: Recuperar, 
         meta: {
-            title: 'Recuperar Cuenta',
+            title: 'Recuperar Cuenta | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/descubremas', 
+        name: 'descubremas',
+        component: DescubreMas,
+        meta: {
+            title: 'Descubre mas Funcionalidades',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
@@ -92,9 +121,11 @@ export const routes = [
     },
     {
         path: '/clases', 
+        name: 'clases',
         component: Clases, 
         meta: {
-            title: 'Clases',
+            requeresAuth: true,
+            title: 'Clases | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
@@ -107,10 +138,12 @@ export const routes = [
         },
     },
     {
-        path: '/reproductor', 
+        path: '/curso/:idCurso/:idTema/:idLeccion', 
+        name: 'reproductor',
         component: Reproductor, 
         meta: {
-            title: 'Curso',
+            requeresAuth: true,
+            title: 'Curso | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
@@ -123,9 +156,119 @@ export const routes = [
         },
     },
     {
-        path: '/contacto', component: Contacto, 
+        path: '/mi-suscripcion', 
+        name: 'misuscripcion',
+        component: MiSuscripcion, 
         meta: {
-            title: 'Contacto',
+            requeresAuth: true,
+            title: 'Mi Suscripción | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/perfil', 
+        name: 'perfil',
+        component: Perfil, 
+        meta: {
+            requeresAuth: true,
+            title: 'Mi Perfil | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/promowallet', 
+        name: 'promowallet',
+        component: PromoWallet, 
+        meta: {
+            requeresAuth: true,
+            title: '¿Qué es Wallet? | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/ranking', 
+        name: 'ranking',
+        component: Ranking, 
+        meta: {
+            requeresAuth: false,
+            title: 'Ranking | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/llamada', 
+        name: 'llamada',
+        component: Llamada, 
+        meta: {
+            requeresAuth: true,
+            title: 'Llamada | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/monitorias', 
+        name: 'monitorias',
+        component: Monitorias, 
+        meta: {
+            requeresAuth: true,
+            title: 'Programar Monitorias | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/contacto', 
+        name: 'contacto',
+        component: Contacto, 
+        meta: {
+            title: 'Contacto | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
@@ -144,9 +287,10 @@ export const routes = [
     },
     {
         path: '*', 
+        name: 'noencontrado',
         component: NoEncontrado,
         meta: {
-            title: 'Pagina no encontrada',
+            title: 'Pagina Error | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
