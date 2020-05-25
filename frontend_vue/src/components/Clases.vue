@@ -4,8 +4,9 @@
         <!-- Recomendación Principal de películas -->
         <video-background :src="cursoRecomendacion.video" style="max-height: 630px; height: 100vh;">   
             <div class="contRecomendVideo">             
+                <div>
                 <v-row>
-                    <v-col cols="12" sm="10">
+                    <v-col cols="12" sm="11">
                         <h2 class="t_descubre white--text" style="font-size:80px; margin-bottom:30px;">{{ cursoRecomendacion.titulo }}</h2>
                         <p  style="font-size:20px; margin-bottom:0px; width:500px; margin-bottom:20px;" class="t_general white--text">
                             {{ cursoRecomendacion.descrip }}
@@ -18,6 +19,7 @@
                         </v-btn>
                     </v-col>
                 </v-row>
+                </div>
             </div>
         </video-background>
         <MenuIzquierdo/>

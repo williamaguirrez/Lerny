@@ -9,6 +9,9 @@ import Clases from './components/Clases.vue';
 import Reproductor from './components/Reproductor.vue';
 import MiSuscripcion from './components/MiSuscripcion.vue';
 import Perfil from './components/Perfil.vue';
+import PromoWallet from './components/PromoWallet.vue';
+import Ranking from './components/Ranking.vue';
+import Llamada from './components/Llamada.vue';
 import { store } from './store';
 
 export const routes = [
@@ -158,6 +161,60 @@ export const routes = [
         meta: {
             requeresAuth: true,
             title: 'Mi Perfil | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/promowallet', 
+        name: 'promowallet',
+        component: PromoWallet, 
+        meta: {
+            requeresAuth: true,
+            title: '¿Qué es Wallet? | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/ranking', 
+        name: 'ranking',
+        component: Ranking, 
+        meta: {
+            requeresAuth: false,
+            title: 'Ranking | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/llamada', 
+        name: 'llamada',
+        component: Llamada, 
+        meta: {
+            requeresAuth: true,
+            title: 'Llamada | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'

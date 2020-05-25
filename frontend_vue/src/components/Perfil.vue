@@ -44,7 +44,7 @@
                     <v-col cols="12" sm="8">
                         <v-row>
                             <!-- Saldo -------------------------------------------------------------------------------- -->
-                            <v-col cols="12" sm="5">
+                            <v-col cols="12" sm="5" style="padding:5px;">
                                 <div class="tarjetas" style="height:63px; padding:5px; margin-bottom:10px;">
                                     <div style="font-size:medium; margin-bottom:0px; ">
                                         <v-row>
@@ -59,22 +59,25 @@
                                         </v-row>
                                     </div>
                                 </div>
-                                <!-- Quiero ser Padrino -->
-                                <div v-ripple class="tarjetas" style="height:63px; padding:5px; background-color:#8D50F1">
-                                    <div style="font-size:medium; margin-bottom:0px; ">
-                                        <v-row>
-                                            <v-col cols="12" sm="9" style="padding-top:0px">
-                                                <center><p style="line-height:23px; font-size:23px;">Quiero ser apadrinado</p></center>
-                                            </v-col>
-                                            <v-col cols="12" sm="3" style="padding:0px; margin-left:-15px;">
-                                                <v-icon size="50px" color="#23036A">star</v-icon> 
-                                            </v-col>
-                                        </v-row>
+                                <!-- Quiero ser Apadrinado -->
+                                <router-link to="/promowallet">
+                                    <div v-ripple class="tarjetas" style="height:63px; padding:5px; background-color:#8D50F1">
+                                        <div style="font-size:medium; margin-bottom:0px; ">
+                                            <v-row>
+                                                <v-col cols="12" sm="9" style="padding-top:0px">
+                                                    <center><p style="line-height:23px; font-size:23px; color:white;">Quiero ser apadrinado</p></center>
+                                                </v-col>
+                                                <v-col cols="12" sm="3" style="padding:0px; margin-left:-15px;">
+                                                    <v-icon size="50px" color="#23036A">star</v-icon> 
+                                                </v-col>
+                                            </v-row>
+                                        </div>
                                     </div>
-                                </div>
+                                </router-link>
+                                
                             </v-col>
                             <!-- Rango y Puntaje ------------------------------------------------------------------------ -->
-                            <v-col cols="12" sm="7" style="height:150px;">
+                            <v-col cols="12" sm="7" style="height:150px; padding:5px;">
                                 <div class="tarjetas" style="height:100%; padding:5px;">
                                     <v-row>
                                         <v-col cols="12" sm="7">
@@ -135,14 +138,16 @@
                                         <div v-for="(item, i) in habilidadesAdq" :key="i">
                                             <v-col cols="12" sm="4">
                                                 <center>
-                                                    <v-tooltip bottom>
-                                                        <template v-slot:activator="{ on }">
-                                                            <v-avatar dark icon size="50">
-                                                                <img v-on="on" src="@/assets/medalla.png">
-                                                            </v-avatar>
-                                                        </template>
-                                                        <span>{{ item.nombre }}</span>
-                                                    </v-tooltip>
+                                                    <router-link :to="item.url">
+                                                        <v-tooltip bottom>
+                                                            <template v-slot:activator="{ on }">
+                                                                <v-avatar dark icon size="50">
+                                                                    <img v-on="on" src="@/assets/medalla.png">
+                                                                </v-avatar>
+                                                            </template>
+                                                            <span>{{ item.nombre }}</span>
+                                                        </v-tooltip>
+                                                    </router-link>
                                                 </center>
                                             </v-col>
                                         </div>
@@ -153,6 +158,9 @@
                     </v-col>
                     <!-- Padrinos --------------------------------------------------------------------------------------- -->
                     <v-col cols="12" sm="4">
+                        <v-btn block color="#8D50F1" style="padding-top:10px; padding-bottom:10px; padding-left:10px; padding-right:20px;" to="/ranking">
+                            <v-icon left>star</v-icon> Ranking
+                        </v-btn>
                         <!-- Si no hay padrinos en el arreglo muestra el letrero -->
                         <div v-if="padrinos.length == 0" style="background-color:white; height:230px; margin:10px; padding:20px;">
                             <h1 class="text-center" style="font-size:20px; color:black;">
@@ -300,10 +308,10 @@
 
 <style scoped>
     .contenedor_perfil{
-        padding-top: 10px;
+        padding-top: 0px;
         padding-bottom: 20px;
         padding-left: 80px;
-        padding-right: 20px;
+        padding-right: 30px;
         font-family: Maven Pro;
 		font-style: normal;
         background-color: #001844;
