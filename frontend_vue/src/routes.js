@@ -5,6 +5,7 @@ import Login from './components/Login.vue';
 import Signup from './components/Signup.vue';
 import Nosotros from './components/Nosotros.vue';
 import Recuperar from './components/Recuperar.vue';
+import DescubreMas from './components/DescubreMas';
 import Clases from './components/Clases.vue';
 import Reproductor from './components/Reproductor.vue';
 import MiSuscripcion from './components/MiSuscripcion.vue';
@@ -12,6 +13,7 @@ import Perfil from './components/Perfil.vue';
 import PromoWallet from './components/PromoWallet.vue';
 import Ranking from './components/Ranking.vue';
 import Llamada from './components/Llamada.vue';
+import Monitorias from './components/Monitorias.vue';
 import { store } from './store';
 
 export const routes = [
@@ -89,6 +91,23 @@ export const routes = [
         component: Recuperar, 
         meta: {
             title: 'Recuperar Cuenta | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/descubremas', 
+        name: 'descubremas',
+        component: DescubreMas,
+        meta: {
+            title: 'Descubre mas Funcionalidades',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
@@ -215,6 +234,24 @@ export const routes = [
         meta: {
             requeresAuth: true,
             title: 'Llamada | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/monitorias', 
+        name: 'monitorias',
+        component: Monitorias, 
+        meta: {
+            requeresAuth: true,
+            title: 'Programar Monitorias | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
