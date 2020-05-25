@@ -4,8 +4,9 @@
         <!-- Recomendación Principal de películas -->
         <video-background :src="cursoRecomendacion.video" style="max-height: 630px; height: 100vh;">   
             <div class="contRecomendVideo">             
+                <div>
                 <v-row>
-                    <v-col cols="12" sm="10">
+                    <v-col cols="12" sm="11">
                         <h2 class="t_descubre white--text" style="font-size:80px; margin-bottom:30px;">{{ cursoRecomendacion.titulo }}</h2>
                         <p  style="font-size:20px; margin-bottom:0px; width:500px; margin-bottom:20px;" class="t_general white--text">
                             {{ cursoRecomendacion.descrip }}
@@ -18,6 +19,7 @@
                         </v-btn>
                     </v-col>
                 </v-row>
+                </div>
             </div>
         </video-background>
         <MenuIzquierdo/>
@@ -26,14 +28,41 @@
         <div id="tematicas" :class="$vuetify.theme.dark ? 'contenedorClases fondo_dark' : 'contenedorClases'">
 			<v-row>
 				<v-col cols="12" sm="11">
-					<h2 class="t_descubre titulo--text">Temáticas que tenemos para ti...</h2>
-				</v-col>
-				<v-col cols="12" sm="1">
-					<v-btn class="mx-2" fab color="boton_menu" dark style="float:right;">
-						<v-icon dark>mdi-plus</v-icon>
-					</v-btn>
+					<h2 class="t_descubre titulo--text" style="line-height: 40px;">Temáticas que tenemos para ti...</h2>
 				</v-col>
 			</v-row>
+            <div class="wbody">
+                <section class="card">
+                        <template v-for="(item, i) in tematicasParaTi">
+						<div :key="i" class="card--content">
+							<v-hover v-slot:default="{ hover }" style="margin-bottom:10px;">
+								<v-card :elevation="hover ? 12 : 2" width="280px" :class="{ 'on-hover': hover }" >
+									<v-img :src="item.img" height="180px"  class="align-end"></v-img> 
+                                    <v-card-text class="text--primary" style="margin-bottom:-15px;">
+                                        <p style="font-size:medium; font-weight: 500; margin-bottom:0px;" class="t_general text-center">{{ item.titulo }}</p>
+                                        <v-row style="margin-bottom:-10px;">
+                                            <v-col cols="12" sm="6">
+                                                <p style="font-size:medium; margin-bottom:0px;" class="t_general text-center" black--text>
+                                                    <v-icon size="20px" color="#673AB7">shopping_cart</v-icon> ${{ item.precio }}
+                                                </p>
+                                            </v-col>
+                                            <v-col cols="12" sm="6">
+                                                <p style="font-size:medium; margin-bottom:0px;" class="t_general text-center">
+                                                    <v-icon size="20px" color="#673AB7">favorite</v-icon> {{ item.likes }} likes
+                                                </p>
+                                            </v-col>
+                                        </v-row>
+                                    </v-card-text>
+                                    <v-card-actions>
+                                        <v-btn class="ma-2 mx-auto" rounded outlined color="#673AB7" style="padding-left:20px; padding-right:20px;" :to="item.url">Comenzar</v-btn>
+                                    </v-card-actions>     
+								</v-card>
+							</v-hover>
+						</div>
+					</template>	
+                </section>
+            </div>
+            <!-- 
 			<v-container class="pa-4 text-center">
 				<v-row class="fill-height" align="center" justify="center">
 					<template v-for="(item, i) in tematicasParaTi">
@@ -64,7 +93,8 @@
 						</v-col>
 					</template>	
 				</v-row>					
-			</v-container>
+			</v-container> 
+            -->
         </div>   
     </v-app>
 </template>
@@ -72,11 +102,19 @@
 <script>
     import MenuSuperior from './parts/MenuSuperior';
     import MenuIzquierdo from './parts/MenuIzquierdo';
+    import firebase from 'firebase';
     export default {
         name: 'Clases',
         components: {
             MenuSuperior,
             MenuIzquierdo,
+        },
+        created() {
+            firebase.database().ref('/cursos').on('value', data =>{
+                if(data.val() != null){
+                    this.cargarCursosTematica(data.val());
+                }
+            })
         },
         data: () => ({
             cursoRecomendacion:{
@@ -84,7 +122,7 @@
                 descrip: 'Descubriras como innovar a partir del FlipKit, un conjunto de herramientas practicas y sencillas que te ayudarán en el diseño y desarrollo de soluciones innovadoras',
                 video: 'http://pespantelis.github.io/vue-videobg/demo/assets/timelapse.mp4',
                 info: '/clases',
-                reprod: '/clases'
+                reprod: '/reproductor'
             },
             tematicasParaTi: [{
                     titulo: 'Desarrollarás habilidades que te permiten realizar...',
@@ -92,31 +130,75 @@
                     precio: '40.000',
                     likes: '555',
                 },
-                {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'http://www.crossroadslearning.ca/uploads/3/0/9/2/30924385/mimi-thian-vdxmsix-n6m-unsplash.jpg',
-                    precio: '50.000',
-                    likes: '325',
-                },
-                {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
-                    precio: '60.000',
-                    likes: '567',
-                },
-                {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
-                    precio: '30.000',
-                    likes: '235',
-                },
             ],
-            //
+            codsCursos: [],
         }),
+        methods: {
+            cargarCursosTematica(cursos){
+                this.tematicasParaTi = [];
+                this.codsCursos = [];
+                for (let key in cursos){
+                    this.cargarDatosCursos(key);
+                    this.codsCursos.push(key);
+                }
+                let posAletaroria =  Math.floor(Math.random() * this.codsCursos.length);
+                this.cargarCursoRecomendacion( this.codsCursos[posAletaroria] );
+            },
+            cargarDatosCursos(curso){
+                firebase.database().ref('/cursos/'+ curso + '/01/' + '/01').on('value', data =>{
+                    if( data.val() != null){
+                        this.tematicasParaTi.push({
+                            titulo: data.val().nomCurso,
+                            img: data.val().imagen,
+                            precio: data.val().precio,
+                            likes: data.val().likes,
+                            url: data.val().url,
+                        })
+                    }
+                })
+            },
+            cargarCursoRecomendacion(curso){
+                firebase.database().ref('/cursos/' + curso + '/01/' +'/01').on('value', data => {
+                    if ( data.val() != null ){
+                        this.cursoRecomendacion.titulo = data.val().nomCurso;
+                        this.cursoRecomendacion.descrip = data.val().descripcionCurso;
+                        this.cursoRecomendacion.video = data.val().videoFondo;
+                        this.cursoRecomendacion.reprod = data.val().url;
+                        this.cursoRecomendacion.info = '/infoVideos';
+                    }
+                })
+            }
+        },
     };
 </script>
 
 <style scoped>
+    .wbody {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card {
+        display: flex;
+        min-width: 100%;
+        min-height: 200px;
+        overflow-x: auto; 
+    }
+
+    .card::-webkit-scrollbar {
+        display: none;
+    }
+
+    .card--content {
+        min-width: 280px;
+        margin: 12px;
+    }
+
+    .v-card:not(.on-hover) {
+	    opacity: 0.6;
+	}
     .contenedorClases{
 		padding-top: 5%;
 		padding-left: 5%;

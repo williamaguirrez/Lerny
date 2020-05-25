@@ -9,12 +9,20 @@
                             <center>
                                 <h2 style="padding-top:50px; margin-bottom:50px;" class="titulo1" >Recuperar</h2>
                             </center> 
-                            <form>
-                                <v-text-field style="margin-bottom:-20px;" solo rounded label="Correo Electrónico" prepend-inner-icon="email"></v-text-field>
+                            <v-form ref="form" v-model="valid" lazy-validation>
+                                <v-text-field style="margin-bottom:-20px;" 
+                                    v-model="email" :rules="emailRules" required
+                                    solo rounded label="Correo Electrónico" 
+                                    prepend-inner-icon="email">
+                                </v-text-field>
                                 <div style="padding-left:15%;padding-right:15%; margin-top:20px; margin-bottom:0px;">
-                                    <v-btn style="margin-bottom:10px;" rounded block color="boton_menu1" dark large>Recuperar</v-btn>
+                                    <v-btn style="margin-bottom:10px;" 
+                                        :disabled="!valid" @click="submit"
+                                        rounded block color="boton_menu1" 
+                                        dark large>Recuperar
+                                    </v-btn>
                                 </div>
-                            </form>
+                            </v-form>
                             <center>
                                 <p style="color:white; font-family: Maven Pro; font-style: normal; font-weight: 500; font-size:12px; margin-bottom:-5px;">
                                     ¿No tienes Cuenta? <a style="font-weight: 900;"><router-link to='/signup'>Regístrate</router-link></a>
@@ -31,14 +39,26 @@
     import MenuToolbar from './parts/MenuToolbar';
     import MenuResponsive from './parts/MenuResponsive';
     export default {
-    name: 'Recuperar',
-    components: {
-        MenuToolbar,
-        MenuResponsive,
-    },
-    data: () => ({
-        //
+        name: 'Recuperar',
+        components: {
+            MenuToolbar,
+            MenuResponsive,
+        },
+        data: () => ({
+            valid: true,
+            email: '',
+            emailRules: [
+                v => !!v || 'El correo es obligatorio',
+                v => /.+@.+\..+/.test(v) || 'El correo debe ser válido',
+            ],
         }),
+        methods: {
+            submit () {
+                if(this.$refs.form.validate()){
+                    console.log('Entra')
+                }
+            },
+        }
     };
 </script>
 

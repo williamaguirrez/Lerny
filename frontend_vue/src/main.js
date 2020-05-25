@@ -4,14 +4,23 @@ import vuetify from './plugins/vuetify';
 import VueRouter from 'vue-router';
 import { routes } from './routes';
 import { store } from './store';
-import { Plugin } from 'vue-responsive-video-background-player'
+import { Plugin } from 'vue-responsive-video-background-player';
+import VuePlyr from 'vue-plyr';
+import firebase from 'firebase';
 
+
+let app = null
 
 Vue.config.productionTip = false
 
 Vue.use(VueRouter);
 Vue.use(Plugin);
-
+Vue.use(VuePlyr, {
+  plyr: {
+    fullscreen: { enabled: true }
+  },
+  emit: ['ended']
+});
 
 const router = new VueRouter({
   mode: 'history',
@@ -20,8 +29,17 @@ const router = new VueRouter({
 
 //Para bloquear todas las rutas, sólo cambiando el parametro de next por un false
 router.beforeEach((to, from, next)=>{
-  console.log('Acceso Global');
-  next();
+  if (to.matched.some(ruta => ruta.meta.requeresAuth)){
+    const user = firebase.auth().currentUser;
+    if (user){
+      next();
+      store.state.inicializarDatosLogin(user.uid, user.displayName, user.email, user.photoURL);
+    }else{
+      next({ name: 'login' });
+    }
+  }else{
+    next();
+  }
 });
 
 // This callback runs before every route change, including on page load.
@@ -45,10 +63,14 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-new Vue({
-  el: '#app',
-  vuetify,
-  router: router,
-  store: store,
-  render: h => h(App)
-});
+firebase.auth().onAuthStateChanged(() => {
+  if (!app){
+    app = new Vue({
+      el: '#app',
+      vuetify,
+      router: router,
+      store: store,
+      render: h => h(App)
+    });
+  }
+})
