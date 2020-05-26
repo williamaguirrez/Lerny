@@ -14,6 +14,7 @@ import PromoWallet from './components/PromoWallet.vue';
 import Ranking from './components/Ranking.vue';
 import Llamada from './components/Llamada.vue';
 import Monitorias from './components/Monitorias.vue';
+import Calendario from './components/Calendario.vue';
 import { store } from './store';
 
 export const routes = [
@@ -252,6 +253,24 @@ export const routes = [
         meta: {
             requeresAuth: true,
             title: 'Programar Monitorias | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/calendario', 
+        name: 'calendario',
+        component: Calendario, 
+        meta: {
+            requeresAuth: true,
+            title: 'Monitorias | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'

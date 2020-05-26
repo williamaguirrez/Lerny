@@ -1,31 +1,39 @@
 <template>
-    <v-app id="inspire" class="contenedor_monitorias">
-        <v-row >
+    <v-app id="inspire">
+        <v-row class="contenedor_calendario">
             <MenuIzquierdo/>
             <MenuSuperior/>
-            <v-col cols="12" sm="4" style="padding-right:0px">
-                <v-img max-width="170" height="154" src="@/assets/ally.png"></v-img>
-                <div style="padding-left:10px; padding-right:30px; color:#23036A;">
-                    <center>
-                        <h1 style="font-size:40px; line-height:40px;">
-                            Hola, ¿En qué <br>puedo ayudarte?
+            <div class="fondito">
+                <v-row>
+                    <v-col cols="12" sm="8" style="padding-right:20px;" class="monitoriasbg">
+                        <h1 style="font-size:40px;">
+                            Tus monitorías Programadas
                         </h1>
-                        <h1 style="font-size:18px; width:300px; padding-top:15px; padding-bottom:30px;">
-                            Programa una monitoría en cualquier momento.
-                        </h1>
-                    </center>
-                    <v-form ref="form" lazy-validation style="padding-left:30px; padding-right:30px">
+                        <div class="panel_monitoria">
+                            <v-data-table
+                                :headers="headers"
+                                :items="desserts"
+                                :items-per-page="5"
+                                class="elevation-1">
+                            </v-data-table>
+                        </div>
+                    </v-col>
+                    <v-col cols="12" sm="4" style="padding-right:0px" class="monitoriasbg">
+                        <center>
+                            <v-img max-width="150" height="134" src="@/assets/ally.png"></v-img>
+                        </center>
+                        <div class="form_panel">
+                            <center>
+                                <h3 style="padding-top:20px; padding-bottom:20px; line-height:25px;">Programa una monitoría en cualquier momento.</h3>
+                            </center>
+                            <v-form ref="form" lazy-validation>
                                 <!-- Input Teléfono ------------------------------------------------------ -->
-                                <v-text-field style="margin-bottom:-7px;" background-color="#9369E3"
-                                    required solo outlined label="Teléfono" 
-                                    prepend-inner-icon="phone">
-                                </v-text-field>
                                  <v-text-field style="margin-bottom:-7px;" background-color="#9369E3"
                                     required solo outlined label="Temática" 
                                     prepend-inner-icon="school">
                                 </v-text-field>
                                 <v-row>
-                                    <v-col cols="12" sm="6">
+                                    <v-col cols="12" sm="6" style="padding-bottom:0px; padding-top:0px;">
                                         <v-dialog ref="dialog1" v-model="modal" :return-value.sync="date" persistent width="290px">
                                             <template v-slot:activator="{ on }">
                                                 <v-text-field v-model="date" label="Fecha de llamada"
@@ -39,7 +47,7 @@
                                             </v-date-picker>
                                         </v-dialog>
                                     </v-col>
-                                    <v-col cols="12" sm="6">
+                                    <v-col cols="12" sm="6" style="padding-bottom:0px; padding-top:0px;">
                                         <v-dialog ref="dialog" v-model="modal2" :return-value.sync="time" persistent width="290px">
                                             <template v-slot:activator="{ on }">
                                                 <v-text-field v-model="time" label="Hora"
@@ -61,24 +69,10 @@
                                     </v-btn>
                                 </div>
                             </v-form>
-                </div>
-            </v-col>
-            <v-col cols="12" sm="8" style="padding-right:0px" class="monitoriasbg">
-                <div style="padding-top:200px;">
-                    <h1 style="font-size:65px; line-height:70px;">
-                        No estás solo en este <br>
-                        viaje del aprendizaje!
-                    </h1>
-                    <p style="font-size:18px; padding-top:30px; ">
-                        Tenemos monitores capacitados 24/7 para lo que buscas, ellos no te dejarán 
-                        <br>solo, te apoyaran en cualquier dudá.
-                    </p>
-                    <v-text-field label="Encuentra un monitor para cualquier temática" 
-                        single-line solo prepend-inner-icon="search" 
-                        style="width:430px; padding-top:20px;" >
-                    </v-text-field>
-                </div>
-            </v-col>
+                        </div>
+                    </v-col>
+                </v-row>
+            </div>
         </v-row>
     </v-app>
 </template>
@@ -87,7 +81,7 @@
     import MenuSuperior from './parts/MenuSuperior';
     import MenuIzquierdo from './parts/MenuIzquierdo';
     export default {
-        name: 'Monitorias',
+        name: 'Calendario',
         components: {
             MenuSuperior,
             MenuIzquierdo,
@@ -97,28 +91,79 @@
             modal: false,
             time: null,
             modal2: false,
+            headers: [
+                {
+                    text: 'Fecha',
+                    value: 'fecha',
+                },
+                { 
+                    text: 'Monitor', 
+                    value: 'monitor' 
+                },
+                { 
+                    text: 'Temática', 
+                    value: 'tematica' },
+                { 
+                    text: 'Estado',
+                    value: 'estado' 
+                },
+            ],
+            desserts: [
+                {
+                    fecha: '14/03/2020',
+                    monitor: 'Carlos Alberto Arias',
+                    tematica: 'Ciencias para la vida',
+                    estado: 'Pendiente',
+                },
+                {
+                    fecha: '14/03/2020',
+                    monitor: 'Carlos Alberto Arias',
+                    tematica: 'Ciencias para la vida',
+                    estado: 'Pendiente',
+                },
+            ],
+    
         }),
     };
 </script>
 
 <style scoped>
-    .contenedor_monitorias{
-        margin-top:-70px;
-        padding-top: 0px;
-        padding-bottom: 0px;
-        padding-left: 80px;
-        padding-right: 0px;
-        font-family: Maven Pro;
-        background-color: #ffffff;
-		font-style: normal;
-    }
-    .monitoriasbg{
+    .contenedor_calendario{
         padding-top: 0px;
         padding-bottom: 20px;
         padding-left: 80px;
         padding-right: 30px;
+        font-family: Maven Pro;
+		font-style: normal;
         background-color: #001844;
-        background-image: url('../assets/monitoriasbg.png');
+        background-image: url('../assets/fondoperfil1.png');
         background-size: 100% auto;
+    }
+    .fondito{
+        width: 100%;
+        height: 520px;
+        padding-top:20px;
+        padding-left: 60px;
+        padding-right: 60px;
+        background-color: #102855a2;
+    }
+    .form_panel{
+        width: 350px;
+        background: #102855a8;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+        padding-top: 20x;
+        padding-right: 30px;
+        padding-left: 30px;
+        padding-bottom: 30px;
+    }
+    .panel_monitoria{
+        width: 100%;
+        height: 400px;
+        background: #ffffff2f;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+        padding-top: 20x;
+        padding-right: 30px;
+        padding-left: 30px;
+        padding-bottom: 30px;
     }
 </style>
