@@ -156,7 +156,7 @@
                 if (this.$vuetify.theme.dark){
                     return 'rgba(0, 12, 44, 0.911)';
                 }else{
-                    return 'rgba(0, 24, 88, 0.712)';
+                    return 'rgba(36, 3, 106, 0.883)';
                 }
             }
         },

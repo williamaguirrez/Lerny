@@ -1,5 +1,5 @@
 <template>
-    <v-app id="inspire">
+    <v-app id="inspire" class="letraa">
 		<div class="slides">
 			<div :class="$vuetify.theme.dark ? 'slides font_dark' : 'slides font_light'">
 				<MenuToolbar/>
@@ -34,9 +34,9 @@
 					<template v-for="(item, i) in tematicasParaTi">
 						<v-col :key="i" cols="12" md="3">
 							<v-hover v-slot:default="{ hover }" style="margin-bottom:10px;">
-								<v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }" >
+								<v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }" color="tarjetasHome">
 									<v-img :src="item.img" height="180px" class="align-end"></v-img> 
-                                    <v-card-text class="text--primary" style="margin-bottom:-15px;">
+                                    <v-card-text class="text--titulo2" style="margin-bottom:-15px;">
                                         <p style="font-size:medium; font-weight: 500; margin-bottom:0px;" class="t_general text-center">{{ item.titulo }}</p>
                                         <v-row style="margin-bottom:-10px;">
                                             <v-col cols="12" sm="6">
@@ -52,7 +52,7 @@
                                         </v-row>
                                     </v-card-text>
                                     <v-card-actions>
-                                        <v-btn class="ma-2 mx-auto" rounded outlined color="indigo" style="padding-left:20px; padding-right:20px;">Comenzar</v-btn>
+                                        <v-btn class="ma-2 mx-auto" rounded outlined color="titulo2" style="padding-left:20px; padding-right:20px;" :to="item.url">Comenzar</v-btn>
                                     </v-card-actions>     
 								</v-card>
 							</v-hover>
@@ -129,18 +129,18 @@
 					<template v-for="(item, i) in items">
 						<v-col :key="i" cols="12" md="4" >
 							<v-hover v-slot:default="{ hover }" style="margin-bottom:10px;">
-								<v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }" >
+								<v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }" color="tarjetasHome2">
 									<v-container>
 										<v-img :src="item.img" height="225px" class="align-end">
 											<v-card-title class="title white--text">
 												{{item.title}}
 											</v-card-title>
 										</v-img>  
-										<v-card-text class="text_descrip2">
+										<v-card-text class="text_descrip2 titulo2--text">
 											{{item.description}}
 										</v-card-text>
 										<v-card-actions>
-                                        	<v-btn class="ma-2 mx-auto" rounded outlined color="indigo" style="padding-left:20px; padding-right:20px;">Comenzar</v-btn>
+                                        	<v-btn class="ma-2 mx-auto" rounded outlined color="titulo2" style="padding-left:20px; padding-right:20px;">Comenzar</v-btn>
                                     </v-card-actions>  
 									</v-container>    
 								</v-card>
@@ -238,11 +238,19 @@
 <script>
     import MenuToolbar from './parts/MenuToolbar';
 	import MenuResponsive from './parts/MenuResponsive';
+	import firebase from 'firebase';
     export default {
 		name: 'Home',
 		components: {
 			MenuToolbar,
 			MenuResponsive,
+		},
+		created() {
+            firebase.database().ref('/cursos').on('value', data =>{
+                if(data.val() != null){
+                    this.cargarCursosTematica(data.val());
+                }
+            })
         },
 		data: () => ({
             tematicasParaTi: [{
@@ -319,12 +327,36 @@
 			],
         //
 		}),
-		
+		methods: {
+            cargarCursosTematica(cursos){
+                this.tematicasParaTi = [];
+                for (let key in cursos){
+                    this.cargarDatosCursos(key);
+                }
+            },
+            cargarDatosCursos(curso){
+                firebase.database().ref('/cursos/'+ curso + '/01/' + '/01').on('value', data =>{
+                    if( data.val() != null){
+                        this.tematicasParaTi.push({
+                            titulo: data.val().nomCurso,
+                            img: data.val().imagen,
+                            precio: data.val().precio,
+                            likes: data.val().likes,
+                            url: data.val().url,
+                        })
+                    }
+                })
+            },
+        },
     };
 
 </script>
 
 <style scoped>
+	.letraa{
+		font-family: Maven Pro;
+		font-style: normal;
+	}
 	.contenedor2.fondo_dark2{
 		background-image: linear-gradient(#23036f, #001844);
 	}

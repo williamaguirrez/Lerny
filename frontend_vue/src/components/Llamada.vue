@@ -1,6 +1,6 @@
 <template>
     <v-app id="inspire">
-        <v-row class="contenedor_llamada">
+        <v-row :class="$vuetify.theme.dark ? 'contenedor_llamada_dark' : 'contenedor_llamada_light'">
             <MenuIzquierdo/>
             <MenuSuperior/>
             <div style="width:100%; margin-left:50px;">
@@ -8,41 +8,41 @@
                     <v-col cols="12" sm="2" style="padding-right:0px">
                         <v-img max-width="170" height="154" src="@/assets/ally.png"></v-img>
                     </v-col>
-                    <v-col cols="12" sm="10" style="padding-left:0px">
+                    <v-col cols="12" sm="10" style="padding-left:0px" class="titulo2--text">
                         <h1 style="font-size:60px; width:900px; line-height:70px;" >
                             Sabemos que no siempre <br>cuentas con internet!!
                         </h1>
-                        <p style="padding-top:20px; font-size:17px;">
+                        <h1 style="padding-top:20px; font-size:17px;">
                             Si tienes algun inconveniente con tu red Wifi, <br>
                             Programa tus clases y te llamaremos para que sigas <br>
                             recibiendo educación de forma no remota, o si deseas<br>
                             comunicate en cualquier momento.<br>
-                        </p>
+                        </h1>
                     </v-col>
                 </v-row>
             </div>
             <div style="width:100%; margin-left:50px;">
                 <v-row>
                     <v-col cols="12" sm="8" style="padding-right:0px; height:100%; margin-top:200px;">
-                        <h1 style="font-size:33px; line-height:40px;">
+                        <h1 style="font-size:33px; line-height:40px; color:white;">
                             Nuestra línea siempre <br>
                             estará disponible para ti <br>
                             01800245668 <br>
                         </h1>
                     </v-col>
                     <v-col cols="12" sm="4" style="padding-right:0px; margin-top:-100px;">
-                        <div class="form_panel">
+                        <div :class="$vuetify.theme.dark ? 'form_panel_dark' : 'form_panel_ligth'">
                             <center>
-                                <h3 style="padding-top:20px; padding-bottom:20px; line-height:25px;">Programa una llamada en cualquier momento.</h3>
+                                <h3 style="padding-top:20px; padding-bottom:20px; line-height:25px;" class="titulo2--text">Programa una llamada en cualquier momento.</h3>
                             </center>
                             <v-form ref="form" lazy-validation>
                                 <!-- Input Teléfono ------------------------------------------------------ -->
-                                <v-text-field style="margin-bottom:-7px;" background-color="#9369E3"
-                                    required solo outlined label="Teléfono" 
+                                <v-text-field style="margin-bottom:-7px;" background-color="#9369E3" 
+                                    required solo outlined label="Teléfono" dark
                                     prepend-inner-icon="phone">
                                 </v-text-field>
                                  <v-text-field style="margin-bottom:-7px;" background-color="#9369E3"
-                                    required solo outlined label="Temática" 
+                                    required solo outlined label="Temática" dark
                                     prepend-inner-icon="school">
                                 </v-text-field>
                                 <v-row>
@@ -109,20 +109,40 @@
 </script>
 
 <style scoped>
-    .contenedor_llamada{
-        padding-top: 0px;
+    .contenedor_llamada_dark{
+        padding-top: 60px;
         padding-bottom: 20px;
         padding-left: 80px;
         padding-right: 30px;
         font-family: Maven Pro;
 		font-style: normal;
         background-color: #001844;
-        background-image: url('../assets/fondoLlamada1.png');
+        background-image: url('../assets/fondos/fondoLlamada1.png');
         background-size: 100% auto;
     }
-    .form_panel{
+    .contenedor_llamada_light{
+        padding-top: 60px;
+        padding-bottom: 20px;
+        padding-left: 80px;
+        padding-right: 30px;
+        font-family: Maven Pro;
+		font-style: normal;
+        background-color: #FFFFFF;
+        background-image: url('../assets/fondos/fondoLlamada2.png');
+        background-size: 100% auto;
+    }
+    .form_panel_dark{
         width: 350px;
         background: #102855a8;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+        padding-top: 20x;
+        padding-right: 30px;
+        padding-left: 30px;
+        padding-bottom: 30px;
+    }
+    .form_panel_ligth{
+        width: 350px;
+        background: rgba(148, 105, 227, 0.411);
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
         padding-top: 20x;
         padding-right: 30px;

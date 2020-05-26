@@ -36,19 +36,19 @@
                         <template v-for="(item, i) in tematicasParaTi">
 						<div :key="i" class="card--content">
 							<v-hover v-slot:default="{ hover }" style="margin-bottom:10px;">
-								<v-card :elevation="hover ? 12 : 2" width="280px" :class="{ 'on-hover': hover }" >
-									<v-img :src="item.img" height="180px"  class="align-end"></v-img> 
+								<v-card :elevation="hover ? 12 : 2" width="280px" :class="{ 'on-hover': hover }" color="tarjetasHome2">
+									<v-img :src="item.img" height="180px"  class="align-end titulo2--text"></v-img> 
                                     <v-card-text class="text--primary" style="margin-bottom:-15px;">
-                                        <p style="font-size:medium; font-weight: 500; margin-bottom:0px;" class="t_general text-center">{{ item.titulo }}</p>
+                                        <p style="font-size:medium; font-weight: 500; margin-bottom:0px;" class="t_general titulo2--text text-center">{{ item.titulo }}</p>
                                         <v-row style="margin-bottom:-10px;">
                                             <v-col cols="12" sm="6">
                                                 <p style="font-size:medium; margin-bottom:0px;" class="t_general text-center" black--text>
-                                                    <v-icon size="20px" color="#673AB7">shopping_cart</v-icon> ${{ item.precio }}
+                                                    <v-icon size="20px" color="titulo2">shopping_cart</v-icon> ${{ item.precio }}
                                                 </p>
                                             </v-col>
                                             <v-col cols="12" sm="6">
                                                 <p style="font-size:medium; margin-bottom:0px;" class="t_general text-center">
-                                                    <v-icon size="20px" color="#673AB7">favorite</v-icon> {{ item.likes }} likes
+                                                    <v-icon size="20px" color="titulo2">favorite</v-icon> {{ item.likes }} likes
                                                 </p>
                                             </v-col>
                                         </v-row>
@@ -205,6 +205,9 @@
 		padding-right: 5%;
 		padding-bottom: 5%;
 	}
+    .contenedorClases.fondo_dark{
+        background-image: linear-gradient(#23036f, #001844);
+    }
     .contRecomendVideo{
 		padding-top: 15%;
 		padding-left: 100px;

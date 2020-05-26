@@ -66,8 +66,8 @@
                 { title: 'Mi perfil', icon: 'perm_identity', url: '/perfil' },
                 { title: 'Mis Cursos', icon: 'videocam', url: '/cursos' },
                 { title: 'Monitorias', icon: 'chat', url: '/monitorias' },
-                { title: 'Llamadas', icon: 'phone', url: '/llamada' },
                 { title: 'Calendario', icon: 'event', url: '/calendario' },
+                { title: 'Llamadas', icon: 'phone', url: '/llamada' },
             ],
             buscar: '',
             dialog: false,
@@ -77,7 +77,7 @@
                 if (this.$vuetify.theme.dark){
                     return 'rgba(0, 12, 44, 0.911)';
                 }else{
-                    return 'rgba(0, 12, 44, 0.192)';
+                    return 'rgba(36, 3, 106, 0.883)';
                 }
             }
         },
@@ -86,10 +86,11 @@
 
 <style scoped>
     .menu_letra{
-        padding-top: 45px;
-        padding-bottom: 20px;
-        padding-left: 80px;
-        padding-right: 20px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin:0px;
         font-family: Maven Pro;
 		font-style: normal;
         color: rgba(0, 12, 44, 0.911);

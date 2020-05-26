@@ -17,6 +17,11 @@ export default new Vuetify({
                 boton_menu1: '#8D50F1',
                 titulo: '#102855',
                 fondo_menu: '#FFF',
+                titulo2:'#23036A',
+                rol: '#23036A',
+                tarjetasHome: '#FFFFFF',
+                tarjetasHome2: '#FFFFFF',
+                botonHome: '#000000',
             },
             dark: {
                 boton_menu: '#8D50F1',
@@ -24,6 +29,11 @@ export default new Vuetify({
                 boton_menu1: '#00A3EF',
                 titulo: '#FFFFFF',
                 fondo_menu: '#000',
+                titulo2: '#FFFFFF',
+                rol: '#BB86FC',
+                tarjetasHome: '#1B428A',
+                tarjetasHome2: '#9369E3',
+                botonHome: '#FFFFFF',
             }
         }
     },
