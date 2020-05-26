@@ -23,7 +23,7 @@ Vue.use(VuePlyr, {
 });
 
 const router = new VueRouter({
-  mode: 'history',
+  /* mode: 'history', */
   routes: routes,
 });
 
