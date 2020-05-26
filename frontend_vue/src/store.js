@@ -75,6 +75,26 @@ export const store = new Vuex.Store({
                 this.mensajeError(err.message, 'Ocurrió un error al guardar');
             })
         },
+        programarMonitoria(tematica, fecha, hora){
+            firebase.database().ref('/monitorias/'+ this.usuario.uid).push({
+                UID: this.usuario.uid,
+                email: this.usuario.email,
+                nombre: this.usuario.nombre,
+                key: '',
+                tematica: tematica,
+                fecha: fecha,
+                hora: hora,
+                estado: 'Pendiente',
+                monitor: 'Sin Asignar',
+            }).then( (data) => {
+                firebase.database().ref('/monitorias/'+ this.usuario.uid + '/' + data.key).update({
+                    key: data.key,
+                });
+                this.mensajeExito('En instantes te confirmamos tu monitoria','Monitoría programada exitosamente');
+            }).catch( err =>{
+                this.mensajeError(err.message, 'Ocurrió un error al programar tu monitoría');
+            })
+        },
         mensajeExito(mensaje, titulo){
             toastr.success(mensaje, titulo, {
                 "closeButton": true, "progressBar": true, "positionClass": "toast-top-center",

@@ -13,18 +13,19 @@
                             Programa una monitoría en cualquier momento.
                         </h1>
                     </center>
-                    <v-form ref="form" lazy-validation style="padding-left:30px; padding-right:30px">
-                        <!-- Input Teléfono ------------------------------------------------------ -->
-                        <v-text-field style="margin-bottom:-7px;" background-color="#9369E3"
-                            required solo outlined label="Temática" dark
+                    <v-form ref="form" v-model="valid" lazy-validation style="padding-left:30px; padding-right:30px">
+                        <!-- Input de la Temática ------------------------------------------------------ -->
+                        <v-text-field style="margin-bottom:-7px;" background-color="#9369E3" :rules="tematicaRules"
+                            required solo outlined label="Temática" dark v-model="tematica" counter="80"
                             prepend-inner-icon="school">
                         </v-text-field>
                         <v-row>
                             <v-col cols="12" sm="6">
                                 <v-dialog ref="dialog1" v-model="modal" :return-value.sync="date" persistent width="290px">
                                     <template v-slot:activator="{ on }">
-                                        <v-text-field v-model="date" label="Fecha de llamada"
-                                            prepend-icon="event" readonly v-on="on"
+                                        <!-- Input de la fecha -------------------------------------------------- -->
+                                        <v-text-field v-model="date" label="Fecha de Monitoría"
+                                            prepend-icon="event" readonly v-on="on" :rules="fechaRules"
                                         ></v-text-field>
                                     </template>
                                     <v-date-picker v-model="date" scrollable>
@@ -37,7 +38,8 @@
                             <v-col cols="12" sm="6">
                                 <v-dialog ref="dialog" v-model="modal2" :return-value.sync="time" persistent width="290px">
                                     <template v-slot:activator="{ on }">
-                                        <v-text-field v-model="time" label="Hora"
+                                        <!-- Input de la hora ---------------------------------------------------- -->
+                                        <v-text-field v-model="time" label="Hora" :rules="horaRules"
                                             prepend-icon="access_time" readonly v-on="on">
                                         </v-text-field>
                                     </template>
@@ -50,7 +52,8 @@
                             </v-col>
                         </v-row>
                         <div style="padding-left:15%;padding-right:15%; padding-bottom:30px; margin-bottom:0px;">
-                            <v-btn style="margin-bottom:10px;" 
+                            <!-- Boton de Submit para enviar formulario ------------------------------------------ -->
+                            <v-btn style="margin-bottom:10px;" :disabled="!valid" @click.prevent="submit"
                                 rounded block color="#9369E3" 
                                 dark large>Programar
                             </v-btn>
@@ -83,6 +86,8 @@
 <script>
     import MenuSuperior from './parts/MenuSuperior';
     import MenuIzquierdo from './parts/MenuIzquierdo';
+    import firebase from 'firebase';
+
     export default {
         name: 'Monitorias',
         components: {
@@ -90,11 +95,30 @@
             MenuIzquierdo,
         },
         data: () => ({
+            valid: false,
             date: new Date().toISOString().substr(0, 10),
+            tematica: '',
             modal: false,
             time: null,
             modal2: false,
+            tematicaRules: [
+                v => !!v || 'La temática es obligatoria',
+            ],
+            fechaRules: [
+                v => !!v || 'La hora es obligatoria',
+            ],
+            horaRules: [
+                v => !!v || 'La fecha es obligatoria',
+            ],
         }),
+        methods: {
+            submit(){
+                if (this.$refs.form.validate()){
+                    this.$store.state.programarMonitoria(this.tematica, this.date, this.time);
+                    this.$refs.form.reset();
+                }
+            }
+        },
     };
 </script>
 
