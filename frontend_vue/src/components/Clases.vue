@@ -120,7 +120,7 @@
             cursoRecomendacion:{
                 titulo: 'Lánzate a la Innovación con Design Thinking',
                 descrip: 'Descubriras como innovar a partir del FlipKit, un conjunto de herramientas practicas y sencillas que te ayudarán en el diseño y desarrollo de soluciones innovadoras',
-                video: 'http://pespantelis.github.io/vue-videobg/demo/assets/timelapse.mp4',
+                video: 'https://pespantelis.github.io/vue-videobg/demo/assets/timelapse.mp4',
                 info: '/clases',
                 reprod: '/reproductor'
             },
