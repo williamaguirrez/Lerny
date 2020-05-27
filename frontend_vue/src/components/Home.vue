@@ -261,7 +261,7 @@
                 },
                 {
                     titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'http://www.crossroadslearning.ca/uploads/3/0/9/2/30924385/mimi-thian-vdxmsix-n6m-unsplash.jpg',
+                    img: 'https://i.go-travels.com/img/how-to/how-to-put-a-gif-in-powerpoint-4.jpg',
                     precio: '50.000',
                     likes: '325',
                 },
@@ -279,8 +279,8 @@
 				},
 				{
                     titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'http://www.crossroadslearning.ca/uploads/3/0/9/2/30924385/mimi-thian-vdxmsix-n6m-unsplash.jpg',
-                    precio: '50.000',
+                    img: 'https://i.go-travels.com/img/how-to/how-to-put-a-gif-in-powerpoint-4.jpg',
+					precio: '50.000',
                     likes: '325',
                 },
                 {
@@ -310,7 +310,7 @@
 				},
 				{
 					title: 'Programa de acompañamiento',
-					img: 'http://www.crossroadslearning.ca/uploads/3/0/9/2/30924385/mimi-thian-vdxmsix-n6m-unsplash.jpg',
+					img: 'https://i.go-travels.com/img/how-to/how-to-put-a-gif-in-powerpoint-4.jpg',
 					description: 'Donde resolvemos tus dudas en un tiempo máximo de 24 horas',
 				},
 				{

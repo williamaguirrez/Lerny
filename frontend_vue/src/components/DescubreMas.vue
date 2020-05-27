@@ -132,7 +132,7 @@
 				},
 				{
 					title: 'Programa de acompañamiento',
-					img: 'http://www.crossroadslearning.ca/uploads/3/0/9/2/30924385/mimi-thian-vdxmsix-n6m-unsplash.jpg',
+					img: 'https://i.go-travels.com/img/how-to/how-to-put-a-gif-in-powerpoint-4.jpg',
 					description: 'Donde resolvemos tus dudas en un tiempo máximo de 24 horas',
 				},
 				{
