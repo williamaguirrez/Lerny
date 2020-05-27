@@ -3,6 +3,8 @@
         <v-row class="contenedor_ranking">
             <MenuIzquierdo/>
             <MenuSuperior/>
+            <script type="application/javascript" src="https://apps.elfsight.com/p/platform.js" defer></script>
+            <div class="elfsight-app-670d8b13-fc2b-4d94-bdb9-095cc450f8b3"></div>
         </v-row>
     </v-app>
 </template>
