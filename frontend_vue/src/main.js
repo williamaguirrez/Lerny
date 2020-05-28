@@ -8,7 +8,6 @@ import { Plugin } from 'vue-responsive-video-background-player';
 import VuePlyr from 'vue-plyr';
 import firebase from 'firebase';
 
-
 let app = null
 
 Vue.config.productionTip = false
