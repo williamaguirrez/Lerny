@@ -4,8 +4,8 @@
         <b style="width:30px;"/>
         <v-switch v-model="$vuetify.theme.dark" primary style="height: 23px"></v-switch>
         <b style="width:30px;"/>
-        <v-btn color="dark" fab x-small dark>
-            <v-icon large color="dark" to="/proyectosociales">military_tech</v-icon>
+        <v-btn color="dark" fab x-small dark to="/proyectosociales">
+            <v-icon large color="dark">military_tech</v-icon>
         </v-btn>
         <b style="width:30px;"/>
         <v-btn color="dark" fab x-small dark>
