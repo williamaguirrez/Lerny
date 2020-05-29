@@ -120,6 +120,9 @@
 </script>
 
 <style>
+    #wp-chatbot-chat-container{
+        bottom: 0px;   
+    }
     .slides.font_dark1{
 		background-image: url('../assets/slides/slider4.png');
 		background-position: center;

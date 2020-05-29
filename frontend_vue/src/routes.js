@@ -15,16 +15,9 @@ import Ranking from './components/Ranking.vue';
 import Llamada from './components/Llamada.vue';
 import Monitorias from './components/Monitorias.vue';
 import Calendario from './components/Calendario.vue';
-const Videollamada = () => import('@/components/Videollamada');
-const Meeting = () => import('@/components/Meeting');
+import Videollamada from './components/Videollamada.vue';
 import { store } from './store';
 
-function view (name) {
-    return function (resolve) {
-      // require(['../components/' + name + '.vue'], resolve)
-      require(['./components/' + name + '.vue'], resolve)
-    }
-  }
 
 export const routes = [
     {
@@ -294,17 +287,20 @@ export const routes = [
     {
         path: '/videollamada', 
         name: 'videollamada',
-        component: () => import('./components/Videollamada.vue'), 
-    },
-    {
-        path: '/meeting', 
-        name: 'meeting',
-        component: () => import('./components/Meeting.vue'),
-    },
-    {
-        path: '/zoom', 
-        name: 'zoom',
-        component: () => import('./components/ZoomFrame.vue'),
+        component: Videollamada,
+        meta: {
+            requeresAuth: true,
+            title: 'Conferencias | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
     },
     {
         path: '/contacto', 

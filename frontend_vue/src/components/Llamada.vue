@@ -105,6 +105,10 @@
             time: null,
             modal2: false,
         }),
+        created() {
+            this.$store.state.ayuda.titulo = '¡Ayuda en las Llamadas Sin Internet!';
+			this.$store.state.ayuda.descripcion = '¡Ok '+ this.$store.state.usuario.nombre + '! Te encuentras en la Sección de la llamada, aquí podrás programar una llamada en caso de que tu internet falle! Lerny tiene el compromiso de seguir enseñandote, y que el internet o el dispositivo sea un inconveniente';
+        },
     };
 </script>
 

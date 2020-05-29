@@ -25,6 +25,14 @@ export const store = new Vuex.Store({
             puntos: 345,
             saldo: '',
         },
+        ayuda:{
+            titulo: 'Ayuda',
+            descripcion: 'Acá podrás recibir ayuda',
+        },
+        videollamada:{
+            idReu: '',
+            contrasenaReu: '',
+        },
         auth: true,
         drawer: null,
         items: [

@@ -118,6 +118,8 @@
             MenuIzquierdo,
         },
         created() {
+            this.$store.state.ayuda.titulo = '¡Ayuda en el Calendario!';
+			this.$store.state.ayuda.descripcion = '¡Ok '+ this.$store.state.usuario.nombre + '! Te encuentras en la Sección de las Videollamadas individuales con nuestros y tus amigos, aquí podrás ...';
             firebase.database().ref('/monitorias/' + this.$store.state.usuario.uid).on('value', data => {
                 if( data.val() != null){
                     this.cargarMonitorias( data.val() );

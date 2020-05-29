@@ -111,6 +111,10 @@
                 v => !!v || 'La fecha es obligatoria',
             ],
         }),
+        created() {
+            this.$store.state.ayuda.titulo = '¡Ayuda en las Monitorías!';
+			this.$store.state.ayuda.descripcion = '¡Genial '+ this.$store.state.usuario.nombre + '! Te encuentras en la Sección de las Monitorías aquí encontrarás monitores al instante, pregunta por tu temática o programa tu monitora para después, Cada vez que no entiendas un tema de alguna de nuestras clases, no dudes en buscar aquí';
+        },
         methods: {
             submit(){
                 if (this.$refs.form.validate()){

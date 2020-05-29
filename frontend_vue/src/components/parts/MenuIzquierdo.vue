@@ -66,7 +66,8 @@
                 { title: 'Mi perfil', icon: 'perm_identity', url: '/perfil' },
                 { title: 'Mis Cursos', icon: 'videocam', url: '/cursos' },
                 { title: 'Monitorias', icon: 'chat', url: '/monitorias' },
-                { title: 'Calendario', icon: 'event', url: '/calendario' },
+                { title: 'Reuniones', icon: 'people_alt', url: '/videollamada' },
+                /* { title: 'Calendario', icon: 'event', url: '/calendario' }, */
                 { title: 'Llamadas', icon: 'phone', url: '/llamada' },
             ],
             buscar: '',

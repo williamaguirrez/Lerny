@@ -110,6 +110,8 @@
             MenuIzquierdo,
         },
         created() {
+            this.$store.state.ayuda.titulo = '¡Ayuda en el Inicio de Lerny!';
+			this.$store.state.ayuda.descripcion = '¡Ok '+ this.$store.state.usuario.nombre + '! Te encuentras en la Sección de las Videollamadas individuales con nuestros y tus amigos, aquí podrás ...';
             firebase.database().ref('/cursos').on('value', data =>{
                 if(data.val() != null){
                     this.cargarCursosTematica(data.val());
@@ -173,6 +175,9 @@
 </script>
 
 <style scoped>
+    #wp-chatbot-chat-container{
+        bottom: 10px;
+    }
     .wbody {
         margin: 0;
         display: flex;

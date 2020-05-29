@@ -1,7 +1,20 @@
 <template>
     <v-app-bar id="menuu" :color="offsetTop ? isColor : 'transparent'" style="padding-left:5%; padding-right:5%;" flat app>
         <v-spacer></v-spacer>
+        <b style="width:30px;"/>
         <v-switch v-model="$vuetify.theme.dark" primary style="height: 23px"></v-switch>
+        <b style="width:30px;"/>
+        <v-btn color="dark" fab x-small dark>
+            <v-icon large color="dark" to="/proyectosociales">military_tech</v-icon>
+        </v-btn>
+        <b style="width:30px;"/>
+        <v-btn color="dark" fab x-small dark>
+            <v-icon large color="dark" @click.stop="ayuda = true">help_outline</v-icon>
+        </v-btn>
+        <b style="width:30px;"/>
+        <v-btn color="dark" fab x-small dark to="/calendario">
+            <v-icon large color="dark">today</v-icon>
+        </v-btn>
         <b style="width:30px;"/>
         <v-badge :content="messages" :value="messages" color="blue" overlap>
             <v-icon large color="white">notifications</v-icon>
@@ -96,8 +109,34 @@
             </v-card>
         </v-dialog>
 
-    </v-app-bar>
+        <!-- Modal de la Ayuda de cada pantalla ---------------------------------------------------------- -->
+        <v-dialog v-model="ayuda" max-width="600">
+            <v-card>
+                <v-card-title class="headline">{{ $store.state.ayuda.titulo }}</v-card-title>
+                <v-card-text>
+                    {{ $store.state.ayuda.descripcion }}
+                    <br>
+                    <center>
+                        <v-row class="align-center">
+                            <v-col cols="12" sm="6">
+                                <v-btn small color="primary" @click="monitor">Videollamar a un Tutor Ya</v-btn>
+                            </v-col>
+                            <v-col cols="12" sm="6">
+                                <v-btn small color="primary" @click="chatenvivo">Chatear con un Tutor Ya</v-btn>
+                            </v-col>
+                        </v-row>
+                    </center>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="green darken-1" text @click="ayuda = false" >
+                        ¡Muchas gracias!
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+      </v-dialog>
 
+    </v-app-bar>
 </template>
 
 <script>
@@ -106,6 +145,7 @@
     export default {
         name: 'MenuSuperior',
         data: () => ({
+            ayuda: false,
             valid: false,
             dialog: false,
             cumpleanoBool: false,
@@ -135,10 +175,10 @@
                     icon: 'loyalty',
                     url: '/mi-suscripcion'
                 },
-                {   title: 'Mis Compras',
+                /* {   title: 'Mis Compras',
                     icon: 'shopping_cart',
                     url: '/compras'
-                },
+                }, */
                 {   title: 'Mentores', 
                     icon: 'people_alt',
                     url: '/mentores'
@@ -161,6 +201,16 @@
             }
         },
         methods: {
+            monitor(){
+                this.$store.state.videollamada.idReu = '12345';
+                this.$store.state.videollamada.contrasenaReu = '12345';
+                this.ayuda = false;
+                this.$router.push({ name: 'videollamada' });
+            },
+            chatenvivo(){
+                window.open("https://tawk.to/chat/5ecea551c75cbf1769eff830/default", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=50,left=500,width=400,height=600");
+                this.ayuda = false;
+            },
             cerrarSesion(){
                 firebase.auth().signOut().then( () =>{
                     this.$router.push({ name: 'inicio' })
