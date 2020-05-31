@@ -1,10 +1,11 @@
 <template>
     <v-app id="inspire">
+		<script type="application/javascript" src="https://wtechnology.co/slider/assets/js/includes/jquery/jquery.js"></script>
+		<script type="application/javascript" src="https://wtechnology.co/slider/revslider/public/assets/js/jquery.themepunch.tools.min.js"></script>
+		<script type="application/javascript" src="https://wtechnology.co/slider/revslider/public/assets/js/jquery.themepunch.revolution.min.js"></script>
+		<script type="application/javascript" id="revslider_script" src="https://wtechnology.co/slider/assets/js/revslider.js"></script>
         <div class="revslider" data-alias="classicslider3"></div>
-        <!-- <v-row class="contenedor_ranking">
-            <MenuIzquierdo/>
-            <MenuSuperior/>
-        </v-row> -->
+        
     </v-app>
 </template>
 
@@ -23,6 +24,7 @@
 </script>
 
 <style scoped>
+    @import 'https://wtechnology.co/slider/revslider/public/assets/css/settings.css'; 
     .contenedor_ranking{
         padding-top: 0px;
         padding-bottom: 20px;

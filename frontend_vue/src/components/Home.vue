@@ -1,5 +1,13 @@
 <template>
     <v-app id="inspire" class="letraa">
+
+		<!-- Slider Revolution -->
+		<script type="application/javascript" src="https://wtechnology.co/slider/assets/js/includes/jquery/jquery.js"></script>
+		<script type="application/javascript" src="https://wtechnology.co/slider/revslider/public/assets/js/jquery.themepunch.tools.min.js"></script>
+		<script type="application/javascript" src="https://wtechnology.co/slider/revslider/public/assets/js/jquery.themepunch.revolution.min.js"></script>
+		<script type="application/javascript" id="revslider_script" src="https://wtechnology.co/slider/assets/js/revslider.js"></script>
+		<div class="revslider" data-alias="lerny"></div>
+
 		<div class="slides">
 			<div :class="$vuetify.theme.dark ? 'slides font_dark' : 'slides font_light'">
 				<MenuToolbar/>
@@ -353,6 +361,8 @@
 </script>
 
 <style scoped>
+	@import 'https://wtechnology.co/slider/revslider/public/assets/css/settings.css';
+
 	.letraa{
 		font-family: Maven Pro;
 		font-style: normal;
