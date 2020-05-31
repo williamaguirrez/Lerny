@@ -16,6 +16,7 @@ import Llamada from './components/Llamada.vue';
 import Monitorias from './components/Monitorias.vue';
 import Calendario from './components/Calendario.vue';
 import Videollamada from './components/Videollamada.vue';
+import ProyectosSociales from './components/ProyectosSociales.vue';
 import { store } from './store';
 
 
@@ -291,6 +292,24 @@ export const routes = [
         meta: {
             requeresAuth: true,
             title: 'Conferencias | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/proyectosociales', 
+        name: 'proyectosociales',
+        component: ProyectosSociales,
+        meta: {
+            requeresAuth: true,
+            title: 'Proyectos Sociales | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'

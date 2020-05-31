@@ -2,19 +2,40 @@
     <v-app-bar id="menuu" :color="offsetTop ? isColor : 'transparent'" style="padding-left:5%; padding-right:5%;" flat app>
         <v-spacer></v-spacer>
         <b style="width:30px;"/>
-        <v-switch v-model="$vuetify.theme.dark" primary style="height: 23px"></v-switch>
+        <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+                <v-switch v-model="$vuetify.theme.dark" primary style="height: 23px" v-on="on"></v-switch>
+                </template>
+            <span>Modo Dark o Light</span>
+        </v-tooltip>
         <b style="width:30px;"/>
-        <v-btn color="dark" fab x-small dark to="/proyectosociales">
-            <v-icon large color="dark">military_tech</v-icon>
-        </v-btn>
+        <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+                <v-btn icon color="white" to="/proyectosociales" v-on="on">
+                    <v-icon large>military_tech</v-icon>
+                </v-btn>
+            </template>
+            <span>Proyectos Sociales</span>
+        </v-tooltip>
         <b style="width:30px;"/>
-        <v-btn color="dark" fab x-small dark>
-            <v-icon large color="dark" @click.stop="ayuda = true">help_outline</v-icon>
-        </v-btn>
+        <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+                <v-btn icon color="white" @click.stop="ayuda = true" v-on="on">
+                    <v-icon large>help_outline</v-icon>
+                </v-btn>
+            </template>
+            <span>Ayuda</span>
+        </v-tooltip>
         <b style="width:30px;"/>
-        <v-btn color="dark" fab x-small dark to="/calendario">
-            <v-icon large color="dark">today</v-icon>
-        </v-btn>
+        <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+                <v-btn icon color="white" to="/calendario" v-on="on">
+                    <v-icon large>today</v-icon>
+                </v-btn>
+            </template>
+            <span>Calendario</span>
+        </v-tooltip>
+        
         <b style="width:30px;"/>
         <v-badge :content="messages" :value="messages" color="blue" overlap>
             <v-icon large color="white">notifications</v-icon>
