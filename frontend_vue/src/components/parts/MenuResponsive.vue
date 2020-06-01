@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer v-model="$store.state.drawer" :color="isColor" fixed dark>
+    <v-navigation-drawer v-model="$store.state.drawer" class="hidden-md-and-up" :color="isColor" fixed dark>
         <template v-slot:prepend>
                 <v-list>
                     <v-avatar class="profile" size="50" tile width="200px" height="60px">
