@@ -1,6 +1,6 @@
 <template>
     <v-container class="menu_letra">
-        <v-navigation-drawer width="200" v-model="drawer" :color="isColor" permanent expand-on-hover app dark>
+        <v-navigation-drawer width="200" class="hidden-sm-and-down" v-model="drawer" :color="isColor" permanent expand-on-hover app dark>
             <template v-slot:prepend>
                 <v-list>
                     <v-avatar class="profile" size="50" tile width="50px" height="75px">
@@ -53,6 +53,14 @@
                 </v-card>
             </v-dialog>
         </v-row>
+
+        <!-- Menu barra de abajo movil -------------------------------------------------------------------------- -->
+        <v-bottom-navigation class="hidden-md-and-up" :background-color="isColor" absoluto app dark shift>
+            <v-btn  v-for="item in itemsMobile" :key="item.title" :to="item.url">
+                <span>{{ item.title }}</span>
+                <v-icon>{{ item.icon }}</v-icon>
+            </v-btn>
+        </v-bottom-navigation>
     </v-container>
 </template>
 
@@ -67,7 +75,13 @@
                 { title: 'Mis Cursos', icon: 'videocam', url: '/cursos' },
                 { title: 'Monitorias', icon: 'chat', url: '/monitorias' },
                 { title: 'Reuniones', icon: 'people_alt', url: '/videollamada' },
-                /* { title: 'Calendario', icon: 'event', url: '/calendario' }, */
+                { title: 'Llamadas', icon: 'phone', url: '/llamada' },
+            ],
+            itemsMobile: [
+                { title: 'Inicio', icon: 'home', url: '/clases' },
+                { title: 'Mis Cursos', icon: 'videocam', url: '/cursos' },
+                { title: 'Monitorias', icon: 'chat', url: '/monitorias' },
+                { title: 'Reuniones', icon: 'people_alt', url: '/videollamada' },
                 { title: 'Llamadas', icon: 'phone', url: '/llamada' },
             ],
             buscar: '',

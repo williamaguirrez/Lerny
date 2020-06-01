@@ -1,6 +1,7 @@
 <template>
     <v-app id="inspire" class="letraa">
-
+		<MenuToolbar/>
+		<MenuResponsive/>
 		<!-- Slider Revolution -->
 		<script type="application/javascript" src="https://wtechnology.co/slider/assets/js/includes/jquery/jquery.js"></script>
 		<script type="application/javascript" src="https://wtechnology.co/slider/revslider/public/assets/js/jquery.themepunch.tools.min.js"></script>
@@ -8,10 +9,8 @@
 		<script type="application/javascript" id="revslider_script" src="https://wtechnology.co/slider/assets/js/revslider.js"></script>
 		<div class="revslider" data-alias="lerny"></div>
 
-		<div class="slides">
+		<!-- <div class="slides">
 			<div :class="$vuetify.theme.dark ? 'slides font_dark' : 'slides font_light'">
-				<MenuToolbar/>
-				<MenuResponsive/>
 				<v-row style="width:100%;padding-left:10%;padding-right:10%;">
 					<v-col cols="12" sm="9">
 						<h1 class="text_slides" style="padding-top:16%;padding-left:15px;">Transforma tu realidad estudiando en cualquier lugar</h1>
@@ -21,7 +20,7 @@
 					</v-col>
 				</v-row>
 			</div>
-		</div>
+		</div> -->
 <!-- Temáticas que tenemos para ti -------------------------------------------------------------------------- -->
         <div id="tematicas" :class="$vuetify.theme.dark ? 'contenedor2 fondo_dark2' : 'contenedor2'">
 			<v-row>

@@ -1,9 +1,9 @@
 <template>
 	<v-app id="inspire">
-        <div class="slides">
-			<div :class="$vuetify.theme.dark ? 'slides font_dark1' : 'slides font_light1'">
-            	<MenuToolbar/>
-				<MenuResponsive/>
+        <div class="slides2">
+			<div :class="$vuetify.theme.dark ? 'slides2 font_dark1' : 'slides2 font_light1'">
+            	<MenuToolbar />
+				<MenuResponsive />
 				<v-row style="width:100%;padding-left:10%;padding-right:10%;">
 					<v-col cols="12" sm="9">
 						<h1 class="text_slides" style="padding-top:16%;padding-left:15px;">Se una de las personas que transforma el mundo con los proyectos sociales</h1>
@@ -18,12 +18,12 @@
 
 		<div id="funcionalidadesHome" :class="$vuetify.theme.dark ? 'contenedor fondo_dark' : 'contenedor'">
 			<v-row>
-				<v-col cols="12" sm="4">
+				<v-col cols="12" xs="6" sm="6">
 					<h2 :class="$vuetify.theme.dark ? 't_descubre2_dark' : 't_descubre2'">Top 5</h2>
 				</v-col>
-				<v-col cols="12" sm="6">
+				<v-col cols="12" xs="6" sm="6">
 					<router-link to='/DescubreMas'>
-					<v-btn  x-large class="mx-2" fab color="boton_menu" dark style="float:right;">
+					<v-btn  x-large  fab color="boton_menu" dark style="float:right;">
 						<v-icon dark>mdi-plus</v-icon>
 						
 					</v-btn>
@@ -31,18 +31,18 @@
 				</v-col>
 			</v-row>
 			<!--Este es el proyecto campesino-->
-			<v-row style="width:100%;padding-left:10%;padding-right:10%; padding-top:50px; justify-content:center">
+			<v-row style="width:100%;padding-left:5%;padding-right:5%; padding-top:10%; justify-content:center">
 				<v-hover
 					v-slot:default="{ hover }"
 					open-delay="100"
 					>
 					<v-card :elevation="hover ? 16 : 2" class="d-inline-block mx-auto" color="tarjetasHome2" >
 						<v-container >
-							<v-row rows="12">
-								<v-col cols="6">
-									<v-img height="300" width="400" src='../assets/campesino.png' ></v-img>
+							<v-row  wrap>
+								<v-col  xs="12" sm="12"  md="6">
+									<v-img  src='../assets/campesino.png' ></v-img>
 								</v-col>
-								<v-col cols="6" >
+								<v-col  xs="12" sm="12"  md="6">
 									<h1 :class="$vuetify.theme.dark ? 'color_titulo_cards_dark' : 'color_titulo_cards_light'">Proyecto Campesino</h1>
 									<br>
 									<h2 :class="$vuetify.theme.dark ? 'color_textos_cards_dark' : 'color_textos_cards_light'"> En este proyecto social se ayudó
@@ -66,19 +66,19 @@
 				</v-hover>
 			</v-row>
 			<!--Este es el la vaca -->
-			<v-row style="width:100%;padding-left:10%;padding-right:10%; padding-top:80px; justify-content:center">
+			<v-row style="width:100%;padding-left:5%;padding-right:5%; padding-top:80px; justify-content:center">
 				<v-hover
 					v-slot:default="{ hover }"
 					open-delay="100"
 					>
 					<v-card :elevation="hover ? 16 : 2" class="d-inline-block mx-auto" color="tarjetasHome2">
 						<v-container >
-							<v-row rows="12">
-								<v-col cols="6">
-									<v-img height="300" width="400" src='../assets/vacas.png'  ></v-img>
+							<v-row wrap>
+								<v-col xs="12" sm="12" md="6">
+									<v-img  src='../assets/vacas.png'  ></v-img>
 
 								</v-col>
-								<v-col cols="6" >
+								<v-col xs="12" sm="12"  md="6">
 									<h1 :class="$vuetify.theme.dark ? 'color_titulo_cards_dark' : 'color_titulo_cards_light'">Proyecto con animales</h1>
 									<br>
 									<h2 :class="$vuetify.theme.dark ? 'color_textos_cards_dark' : 'color_textos_cards_light'"> Ayudamos a cientos de ganaderos 
@@ -102,7 +102,7 @@
 				</v-hover>
 			</v-row>
 			<!--los tres de abajo para esto use lo mismo que tenias en el HOME, es decir las mismas clases-->
-			<v-row style="width:100%;padding-left:10%;padding-right:10%; padding-top:80px; justify-content:center">
+<!--			<v-row style="width:100%;padding-left:10%;padding-right:10%; padding-top:80px; justify-content:center">
 				<v-container class="pa-4 text-center">
 						<v-row class="fill-height" align="center" justify="center">
 							<template v-for="(item, i) in items">
@@ -130,7 +130,10 @@
 						</v-row>
 				</v-container>
 			</v-row>
+			
+			 -->
 		</div>
+		
 <!-- CON ESTO SE CAMBIO EL COLOR A LOS ICONOS
 		<div class="mt-2">
 			<v-btn  v-for="icon in icons" :key="icon"   icon>
@@ -175,17 +178,23 @@
 
 
 <style scoped>
-	.slides.font_light1{
+	.slides2{
+            width: 100%;
+            height: 100%;	
+        }
+	.slides2.font_light1{
 		background-image: url('../assets/ProyectosSocialesLight.png');
-		background-position: center;
+		background-position: center center;
 		background-repeat: no-repeat;
 		background-size: cover;
+		background-attachment: fixed;	
 	}
-	.slides.font_dark1{
+	.slides2.font_dark1{
 		background-image: url('../assets/ProyectosSocialesDark.png');
-		background-position: center;
+		background-position: center center;
 		background-repeat: no-repeat;
 		background-size: cover;
+		 background-attachment: fixed;
 	}
 
 	.v-card:not(.on-hover) {

@@ -1,13 +1,12 @@
 <template>
-    <v-navigation-drawer v-model="$store.state.drawer" absolute temporary>
-        <v-list-item>
-            <v-list-item-avatar>
-                <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
-            </v-list-item-avatar>
-            <v-list-item-content>
-                <v-list-item-title>Bienvenido</v-list-item-title>
-            </v-list-item-content>
-        </v-list-item>
+    <v-navigation-drawer v-model="$store.state.drawer" :color="isColor" fixed dark>
+        <template v-slot:prepend>
+                <v-list>
+                    <v-avatar class="profile" size="50" tile width="200px" height="60px">
+                        <v-img src="@/assets/logo.png"></v-img>
+                    </v-avatar>
+                </v-list>
+            </template>
         <v-divider></v-divider>
         <v-list dense>
             <v-list-item v-for="item in $store.state.items" :key="item.title" :to="item.url">
@@ -27,5 +26,14 @@
         name: 'MenuResponsive',
         data: () => ({
         }),
+        computed:{
+            isColor: function(){
+                if (this.$vuetify.theme.dark){
+                    return 'rgba(0, 12, 44, 0.911)';
+                }else{
+                    return 'rgba(36, 3, 106, 0.883)';
+                }
+            }
+        },
     }
 </script>
