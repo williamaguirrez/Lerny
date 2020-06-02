@@ -22,6 +22,7 @@ export default new Vuetify({
                 tarjetasHome: '#FFFFFF',
                 tarjetasHome2: '#FFFFFF',
                 botonHome: '#000000',
+                botonRepro: '#23036A',
             },
             dark: {
                 boton_menu: '#8D50F1',
@@ -34,6 +35,7 @@ export default new Vuetify({
                 tarjetasHome: '#1B428A',
                 tarjetasHome2: '#9369E3',
                 botonHome: '#FFFFFF',
+                botonRepro: '#024274',
             }
         }
     },

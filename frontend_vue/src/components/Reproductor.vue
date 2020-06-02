@@ -1,47 +1,52 @@
 <template>
 	<v-app id="inspire">
-        <MenuIzquierdo/>
-        <MenuSuperior/>
-
-        <!-- Menú Derecho Contenido del curso ---------------------------------------------------------------------- -->
-        <v-container>
-            <v-navigation-drawer v-model="drawer" :color="isColor" permanent app width="500" right expand-on-hover dark>
-                <v-list>
-                    <v-list-item v-for="(item, i) in arregloTemas" :key="i">
-                        <v-list-item-icon style="margin-right:5px; margin-top:2px; margin-bottom:2px">
-                            <div class="my-2">
-                                <v-btn color="secondary" fab x-small dark style="font-size:14px;">{{ i }}</v-btn>
-                            </div>
-                        </v-list-item-icon>
-                        <v-list-item-content style="padding:0px">
-                            <v-expansion-panels>
-                                <v-expansion-panel>
-                                    <v-expansion-panel-header>{{ i }}</v-expansion-panel-header>
-                                    <v-expansion-panel-content>
-                                        <v-timeline dense clipped style="padding-top:0px;">
-                                            <v-timeline-item v-for="(key, j) in item" :key="j" :color="true ? 'green' : 'grey' " icon-color="white" icon="done">
-                                                <v-row justify="space-between">
-                                                    <v-col cols="12"><router-link :to="key.url">{{ key.nomLeccion }}</router-link></v-col>
-                                                </v-row>
-                                            </v-timeline-item>
-                                        </v-timeline>
-                                    </v-expansion-panel-content>
-                                </v-expansion-panel>
-                            </v-expansion-panels>
-                        </v-list-item-content>
-                    </v-list-item>
-                </v-list>
-            </v-navigation-drawer>
-        </v-container> 
-
         <!-- Clase de un curso ------------------------------------------------------------------------------------- -->
-        <div id="tematicas" :class="$vuetify.theme.dark ? 'contenedorClases fondo_dark' : 'contenedorClases'">
-			<v-row>
+        <div id="tematicas" :class="$vuetify.theme.dark ? 'contenedorClases_dark' : 'contenedorClases_light'">
+			<MenuIzquierdo/>
+            <MenuSuperior/>
+            
+            <!-- Menú Derecho Contenido del curso ---------------------------------------------------------------------- -->
+            <v-container>
+                <v-navigation-drawer v-model="drawer" :color="isColor" permanent app width="500" right expand-on-hover dark>
+                    <v-list>
+                        <v-list-item v-for="(item, i) in arregloTemas" :key="i">
+                            <v-list-item-icon style="margin-right:5px; margin-top:2px; margin-bottom:2px">
+                                <div class="my-2">
+                                    <v-btn color="botonRepro" fab x-small dark style="font-size:14px;">{{ i }}</v-btn>
+                                </div>
+                            </v-list-item-icon>
+                            <v-list-item-content style="padding:0px">
+                                <v-expansion-panels>
+                                    <v-expansion-panel>
+                                        <v-expansion-panel-header color="botonRepro">{{ i }}</v-expansion-panel-header>
+                                        <v-expansion-panel-content :color="isColor">
+                                            <v-timeline dense clipped style="padding-top:0px;">
+                                                <v-timeline-item v-for="(key, j) in item" :key="j" :color="true ? 'green' : 'grey' " icon-color="white" icon="done">
+                                                    <v-row justify="space-between">
+                                                        <v-col cols="12"><router-link :to="key.url">{{ key.nomLeccion }}</router-link></v-col>
+                                                    </v-row>
+                                                </v-timeline-item>
+                                            </v-timeline>
+                                        </v-expansion-panel-content>
+                                    </v-expansion-panel>
+                                </v-expansion-panels>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list>
+                </v-navigation-drawer>
+            </v-container> 
+
+            <v-row>
                 <!-- Titulo -->
-				<v-col cols="12" sm="11">
-					<h2 class="t_descubre titulo--text">Hola {{ this.$store.state.usuario.nombre }}, nos alegra volver a verte</h2>
+				<v-col cols="12" sm="6">
+					<h2 style="font-size:30px" class="t_descubre titulo--text">{{nomCurso}}</h2>
 				</v-col>
-				<v-col cols="12" sm="1">
+				<v-col cols="12" sm="6">
+                    <v-row style="justify-content:flex-end">
+                        <v-btn class="white--text" color="botonRepro" dark :to="'/foro/' + '0001'">Foro</v-btn>
+                        <v-btn class="white--text" color="botonRepro" dark :to="'/talleres/' + '0001'">Talleres</v-btn>
+                        <v-btn class="white--text" color="botonRepro" dark :to="'/Proyectos' + '0001'">Proyectos</v-btn>
+                    </v-row>
 				</v-col>
 			</v-row>
 			<v-row>
@@ -82,11 +87,11 @@
                         </v-col>
                         <v-col cols="12" sm="10" style="padding-top:0px;">
                             <div style="float:right;">
-                                <v-btn outlined color="indigo" @click.stop="dialog = true"> ¿Problemas?</v-btn>
-                                <v-btn outlined color="indigo" :to="urlAnterior">
+                                <v-btn color="botonRepro" @click.stop="dialog = true" dark> ¿Problemas?</v-btn>
+                                <v-btn color="botonRepro" :to="urlAnterior" dark>
                                     <v-icon left>skip_previous</v-icon>
                                 </v-btn>
-                                <v-btn outlined color="indigo" :to="urlSiguiente">
+                                <v-btn dark color="botonRepro" :to="urlSiguiente">
                                     <v-icon left>skip_next</v-icon> Siguiente Video
                                 </v-btn>
                             </div>
@@ -95,7 +100,7 @@
                     
                     <!-- Titulo y descripción del video -->
                     <div>
-                        <h1 class="t_descubre" style="font-weight: bold; font-size:30px; margin-bottom:15px; margin-top:15px;">
+                        <h1 class="t_descubre titulo--text" style="font-weight:bold; font-size:30px; margin-bottom:15px; margin-top:15px;">
                             {{ nomLeccion }}
                         </h1>
                         <v-divider></v-divider>
@@ -106,25 +111,34 @@
 				</v-col>
                 <!-- Tablon de aportes, preguntas y material -->
 				<v-col cols="12" sm="5" style="padding-left:0px;">
-					<v-tabs class="elevation-2" grow>
+					<v-tabs class="elevation-2" grow background-color="botonRepro" dark color="white">
                         <v-tabs-slider></v-tabs-slider>
                         <v-tab href="#tab-aportes">Aportes</v-tab>
                         <v-tab href="#tab-preguntas">Preguntas</v-tab>
                         <v-tab href="#tab-recursos">Recursos</v-tab>
                         <v-tab-item value="tab-aportes">
-                            <v-card flat tile>
-                                <v-card-text>{{ text }}</v-card-text>
+                            <v-card flat tile dark :color="isColor">
+                                <v-card-text>
+                                    En un futuro podrás encontrar un chat general donde podrás escribir tus aportes o apuntes sobre la
+                                    clase que estás viendo.
+                                </v-card-text>
                             </v-card>
                         </v-tab-item>
                         <v-tab-item value="tab-preguntas">
-                            <v-card flat tile>
-                                <v-card-text>{{ text }}</v-card-text>
+                            <v-card flat tile dark :color="isColor">
+                                <v-card-text>
+                                    En un futuro podrás encontrar un chat general donde podrás escribir tus preguntas generales o
+                                    particulares de la sessión de clase actual, para que así nuestros profesores, o la misma comunidad
+                                    de estudiantes puedan responderlas.
+                                </v-card-text>
                             </v-card>
                         </v-tab-item>
-
                         <v-tab-item value="tab-recursos">
-                            <v-card flat tile>
-                                <v-card-text>{{ text }}</v-card-text>
+                            <v-card flat tile dark :color="isColor">
+                                <v-card-text>
+                                    Aquí podrás encontrar los recursos de la clase utilizadas por el profesor, como diapositivas, documentos,
+                                    imagen o cualquier recurso digital.
+                                </v-card-text>
                             </v-card>
                         </v-tab-item>
                     </v-tabs>
@@ -214,9 +228,9 @@
         computed:{
             isColor: function(){
                 if (this.$vuetify.theme.dark){
-                    return 'rgba(0, 0, 0, 0.747)';
+                    return 'rgba(0, 12, 44, 0.911)';
                 }else{
-                    return 'rgba(0, 24, 88, 0.712)';
+                    return 'rgba(36, 3, 106, 0.883)';
                 }
             },
         },
@@ -255,12 +269,28 @@
 
 
 <style scoped>
-    .contenedorClases{
+    .contenedorClases_light{
 		padding-top: 5%;
 		padding-left: 5%;
 		padding-right: 5%;
 		padding-bottom: 5%;   
+        font-family: Maven Pro;
+		font-style: normal;
+        background-color: #FFFFFF;
+        background-image: url('../assets/fondoperfil1.png');
+        background-size: 100% auto;
 	}
+    .contenedorClases_dark{
+        padding-top: 5%;
+		padding-left: 5%;
+		padding-right: 5%;
+		padding-bottom: 5%;   
+        font-family: Maven Pro;
+		font-style: normal;
+        background-color: #001844;
+        background-image: url('../assets/fondoperfil1.png');
+        background-size: 100% auto;
+    }
     a{
         text-decoration: none;
     }
