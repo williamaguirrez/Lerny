@@ -14,25 +14,25 @@
                             <template v-for="(item, i) in tematicasParaTi">
                             <div :key="i" class="card--content">
                                 <v-hover v-slot:default="{ hover }" style="margin-bottom:10px;">
-                                    <v-card :elevation="hover ? 12 : 2" width="280px" :class="{ 'on-hover': hover }" color="tarjetasHome2">
+                                    <v-card :elevation="hover ? 12 : 2" width="280px" :class="{ 'on-hover': hover }" color="botonRepro">
                                         <v-img :src="item.img" height="180px"  class="align-end titulo2--text"></v-img> 
                                         <v-card-text class="text--primary" style="margin-bottom:-15px;">
-                                            <p style="font-size:medium; font-weight: 500; margin-bottom:0px;" class="t_general titulo2--text text-center">{{ item.titulo }}</p>
+                                            <p style="font-size:medium; font-weight: 500; margin-bottom:0px;" class="t_general white--text text-center">{{ item.titulo }}</p>
                                             <v-row style="margin-bottom:-10px;">
                                                 <v-col cols="12" sm="6">
-                                                    <p style="font-size:medium; margin-bottom:0px;" class="t_general text-center" black--text>
-                                                        <v-icon size="20px" color="titulo2">shopping_cart</v-icon> ${{ item.precio }}
+                                                    <p style="font-size:medium; margin-bottom:0px;" class="t_general text-center white--text">
+                                                        <v-icon size="20px" color="white">shopping_cart</v-icon> ${{ item.precio }}
                                                     </p>
                                                 </v-col>
                                                 <v-col cols="12" sm="6">
-                                                    <p style="font-size:medium; margin-bottom:0px;" class="t_general text-center">
-                                                        <v-icon size="20px" color="titulo2">favorite</v-icon> {{ item.likes }} likes
+                                                    <p style="font-size:medium; margin-bottom:0px;" class="t_general text-center white--text">
+                                                        <v-icon size="20px" color="white">favorite</v-icon> {{ item.likes }} likes
                                                     </p>
                                                 </v-col>
                                             </v-row>
                                         </v-card-text>
                                         <v-card-actions>
-                                            <v-btn class="ma-2 mx-auto" rounded outlined color="#673AB7" style="padding-left:20px; padding-right:20px;" :to="item.url">Comenzar</v-btn>
+                                            <v-btn class="ma-2 mx-auto" rounded outlined color="white" style="padding-left:20px; padding-right:20px;" :to="item.url">Comenzar</v-btn>
                                         </v-card-actions>     
                                     </v-card>
                                 </v-hover>

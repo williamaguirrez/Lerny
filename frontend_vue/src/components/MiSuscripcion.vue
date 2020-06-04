@@ -2,7 +2,7 @@
 	<v-app id="inspire">
         <MenuIzquierdo/>
         <MenuSuperior/>
-        <v-row class="contenedor_suscripcion">
+        <v-row :class="$vuetify.theme.dark ? 'contenedor_suscripcion_dark' : 'contenedor_suscripcion_light'">
             <v-col cols="12" sm="4">
                 <center>
                 <v-avatar dark icon size="180">
@@ -13,7 +13,7 @@
                 <p style="font-size: 18px; margin-bottom:0px"><b style="font-weight: bold;">Puntos:</b>  {{ $store.state.perfil.puntos }} Lernys</p>
                 <p style="font-size: 18px;"><b style="font-weight: bold;">Plan:</b> Lerny Freemium</p>
                 </center><br>
-                <v-card class="mx-auto" max-width="344" shaped elevation="24">
+                <v-card class="mx-auto" max-width="344" shaped elevation="24" color="botonRepro" dark>
                     <v-card-title style="font-weight: bold;">•  Plan Lerny Freemium</v-card-title>
                     <v-card-subtitle style="font-size:15px">
                         • Accede a contenido gratuito limitado<br>
@@ -31,7 +31,7 @@
                 <br>
                 <v-row>
                     <v-col cols="12" sm="6" style="width:100%;">
-                        <v-card class="ma-2 mx-auto" max-width="344" shaped elevation="24">
+                        <v-card class="ma-2 mx-auto" max-width="344" shaped elevation="24" color="botonRepro" dark>
                             <center>
                                 <v-card-text style="font-weight: bold; font-size:30px; margin-bottom:-20px;">
                                     Lerny Expert <br> <br>
@@ -64,7 +64,7 @@
                         </v-card>
                     </v-col>
                     <v-col cols="12" sm="6" style="width:100%; padding-left:30px">
-                        <v-card class="ma-2 mx-auto" max-width="344" shaped elevation="24">
+                        <v-card class="ma-2 mx-auto" max-width="344" shaped elevation="24" color="botonRepro" dark>
                             <center>
                                 <v-card-text style="font-weight: bold; font-size:30px; margin-bottom:-20px;">
                                     Lerny Basic <br> <br>
@@ -117,12 +117,28 @@
 </script>
 
 <style scoped>
-    .contenedor_suscripcion{
+    .contenedor_suscripcion_dark{
         padding-top: 45px;
         padding-bottom: 20px;
         padding-left: 100px;
         padding-right: 70px;
         font-family: Maven Pro;
 		font-style: normal;
+        background-color: #001844;
+        background-image: url('../assets/fondoperfil1.png');
+        background-size: 100% auto;
     }
+
+    .contenedor_suscripcion_light{
+        padding-top: 45px;
+        padding-bottom: 20px;
+        padding-left: 100px;
+        padding-right: 70px;
+        font-family: Maven Pro;
+		font-style: normal;
+        background-color: #FFFFFF;
+        background-image: url('../assets/fondoperfil1.png');
+        background-size: 100% auto;
+    }
+    
 </style>

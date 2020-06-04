@@ -46,7 +46,7 @@
                                         <p style="font-size:medium; font-weight: 500; margin-bottom:0px;" class="t_general titulo2--text text-center">{{ item.titulo }}</p>
                                         <v-row style="margin-bottom:-10px;">
                                             <v-col cols="12" sm="6">
-                                                <p style="font-size:medium; margin-bottom:0px;" class="t_general text-center" black--text>
+                                                <p style="font-size:medium; margin-bottom:0px;" class="t_general text-center">
                                                     <v-icon size="20px" color="titulo2">shopping_cart</v-icon> ${{ item.precio }}
                                                 </p>
                                             </v-col>
