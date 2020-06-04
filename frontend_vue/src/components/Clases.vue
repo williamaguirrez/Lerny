@@ -1,6 +1,10 @@
 <template>
 	<v-app id="inspire">
-
+        <!-- Slider Revolution -->
+        <script type="application/javascript" src="https://wtechnology.co/slider/assets/js/includes/jquery/jquery.js"></script>
+        <script type="application/javascript" src="https://wtechnology.co/slider/revslider/public/assets/js/jquery.themepunch.tools.min.js"></script>
+        <script type="application/javascript" src="https://wtechnology.co/slider/revslider/public/assets/js/jquery.themepunch.revolution.min.js"></script>
+        <script type="application/javascript" id="revslider_script" src="https://wtechnology.co/slider/assets/js/revslider.js"></script>
         <!-- Recomendación Principal de películas -->
         <video-background :src="cursoRecomendacion.video" style="max-height: 630px; height: 100vh;">   
             <div class="contRecomendVideo">             
@@ -95,7 +99,16 @@
 				</v-row>					
 			</v-container> 
             -->
-        </div>   
+        </div> 
+        <!-- Proyectos Sociales ---------------------------------------------------------------------------------- -->
+        <div id="tematicas" :class="$vuetify.theme.dark ? 'contenedorClases fondo_dark' : 'contenedorClases'">
+			<v-row>
+				<v-col cols="12" sm="11">
+					<h2 class="t_descubre titulo--text" style="line-height: 40px;">Top 5 Proyectos Sociales...</h2>
+				</v-col>
+			</v-row>
+        </div>
+        <div class="revslider" data-alias="proyectossociales"></div>
     </v-app>
 </template>
 
@@ -175,9 +188,8 @@
 </script>
 
 <style scoped>
-    #wp-chatbot-chat-container{
-        bottom: 10px;
-    }
+    @import 'https://wtechnology.co/slider/revslider/public/assets/css/settings.css';
+
     .wbody {
         margin: 0;
         display: flex;

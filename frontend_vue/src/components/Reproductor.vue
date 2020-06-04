@@ -43,9 +43,9 @@
 				</v-col>
 				<v-col cols="12" sm="6">
                     <v-row style="justify-content:flex-end">
-                        <v-btn class="white--text" color="botonRepro" dark :to="'/foro/' + '0001'">Foro</v-btn>
-                        <v-btn class="white--text" color="botonRepro" dark :to="'/talleres/' + '0001'">Talleres</v-btn>
-                        <v-btn class="white--text" color="botonRepro" dark :to="'/Proyectos' + '0001'">Proyectos</v-btn>
+                        <!-- <v-btn class="white--text" color="botonRepro" dark @click.stop="foro = true">Foro</v-btn> -->
+                        <v-btn class="white--text" color="botonRepro" dark @click.stop="talleres = true">Talleres</v-btn>
+                        <v-btn class="white--text" color="botonRepro" dark @click.stop="proyectos = true">Proyectos</v-btn>
                     </v-row>
 				</v-col>
 			</v-row>
@@ -167,6 +167,153 @@
                 </v-card>
             </v-dialog>
         </v-row>
+
+        <!-- Modal de Proyecto ------------------------------------------------------------------- -->
+        <v-row justify="center">
+            <v-dialog v-model="proyectos" max-width="650">
+                <v-card>
+                    <v-card-title class="headline">Proyectos</v-card-title>
+                    <v-stepper v-model="e1">
+                        <v-stepper-header>
+                            <v-stepper-step :complete="e1 > 1" step="1">Completar</v-stepper-step>
+                            <v-divider></v-divider>
+                            <v-stepper-step :complete="e1 > 2" step="2">Publicar</v-stepper-step>
+                            <v-divider></v-divider>
+                            <v-stepper-step :complete="e1 > 3" step="3">Especificar</v-stepper-step>
+                            <v-divider></v-divider>
+                            <v-stepper-step step="4">Revisar</v-stepper-step>
+                        </v-stepper-header>
+                        <v-stepper-items>
+                            <v-stepper-content step="1">
+                                <v-card class="mb-12" color="" style="padding:20px">
+                                    <p>Despues de estudiar todos los módulos realiza un proyecto a favor de tu comunidad</p>
+                                </v-card>
+                                <v-btn color="primary" @click="e1 = 2"> Continuar</v-btn>
+                                <v-btn text @click="proyectos = false">Cancelar</v-btn>
+                            </v-stepper-content>
+                            <v-stepper-content step="2">
+                                <v-card class="mb-12" color="" style="padding:20px">
+                                    <p>Publica un video de 2 minutos, más imágenes o cualquer contenido digital en INSTAGRAM con el hashtag
+                                        #ConLernyAprendoAyudo mostrando tu proyecto social.</p>
+                                </v-card>
+                                <v-btn color="primary" @click="e1 = 3">Continuar </v-btn>
+                                <v-btn text @click="proyectos = false">Cancel</v-btn>
+                            </v-stepper-content> 
+                            <v-stepper-content step="3">
+                                <v-card class="mb-12" color="" style="padding:20px">
+                                    <p> Descríbenos a continuación, cuenta todos los detalles demográficos y sociales del proyecto</p>
+                                </v-card>
+                                <v-btn color="primary" @click="e1 = 4">Continuar</v-btn>
+                                <v-btn text @click="proyectos = false">Cancelar</v-btn>
+                            </v-stepper-content>
+                            <v-stepper-content step="4">
+                                <v-card class="mb-12" color="" style="padding:20px">
+                                    <v-card class="mx-auto" max-width="344">
+                                        <v-img src="https://www.fundacion-affinity.org/sites/default/files/dia-de-los-animales.jpg" height="200px"></v-img>
+                                        <v-card-title> Proyecto con animales </v-card-title>
+                                        <v-card-subtitle>Compartenos tu historia de como resolviste el proyecto social
+                                        </v-card-subtitle>
+                                        <v-card-actions> 
+                                            <v-btn text>Compartir</v-btn>
+                                            <v-btn color="purple" text>Más Información</v-btn>
+                                            <v-spacer></v-spacer>
+                                            <v-btn icon @click="show = !show">
+                                                <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                                            </v-btn>
+                                        </v-card-actions>
+                                        <v-expand-transition>
+                                            <div v-show="show">
+                                                <v-divider></v-divider>
+                                                <v-card-text>
+                                                    Ayudamos a cientos de ganaderos a organizar sus sistemas contables y rediseñamos la marca para tres emprendimientos relacionados con lacteos.
+                                                    <v-textarea filled auto-grow label="Descripción de proyecto, url, etc" rows="2" row-height="20"></v-textarea>
+                                                </v-card-text>
+                                            </div>
+                                        </v-expand-transition>
+                                    </v-card>
+                                    <p>Estaremos en contacto después de revisar el proyecto en su totalidad, verificaremos que se hizo realidad</p>
+                                </v-card>
+                                <v-btn color="primary" @click="e1 = 1">Publicar</v-btn>
+                                <v-btn text @click="proyectos = false">Cancelar</v-btn>
+                            </v-stepper-content>
+                        </v-stepper-items>
+                        </v-stepper>
+                </v-card>
+            </v-dialog>
+        </v-row>
+
+        <!-- Modal de Talleres -------------------------------------------------------------------------------- -->
+        <v-row justify="center">
+            <v-dialog v-model="talleres" max-width="850" dark>
+                <v-card color="botonRepro">
+                    <v-card-title class="headline">Talleres</v-card-title>
+                    <v-row>
+                        <v-col cols="12" sm="6">
+                            <v-expansion-panels popout>
+                                <v-expansion-panel v-for="(message, i) in taller1" :key="i" hide-actions>
+                                    <v-expansion-panel-header :color="isColor">
+                                        <v-row align="center" class="spacer" no-gutters>
+                                            <v-col cols="4" sm="2" md="1">
+                                                <v-avatar size="36px">
+                                                    <img v-if="message.avatar" alt="Avatar" src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460">
+                                                        <v-icon v-else :color="message.color" v-text="message.icon" ></v-icon>
+                                                </v-avatar>
+                                            </v-col>
+                                            <v-col class="text-no-wrap" cols="5" sm="3">
+                                                <v-chip v-if="message.new" :color="`${message.color} lighten-4`" class="ml-0 mr-2 black--text" label small >
+                                                    {{ message.new }} Nuevos
+                                                </v-chip>
+                                                <strong v-html="message.title"></strong>
+                                            </v-col>
+                                            <v-col v-if="message.excerpt" class="grey--text text-truncate hidden-sm-and-down">
+                                                &mdash;
+                                                {{ message.excerpt }}
+                                            </v-col>
+                                        </v-row>
+                                    </v-expansion-panel-header>
+                                    <v-expansion-panel-content>
+                                        <v-divider></v-divider>
+                                        <v-card-text v-text="lorem"></v-card-text>
+                                    </v-expansion-panel-content>
+                                </v-expansion-panel>
+                            </v-expansion-panels>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                            <v-expansion-panels popout>
+                                <v-expansion-panel v-for="(message, i) in taller2" :key="i" hide-actions>
+                                    <v-expansion-panel-header :color="isColor">
+                                        <v-row align="center" class="spacer" no-gutters>
+                                            <v-col cols="4" sm="2" md="1">
+                                                <v-avatar size="36px">
+                                                    <img v-if="message.avatar" alt="Avatar" src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460">
+                                                        <v-icon v-else :color="message.color" v-text="message.icon" ></v-icon>
+                                                </v-avatar>
+                                            </v-col>
+                                            <v-col class="text-no-wrap" cols="5" sm="3">
+                                                <v-chip v-if="message.new" :color="`${message.color} lighten-4`" class="ml-0 mr-2 black--text" label small >
+                                                    {{ message.new }} nuevos
+                                                </v-chip>
+                                                <strong v-html="message.title"></strong>
+                                            </v-col>
+                                        </v-row>
+                                    </v-expansion-panel-header>
+                                    <v-expansion-panel-content>
+                                        <v-divider></v-divider>
+                                        <v-card-text v-text="lorem"></v-card-text>
+                                    </v-expansion-panel-content>
+                                </v-expansion-panel>
+                            </v-expansion-panels>
+                        </v-col>
+                    </v-row>
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn color="white" text @click="talleres = false">
+                            Volver a Clase
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </v-row>
 	</v-app>
 </template>
 
@@ -213,9 +360,54 @@
                     urlAnterior:'1',
                 }],
             }],
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
             drawer: true,
             dialog: false,
+            talleres: false,
+            foro: false,
+            proyectos: false,
+            taller1: [
+                {
+                    color: 'red',
+                    icon: 'people',
+                    new: 2,
+                    title: 'Taller 1',
+                },
+                {
+                    color: 'red',
+                    icon: 'people',
+                    new: 1,
+                    title: 'Taller 2',
+                },
+                {
+                    color: 'teal',
+                    icon: 'local_offer',
+                    new: 4,
+                    title: 'Taller 3',
+                },
+            ],
+            taller2: [
+                {
+                    color: 'red',
+                    icon: 'people',
+                    new: 3,
+                    title: 'Taller 4',
+                },
+                {
+                    color: 'red',
+                    icon: 'people',
+                    new: 2,
+                    title: 'Taller 5',
+                },
+                {
+                    color: 'teal',
+                    icon: 'local_offer',
+                    new: 4,
+                    title: 'Taller 6',
+                },
+            ],
+            lorem: 'Este es un ejemplo de como puedes encontrar los talleres de un curso',
+            e1: 1,
+            show: false,
         }),
         watch:{
             $route(to, from){
