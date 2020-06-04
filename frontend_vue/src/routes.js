@@ -18,6 +18,11 @@ import Calendario from './components/Calendario.vue';
 import Videollamada from './components/Videollamada.vue';
 import ProyectosSociales from './components/ProyectosSociales.vue';
 import Cursos from './components/Cursos.vue';
+import PromoProyectosSociales from './components/PromoProyectosSociales.vue';
+import PromoAlly from './components/PromoAlly.vue';
+import PromoAcompanamiento from './components/PromoAcompanamiento.vue';
+import PromoLlamada from './components/PromoLlamada.vue';
+import PromoApadrinamiento from './components/PromoApadrinamiento.vue';
 import { store } from './store';
 
 
@@ -310,6 +315,91 @@ export const routes = [
         component: ProyectosSociales,
         meta: {
             requeresAuth: true,
+            title: 'Proyectos Sociales | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/social', 
+        name: 'promoproyectossociales',
+        component: PromoProyectosSociales,
+        meta: {
+            title: 'Proyectos Sociales | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/llamadap', 
+        name: 'promollamada',
+        component: PromoLlamada,
+        meta: {
+            title: 'Llamada | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/ally', 
+        name: 'promoally',
+        component: PromoAlly,
+        meta: {
+            title: 'Guía Académica Ally | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/apadrinamiento', 
+        name: 'promoapadrinamiento',
+        component: PromoApadrinamiento,
+        meta: {
+            title: 'Apadrinamiento | Lerny.co',
+            metaTags: [{
+                name: 'description',
+                content: 'The about page of our example app.'
+                },
+                { 
+                    property: 'og:description',
+                    content: 'The about page of our example app.'
+                }
+            ]
+        },
+    },
+    {
+        path: '/acompanamiento', 
+        name: 'promoacompanamiento',
+        component: PromoAcompanamiento,
+        meta: {
             title: 'Proyectos Sociales | Lerny.co',
             metaTags: [{
                 name: 'description',

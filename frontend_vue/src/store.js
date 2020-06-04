@@ -38,8 +38,11 @@ export const store = new Vuex.Store({
         items: [
             { title: 'Inicio', icon: 'home', url: '/' },
             { title: 'Nosotros', icon: 'supervised_user_circle', url: '/nosotros' },
-            { title: 'Regístrate', icon: 'lock_open', url: '/signup' },
-            { title: 'Iniciar Sesión', icon: 'input', url: '/login' },
+            { title: 'Proyectos Sociales', icon: 'thumb_up_alt', url: '/social' },
+            { title: 'Acompañamiento', icon: 'people_alt', url: '/acompanamiento' },
+            { title: 'Programa de Apadrinamiento', icon: 'monetization_on', url: '/apadrinamiento' },
+            { title: 'Guía Académico Ally', icon: 'school', url: '/ally' },
+            { title: 'Educación por Llamada Telefónica', icon: 'phone_in_talk', url: '/llamadap' },
         ],
         guardarDatabase(id, usuario, email, foto){
             firebase.database().ref('/usuarios/' + id).set({

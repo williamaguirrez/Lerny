@@ -17,14 +17,52 @@
                     <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
+            <template v-if="user">
+                <v-list-item to="/clases">
+                    <v-list-item-icon>
+                        <v-icon>cast_for_education</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>Mis Cursos</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-list-item @click.prevent="cerrarSesion">
+                    <v-list-item-icon>
+                        <v-icon>power_settings_new</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>Cerrar Sesion</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </template>
+            <template v-else>
+                <v-list-item to="/signup">
+                    <v-list-item-icon>
+                        <v-icon>lock_open</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>Regístrate</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+                <v-list-item to="/login">
+                    <v-list-item-icon>
+                        <v-icon>input</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>Iniciar Sesión</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </template>
         </v-list>
     </v-navigation-drawer>
 </template>
 
 <script>
+    import firebase from 'firebase';
     export default {
         name: 'MenuResponsive',
         data: () => ({
+            user: null,
         }),
         computed:{
             isColor: function(){
@@ -34,6 +72,22 @@
                     return 'rgba(36, 3, 106, 0.883)';
                 }
             }
+        },
+        methods: {
+            cerrarSesion(){
+                firebase.auth().signOut().then( () =>{
+                    this.$router.push({ name: 'inicio' })
+                })
+            }
+        },
+        created() {
+            firebase.auth().onAuthStateChanged(user => {
+                if (user){
+                    this.user = user
+                }else{
+                    this.user = null
+                }
+            })
         },
     }
 </script>
