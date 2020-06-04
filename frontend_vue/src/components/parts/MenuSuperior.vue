@@ -199,11 +199,11 @@
                 /* {   title: 'Mis Compras',
                     icon: 'shopping_cart',
                     url: '/compras'
-                }, */
+                }, 
                 {   title: 'Mentores', 
                     icon: 'people_alt',
                     url: '/mentores'
-                },
+                },*/
             ],
         }),
         mounted(){
