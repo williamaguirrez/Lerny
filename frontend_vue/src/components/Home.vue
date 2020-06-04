@@ -21,6 +21,7 @@
 				</v-row>
 			</div>
 		</div> -->
+
 <!-- Temáticas que tenemos para ti -------------------------------------------------------------------------- -->
         <div id="tematicas" :class="$vuetify.theme.dark ? 'contenedor2 fondo_dark2' : 'contenedor2'">
 			<v-row>
@@ -68,7 +69,8 @@
 				</v-row>					
 			</v-container>
         </div>   
-<!-- DESPUES MODIFICAMOS ESTA PARTE, PARA VOLVERLA RESPONSIVE-->
+
+		<!-- DESPUES MODIFICAMOS ESTA PARTE, PARA VOLVERLA RESPONSIVE-->
 		<div  class="iconos_new" :class="$vuetify.theme.dark ? 'iconos_fondo_dark' : 'iconos_fondo'">
 			<v-row class="fill-height" align="center" justify="center">
 				<v-col cols="12" md="2">
@@ -119,15 +121,18 @@
 				</v-col>
 			</v-row>
 		</div>
-<!-- Descubre nuestras funcionalidades -------------------------------------------------------------------- -->
+
+
+		<!-- Descubre nuestras funcionalidades -------------------------------------------------------------------- -->
 		<div id="funcionalidadesHome" :class="$vuetify.theme.dark ? 'contenedor2 fondo_dark2' : 'contenedor2'">
 			<v-row>
 				<v-col cols="12" sm="11">
-					<h2 class="t_descubre titulo--text">Descubre nuestras funcionalidades</h2>
+					<h2 class="t_descubre titulo--text">Descubre nuestras funcionalidades claves</h2>
 				</v-col>
 				<v-col cols="12" sm="1">
-					<v-btn class="mx-2" fab color="boton_menu" dark style="float:right;">
-						<v-icon dark>mdi-plus</v-icon>
+					<v-btn class="mx-2" fab color="boton_menu" @click="mas = !mas" dark style="float:right;">
+						<v-icon v-if="mas" dark>mdi-plus</v-icon>
+						<v-icon v-else dark>remove</v-icon>
 					</v-btn>
 				</v-col>
 			</v-row>
@@ -147,8 +152,33 @@
 											{{item.description}}
 										</v-card-text>
 										<v-card-actions>
-                                        	<v-btn class="ma-2 mx-auto" rounded outlined color="titulo2" style="padding-left:20px; padding-right:20px;">Comenzar</v-btn>
-                                    </v-card-actions>  
+                                        	<v-btn class="ma-2 mx-auto" rounded outlined color="titulo2" style="padding-left:20px; padding-right:20px;" :to="item.url">Saber Más</v-btn>
+                                    	</v-card-actions>  
+									</v-container>    
+								</v-card>
+							</v-hover>
+						</v-col>
+					</template>	
+				</v-row>
+			</v-container>
+			<v-container class="pa-4 text-center" :class="mas ? 'hidden-md-and-up' : 'hidden-sm-and-down'">
+				<v-row class="fill-height" align="center" justify="center">
+					<template v-for="(item, i) in items2">
+						<v-col :key="i" cols="12" md="4" >
+							<v-hover v-slot:default="{ hover }" style="margin-bottom:10px;">
+								<v-card :elevation="hover ? 12 : 2" :class="{ 'on-hover': hover }" color="tarjetasHome2">
+									<v-container>
+										<v-img :src="item.img" height="225px" class="align-end">
+											<v-card-title class="title white--text">
+												{{item.title}}
+											</v-card-title>
+										</v-img>  
+										<v-card-text class="text_descrip2 titulo2--text">
+											{{item.description}}
+										</v-card-text>
+										<v-card-actions>
+                                        	<v-btn class="ma-2 mx-auto" rounded outlined color="titulo2" style="padding-left:20px; padding-right:20px;" :to="item.url">Saber Más</v-btn>
+                                    	</v-card-actions>  
 									</v-container>    
 								</v-card>
 							</v-hover>
@@ -172,7 +202,7 @@
 							<p align="center" class="titulo--text">Si tienes algun inconveniente con tu red Wifi, 
 								Programa tus clases y te llamaremos para que sigas 
 								recibiendo educación de forma no remota, o si deseas 
-								comunicate en cualquier momento</p>
+								comunícate en cualquier momento</p>
 							<br>
 							<div style="width:200px;margin-left:15%">
 								<v-btn rounded block large color="boton_menu1" class="sombraB" dark>Llamar</v-btn>
@@ -187,15 +217,15 @@
 				<v-col cols="12" sm="4">
 					<center>
 						<div style="width:370px; margin-top:10%;">
-							<form>
-								<v-text-field style="margin-bottom:-20px;" label="Nombre" type="text" solo rounded  prepend-inner-icon="account_circle"></v-text-field>
-								<v-text-field style="margin-bottom:-20px;" label="Número de Teléfono" type="telephone" solo rounded prepend-inner-icon="phone"></v-text-field>
-								<v-text-field style="margin-bottom:-20px;" label="E-mail" type="email"  solo rounded prepend-inner-icon="email"></v-text-field>
-								<v-text-field label="Contraseña" type="password" solo rounded prepend-inner-icon="vpn_key"></v-text-field>
+							<v-form ref="form" v-model="valid" lazy-validation>
+								<v-text-field style="margin-bottom:-7px;" v-model="nombre" :rules="nombreRules" label="Nombre" type="text" solo rounded  prepend-inner-icon="account_circle"></v-text-field>
+								<v-text-field style="margin-bottom:-7px;" v-model="telefono" :rules="numeroRules" label="Número de Teléfono" type="telephone" solo rounded prepend-inner-icon="phone"></v-text-field>
+								<v-text-field style="margin-bottom:-7px;" v-model="email" :rules="emailRules" label="E-mail" type="email"  solo rounded prepend-inner-icon="email"></v-text-field>
+								<v-text-field label="Mensaje" type="text" v-model="mensaje" :rules="mensajeRules" solo rounded prepend-inner-icon="chat"></v-text-field>
 									<div style="width:200px;">
-										<v-btn block rounded color="boton_menu1" class="sombraB" dark>Programar</v-btn>
+										<v-btn block rounded color="boton_menu1" class="sombraB" dark :disabled="!valid" @click.prevent="submit">Contactarte</v-btn>
 									</div>
-							</form>
+							</v-form>
 							<p style="font-family: Maven Pro; font-style: normal; font-weight: 500;  font-size: 15px; margin-top:20px;">
 								¿Tiene una cuenta? <a style="font-weight: 800;"><router-link to='/login'>Inicia Sesión</router-link></a></p>
 						</div>
@@ -221,7 +251,7 @@
 				
 				<v-col cols="12" md="2" style="padding-top:4%;padding-left:4%">
 					<div > <v-btn class="white--text" text large style="text-transform: none; font-style: normal; font-weight: 500; font-size: 20px;" color="white">Sobre nosotros</v-btn> </div>
-					<div > <v-btn  text large style="text-transform: none; font-style: normal; font-weight: 500; font-size: 15px;" color="white">Cursos</v-btn> </div>
+					<div > <v-btn  text large style="text-transform: none; font-style: normal; font-weight: 500; font-size: 15px;" color="white" to="/clases">Cursos</v-btn> </div>
 					<div > <v-btn  text large style="text-transform: none; font-style: normal; font-weight: 500; font-size: 15px;" color="white">Blog</v-btn> </div>
 				</v-col>
 				<v-col cols="12" md="2" style="padding-top:4%;padding-left:4%">
@@ -232,7 +262,7 @@
 				</v-col>
 				<v-col cols="12" md="2" style="padding-top:4%;padding-left:4%">
 					<div > <v-btn  text large style="text-transform: none; font-style: normal; font-weight: 500; font-size: 20px;" color="white">Comunidad</v-btn> </div>
-					<div > <v-btn  text large style="text-transform: none; font-style: normal; font-weight: 500; font-size: 15px;" color="white">Login</v-btn> </div>
+					<div > <v-btn  text large style="text-transform: none; font-style: normal; font-weight: 500; font-size: 15px;" color="white" to="/login">Login</v-btn> </div>
 					<div > <v-btn  text large style="text-transform: none; font-style: normal; font-weight: 500; font-size: 15px;" color="white">Solicita tu demo</v-btn> </div>
 				</v-col>
 			</v-row>
@@ -260,53 +290,30 @@
             })
         },
 		data: () => ({
+			valid: false,
+			mas: true,
+			nombre: '',
+			email: '',
+			telefono: '',
+			mensaje: '',
+			nombreRules: [
+                v => !!v || 'El nombre es obligatorio',
+            ],
+            numeroRules: [
+                v => !!v || 'El número es obligatorio',
+			],
+			mensajeRules: [
+                v => !!v || 'El mensaje es obligatorio',
+            ],
+            emailRules: [
+                v => !!v || 'El correo es obligatorio',
+                v => /.+@.+\..+/.test(v) || 'El correo debe ser válido',
+            ],
             tematicasParaTi: [{
                     titulo: 'Desarrollarás habilidades que te permiten realizar...',
                     img: 'https://i2.wp.com/debtwisedentist.com/wp-content/uploads/2018/04/cytonn-photography-604681-unsplash-e1524114404983.jpg?resize=800%2C445',
                     precio: '40.000',
                     likes: '555',
-                },
-                {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://i.go-travels.com/img/how-to/how-to-put-a-gif-in-powerpoint-4.jpg',
-                    precio: '50.000',
-                    likes: '325',
-                },
-                {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
-                    precio: '60.000',
-                    likes: '567',
-                },
-                {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
-                    precio: '30.000',
-                    likes: '235',
-				},
-				{
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://i.go-travels.com/img/how-to/how-to-put-a-gif-in-powerpoint-4.jpg',
-					precio: '50.000',
-                    likes: '325',
-                },
-                {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
-                    precio: '60.000',
-                    likes: '567',
-                },
-                {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
-                    precio: '30.000',
-                    likes: '235',
-				},
-				{
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
-                    precio: '30.000',
-                    likes: '235',
                 },
             ],
 			//
@@ -314,16 +321,32 @@
 					title: 'Programa de Apadrinamiento',
 					img: 'https://i2.wp.com/debtwisedentist.com/wp-content/uploads/2018/04/cytonn-photography-604681-unsplash-e1524114404983.jpg?resize=800%2C445',
 					description:'Donde los empresarios ayudan a pagar la educación de nuestros estudiantes',
+					url: '/',
 				},
 				{
 					title: 'Programa de acompañamiento',
 					img: 'https://i.go-travels.com/img/how-to/how-to-put-a-gif-in-powerpoint-4.jpg',
 					description: 'Donde resolvemos tus dudas en un tiempo máximo de 24 horas',
+					url: '/',
 				},
 				{
 					title: 'Programa de proyectos sociales',
 					img: 'https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001061/63630505-portrait-of-happy-farmer-couple-holding-a-basket-of-vegetables-in-the-vineyard.jpg',
 					description: 'Aquí aplicarás lo aprendido en tus comunidades',
+					url: '/',
+				},
+			],
+			items2: [{
+					title: 'Guía Académico Ally',
+					img: 'https://i.pinimg.com/originals/59/e2/5c/59e25ceaf4a4c8012c067e9bc524615e.jpg',
+					description:'Ally, te recomienda rutas de aprendizaje, segun tus intereses',
+					url: '/',
+				},
+				{
+					title: 'Educación por llamada telefónica',
+					img: 'https://miro.medium.com/max/10944/1*dSFF5cmnGAzc_bASvnqk7w.jpeg',
+					description: 'Si te quedas sin internet, puedes recibir tus clases por llamada',
+					url: '/',
 				},
 			],
 			icons: [
@@ -335,6 +358,21 @@
         //
 		}),
 		methods: {
+			submit(){
+				if(this.$refs.form.validate()){
+					firebase.database().ref('/contactar').push({
+						nombre: this.nombre,
+						email: this.mensaje,
+						telefono: this.telefono,
+						mensaje: this.mensaje,
+					}).then( () => {
+						this.$store.state.mensajeExito('En instantes nos contactaremos contigo','Mensaje enviado correctamente');
+					}).catch( err =>{
+						this.$store.state.mensajeError(err.message, 'Ocurrió un error al enviar tu mensaje');
+					})
+					this.$refs.form.reset();
+				}
+			},
             cargarCursosTematica(cursos){
                 this.tematicasParaTi = [];
                 for (let key in cursos){

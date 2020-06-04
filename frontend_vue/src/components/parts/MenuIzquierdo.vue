@@ -3,9 +3,11 @@
         <v-navigation-drawer width="200" class="hidden-sm-and-down" v-model="drawer" :color="isColor" permanent expand-on-hover app dark>
             <template v-slot:prepend>
                 <v-list>
-                    <v-avatar class="profile" size="50" tile width="50px" height="75px">
-                        <v-img src="@/assets/logo1.png"></v-img>
-                    </v-avatar>
+                    <router-link to='/'>
+                        <v-avatar class="profile" size="50" tile width="50px" height="75px">
+                            <v-img src="@/assets/logo1.png"></v-img>
+                        </v-avatar>
+                    </router-link>
                 </v-list>
             </template>
             <v-container fill-height fluid>

@@ -1,9 +1,11 @@
 <template>
     <v-app-bar id="menuu" :color="offsetTop ? isColor : 'transparent'" style="padding-left:5%; padding-right:5%;" flat app>
         <v-switch class="hidden-md-and-up" v-model="$vuetify.theme.dark" primary style="height: 23px"></v-switch>
-        <v-avatar class="profile" size="50" tile width="200px" height="60px">
-            <v-img src="@/assets/logo.png"></v-img>
-        </v-avatar>
+        <router-link to='/'>
+            <v-avatar class="profile" size="50" tile width="200px" height="60px">
+                <v-img src="@/assets/logo.png"></v-img>
+            </v-avatar>
+        </router-link>
         <v-spacer></v-spacer>
         <v-switch class="hidden-sm-and-down" v-model="$vuetify.theme.dark" primary style="height: 23px"></v-switch>
         <b style="width:20px;"/>
@@ -63,14 +65,6 @@
                 {   title: 'Mi Suscripción', 
                     icon: 'loyalty',
                     url: '/mi-suscripcion'
-                },
-                {   title: 'Mis Compras',
-                    icon: 'shopping_cart',
-                    url: '/compras'
-                },
-                {   title: 'Mentores', 
-                    icon: 'people_alt',
-                    url: '/mentores'
                 },
             ],
         }),

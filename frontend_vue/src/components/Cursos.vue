@@ -42,7 +42,7 @@
                 </div>
                 <v-row>
                     <v-col cols="12" sm="11">
-                        <h2 class="t_descubre titulo--text" style="line-height: 40px;">Los cursos más populares</h2>
+                        <h2 class="t_descubre titulo--text" style="line-height: 40px;">Muy pronto nuevos cursos</h2>
                     </v-col>
                 </v-row>
                 <v-container class="pa-4 text-center">
