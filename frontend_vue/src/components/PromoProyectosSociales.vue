@@ -1,5 +1,10 @@
 <template>
-	<v-app id="inspire">
+	<v-app id="inspire" class="letra">
+        <!-- Slider Revolution -->
+        <script type="application/javascript" src="https://wtechnology.co/slider/assets/js/includes/jquery/jquery.js"></script>
+        <script type="application/javascript" src="https://wtechnology.co/slider/revslider/public/assets/js/jquery.themepunch.tools.min.js"></script>
+        <script type="application/javascript" src="https://wtechnology.co/slider/revslider/public/assets/js/jquery.themepunch.revolution.min.js"></script>
+        <script type="application/javascript" id="revslider_script" src="https://wtechnology.co/slider/assets/js/revslider.js"></script>
         <div class="slides2">
 			<div :class="$vuetify.theme.dark ? 'slides2 font_dark1' : 'slides2 font_light1'">
             	<MenuToolbar />
@@ -15,7 +20,54 @@
 				</v-row>
 			</div>
         </div>
+        <div style="padding-left:20%; padding-right:20%; padding-top:70px; padding-bottom:70px;" :class="$vuetify.theme.dark ? 'fondo_dark' : 'fondo_light'">
+            <v-card>
+                <v-card-title class="headline"><h1 style="font-size:30px">¿Cómo funcionan los Proyectos Sociales?</h1></v-card-title>
+                <v-stepper v-model="e1">
+                    <v-stepper-header>
+                        <v-stepper-step :complete="e1 > 1" step="1">Completar</v-stepper-step>
+                        <v-divider></v-divider>
+                        <v-stepper-step :complete="e1 > 2" step="2">Publicar</v-stepper-step>
+                        <v-divider></v-divider>
+                        <v-stepper-step :complete="e1 > 3" step="3">Especificar</v-stepper-step>
+                        <v-divider></v-divider>
+                        <v-stepper-step step="4">Revisar</v-stepper-step>
+                    </v-stepper-header>
+                    <v-stepper-items>
+                        <v-stepper-content step="1">
+                            <v-card class="mb-12" color="" style="padding:20px">
+                                <p>Despues de estudiar todos los módulos de alguno de nuestros cursos, los estudiantes deben realiza un proyecto a favor de la comunidad</p>
+                            </v-card>
+                            <v-btn color="primary" @click="e1 = 2"> Continuar</v-btn>
+                        </v-stepper-content>
+                        <v-stepper-content step="2">
+                            <v-card class="mb-12" color="" style="padding:20px">
+                                <p>Este proyecto es calificado publicando un video de 2 minutos, más imágenes o cualquer contenido digital en INSTAGRAM con el hashtag
+                                    #ConLernyAprendoAyudo mostrando el proyecto social a nosotros y al mundo.</p>
+                            </v-card>
+                            <v-btn color="primary" @click="e1 = 3">Continuar </v-btn>
+                            <v-btn text @click="e1 = 1">Anterior</v-btn>
+                        </v-stepper-content> 
+                        <v-stepper-content step="3">
+                            <v-card class="mb-12" color="" style="padding:20px">
+                                <p> El estudiante después de subir el proyecto a redes sociales, debe contactarnos e informarnos sobre su proyecto.</p>
+                            </v-card>
+                            <v-btn color="primary" @click="e1 = 4">Continuar</v-btn>
+                            <v-btn text @click="e1 = 2">Anterior</v-btn>
+                        </v-stepper-content>
+                        <v-stepper-content step="4">
+                            <v-card class="mb-12" color="" style="padding:20px">
+                                <p>Nos contactaremos con el estudiante después de revisar el proyecto en su totalidad, verificaremos que se hizo realidad con la comunidad y finalmente le daremos la respectiva certificación de que aprobó el curso</p>
+                            </v-card>
+                            <v-btn color="primary" @click="e1 = 1">Gracias</v-btn>
+                            <v-btn text @click="e1 = 3">Anterior</v-btn>
+                        </v-stepper-content>
+                    </v-stepper-items>
+                    </v-stepper>
+            </v-card>
+        </div>
 
+        <!--  -->
 		<div id="funcionalidadesHome" :class="$vuetify.theme.dark ? 'contenedor fondo_dark' : 'contenedor'">
 			<v-row>
 				<v-col cols="12" xs="6" sm="6">
@@ -133,6 +185,8 @@
 			
 			 -->
 		</div>
+        <!-- Proyectos Sociales Slider ---------------------------------------------------------------------------------- -->
+        <div class="revslider" data-alias="proyectossociales"></div>
 		
 <!-- CON ESTO SE CAMBIO EL COLOR A LOS ICONOS
 		<div class="mt-2">
@@ -154,6 +208,7 @@
 		MenuResponsive,
     },
 	data: () => ({
+        e1: 1,
 		items: [{
 				img: 'https://makeena.com/wp-content/uploads/2018/03/megan-hodges-96122-unsplash.jpg',
 			},
@@ -174,10 +229,21 @@
     };
 </script>
     
-
-
-
 <style scoped>
+    @import 'https://wtechnology.co/slider/revslider/public/assets/css/settings.css';
+
+    .letra{
+        font-family: Maven Pro;
+		font-style: normal;
+    }
+    .fondo_dark{
+        background-color: #001844;
+    }
+    .fondo_light{
+        background-color: #FFFFFF;
+        background-image: url('../assets/fondoperfil1.png');
+        background-size: 100% auto;
+    }
 	.slides2{
             width: 100%;
             height: 100%;	
