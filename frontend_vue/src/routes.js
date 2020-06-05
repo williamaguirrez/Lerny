@@ -400,7 +400,7 @@ export const routes = [
         name: 'promoacompanamiento',
         component: PromoAcompanamiento,
         meta: {
-            title: 'Proyectos Sociales | Lerny.co',
+            title: 'Acompañamiento | Lerny.co',
             metaTags: [{
                 name: 'description',
                 content: 'The about page of our example app.'
