@@ -58,7 +58,7 @@
                         </div>
                         <div class="d-flex justify-center mb-6 text-center">
                             <div style="padding:15px; width:300px;">
-                                <v-btn block :color="$vuetify.theme.dark ? '#102855a8' : '#BB86FC'" x-large class="titulo2--text" style="border-radius:15px; padding-top:10px; padding-bottom:10px; padding-left:10px; padding-right:20px;" to="/ranking">
+                                <v-btn block :color="$vuetify.theme.dark ? '#102855a8' : '#BB86FC'" x-large class="titulo2--text" style="border-radius:15px; padding-top:10px; padding-bottom:10px; padding-left:10px; padding-right:20px;">
                                     <v-icon left color="titulo2" size="30">star</v-icon> Ranking
                                 </v-btn>
                             </div>

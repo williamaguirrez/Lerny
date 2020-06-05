@@ -338,7 +338,7 @@
 			],
 			items2: [{
 					title: 'Guía Académico Ally',
-					img: 'https://i.pinimg.com/originals/59/e2/5c/59e25ceaf4a4c8012c067e9bc524615e.jpg',
+					img: 'https://lh3.googleusercontent.com/proxy/7q4cyhHRB-FJufsWjHagrZxQA9t_TUsHVxTSxGSjMXSKBNQaeA_uLWXmbEHyDYVqQycAHy2h_ruT5BtT41vA5PoJd_ulTtFlr1knniSGQtRpOsl9H7rd0ey0apE1IdG3R7C6MTlx7wXLiDNPqRTj0Yx1ZMNijjP0LXdmMAkiKORZldwk2SghHINPdKBWQtWYe-Kq28QbVJFZEFekyrJwrBTAIogSmW255bai',
 					description:'Ally, te recomienda rutas de aprendizaje, segun tus intereses',
 					url: '/ally',
 				},

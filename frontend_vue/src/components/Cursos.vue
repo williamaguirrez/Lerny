@@ -104,96 +104,75 @@
         },
         data: () => ({
             tematicasParaTi2: [{
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://i2.wp.com/debtwisedentist.com/wp-content/uploads/2018/04/cytonn-photography-604681-unsplash-e1524114404983.jpg?resize=800%2C445',
+                    titulo: 'Curso Agroindustrial',
+                    img: 'https://images.unsplash.com/photo-1500762736728-b34f37b78c7b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=889&q=80',
                     precio: '40.000',
-                    likes: '555',
+                    likes: '750',
                     url: '/curso/0001/01/01'
                 },
                 {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://i2.wp.com/debtwisedentist.com/wp-content/uploads/2018/04/cytonn-photography-604681-unsplash-e1524114404983.jpg?resize=800%2C445',
+                    titulo: 'Curso de Ecología',
+                    img: 'https://images.unsplash.com/photo-1543513853-037fe2a72fcc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80',
                     precio: '40.000',
-                    likes: '555',
+                    likes: '12',
                     url: '/curso/0001/01/01'
                 },
                 {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://i2.wp.com/debtwisedentist.com/wp-content/uploads/2018/04/cytonn-photography-604681-unsplash-e1524114404983.jpg?resize=800%2C445',
+                    titulo: 'Transformación Agropecuaria',
+                    img: 'https://images.unsplash.com/photo-1511194872177-813cf1cd32bb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80',
                     precio: '40.000',
-                    likes: '555',
+                    likes: '411',
                     url: '/curso/0001/01/01'
                 },
                 {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://i2.wp.com/debtwisedentist.com/wp-content/uploads/2018/04/cytonn-photography-604681-unsplash-e1524114404983.jpg?resize=800%2C445',
+                    titulo: 'Diseño Publicitario',
+                    img: 'https://images.unsplash.com/photo-1508161773455-3ada8ed2bbec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80',
                     precio: '40.000',
-                    likes: '555',
+                    likes: '324',
                     url: '/curso/0001/01/01'
                 },
                 {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://i2.wp.com/debtwisedentist.com/wp-content/uploads/2018/04/cytonn-photography-604681-unsplash-e1524114404983.jpg?resize=800%2C445',
+                    titulo: 'Fotografía Publicitaria',
+                    img: 'https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80',
                     precio: '40.000',
-                    likes: '555',
+                    likes: '94',
                     url: '/curso/0001/01/01'
                 },
                 {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://i2.wp.com/debtwisedentist.com/wp-content/uploads/2018/04/cytonn-photography-604681-unsplash-e1524114404983.jpg?resize=800%2C445',
+                    titulo: 'Manejo de Redes Sociales',
+                    img: 'https://images.unsplash.com/photo-1579869847557-1f67382cc158?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=891&q=80',
                     precio: '40.000',
-                    likes: '555',
+                    likes: '23',
                     url: '/curso/0001/01/01'
                 },
                 {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://i2.wp.com/debtwisedentist.com/wp-content/uploads/2018/04/cytonn-photography-604681-unsplash-e1524114404983.jpg?resize=800%2C445',
+                    titulo: 'Curso de Adobe Premiere Pro',
+                    img: 'https://images.unsplash.com/photo-1536240478700-b869070f9279?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=862&q=80',
                     precio: '40.000',
-                    likes: '555',
+                    likes: '234',
                     url: '/curso/0001/01/01'
                 },
                 {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://i2.wp.com/debtwisedentist.com/wp-content/uploads/2018/04/cytonn-photography-604681-unsplash-e1524114404983.jpg?resize=800%2C445',
+                    titulo: 'Introducción a Desarrollo de Videojuegos',
+                    img: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80',
                     precio: '40.000',
-                    likes: '555',
+                    likes: '234',
                     url: '/curso/0001/01/01'
                 },
                 {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://i2.wp.com/debtwisedentist.com/wp-content/uploads/2018/04/cytonn-photography-604681-unsplash-e1524114404983.jpg?resize=800%2C445',
+                    titulo: 'Curso de Finanzas Personales',
+                    img: 'https://images.unsplash.com/photo-1561414927-6d86591d0c4f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=666&q=80',
                     precio: '40.000',
-                    likes: '555',
+                    likes: '656',
                     url: '/curso/0001/01/01'
                 },
                 {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://i2.wp.com/debtwisedentist.com/wp-content/uploads/2018/04/cytonn-photography-604681-unsplash-e1524114404983.jpg?resize=800%2C445',
+                    titulo: 'Curso de Sonido Profesional',
+                    img: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80',
                     precio: '40.000',
                     likes: '555',
                     url: '/curso/0001/01/01'
-                },
-                {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://i2.wp.com/debtwisedentist.com/wp-content/uploads/2018/04/cytonn-photography-604681-unsplash-e1524114404983.jpg?resize=800%2C445',
-                    precio: '40.000',
-                    likes: '555',
-                    url: '/curso/0001/01/01'
-                },
-                {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://i2.wp.com/debtwisedentist.com/wp-content/uploads/2018/04/cytonn-photography-604681-unsplash-e1524114404983.jpg?resize=800%2C445',
-                    precio: '40.000',
-                    likes: '555',
-                    url: '/curso/0001/01/01'
-                },
-                {
-                    titulo: 'Desarrollarás habilidades que te permiten realizar...',
-                    img: 'https://i2.wp.com/debtwisedentist.com/wp-content/uploads/2018/04/cytonn-photography-604681-unsplash-e1524114404983.jpg?resize=800%2C445',
-                    precio: '40.000',
-                    likes: '555',
-                    url: '/curso/0001/01/01'
-                },
+                },                
             ],
             tematicasParaTi: [{
                     titulo: 'Desarrollarás habilidades que te permiten realizar...',

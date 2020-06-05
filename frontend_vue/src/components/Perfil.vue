@@ -158,7 +158,7 @@
                     </v-col>
                     <!-- Padrinos --------------------------------------------------------------------------------------- -->
                     <v-col cols="12" sm="4">
-                        <v-btn block color="#8D50F1" dark style="padding-top:10px; padding-bottom:10px; padding-left:10px; padding-right:20px;" to="/ranking">
+                        <v-btn block color="#8D50F1" dark style="padding-top:10px; padding-bottom:10px; padding-left:10px; padding-right:20px;">
                             <v-icon left>star</v-icon> Ranking
                         </v-btn>
                         <!-- Si no hay padrinos en el arreglo muestra el letrero -->
