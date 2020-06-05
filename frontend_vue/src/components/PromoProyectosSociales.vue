@@ -74,7 +74,7 @@
 					<h2 :class="$vuetify.theme.dark ? 't_descubre2_dark' : 't_descubre2'">Top 5</h2>
 				</v-col>
 				<v-col cols="12" xs="6" sm="6">
-					<router-link to='/DescubreMas'>
+					<router-link to='/proyectosociales'>
 					<v-btn  x-large  fab color="boton_menu" dark style="float:right;">
 						<v-icon dark>mdi-plus</v-icon>
 						
@@ -153,8 +153,8 @@
 					</v-card>
 				</v-hover>
 			</v-row>
-			<!--los tres de abajo para esto use lo mismo que tenias en el HOME, es decir las mismas clases-->
-<!--			<v-row style="width:100%;padding-left:10%;padding-right:10%; padding-top:80px; justify-content:center">
+				<!--los tres de abajo para esto use lo mismo que tenias en el HOME, es decir las mismas clases-->
+		<v-row style="width:100%;padding-left:10%;padding-right:10%; padding-top:80px; justify-content:center">
 				<v-container class="pa-4 text-center">
 						<v-row class="fill-height" align="center" justify="center">
 							<template v-for="(item, i) in items">
@@ -170,9 +170,9 @@
 													<v-icon :color="$vuetify.theme.dark ? 'white' : '#673AB7'" size="24px">{{ icon }}</v-icon>
 												</v-btn>
 											</div>
-											<div style="width:170px;" align="center"> 
-												<v-btn rounded outlined :class="$vuetify.theme.dark ? 'boton_dark' : 'boton_light'" 
-												style="margin-top:30px;margin-left:130px;">Contactar</v-btn>
+											<div style="width:170px;" align="center" justify="center"> 
+												<v-btn rounded outlined  :class="$vuetify.theme.dark  ? 'boton_dark' : 'boton_light'" 
+												style="margin-top:30px;">Contactar</v-btn>
 											</div>
 											</v-container> 
 										</v-card>
@@ -182,8 +182,8 @@
 						</v-row>
 				</v-container>
 			</v-row>
-			
-			 -->
+
+
 		</div>
         <!-- Proyectos Sociales Slider ---------------------------------------------------------------------------------- -->
         <div class="revslider" data-alias="proyectossociales"></div>
