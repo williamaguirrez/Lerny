@@ -1,5 +1,5 @@
 <template>
-    <v-app id="inspire">
+    <v-app id="inspire" class="letra">
         <v-row :class="$vuetify.theme.dark ? 'contenedor_promoWallet_dark' : 'contenedor_promoWallet_light'">
             <MenuToolbar/>
 			<MenuResponsive/>
@@ -104,5 +104,9 @@
 		font-style: normal;
         background-image: url('../assets/fondos/fondoPromoWalletDark.png');
         background-size: 100% auto;     
+    }
+    .letra{
+        font-family: Maven Pro;
+		font-style: normal;
     }
 </style>
