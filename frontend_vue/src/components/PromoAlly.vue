@@ -6,10 +6,10 @@
 		<script type="application/javascript" src="https://wtechnology.co/slider/revslider/public/assets/js/jquery.themepunch.revolution.min.js"></script>
 		<script type="application/javascript" id="revslider_script" src="https://wtechnology.co/slider/assets/js/revslider.js"></script>
 		<v-row :class="$vuetify.theme.dark ? 'fondo_dark' : 'fondo_light'">
-			<div class="revslider" data-alias="promoally"></div>
 			<MenuToolbar/>
 			<MenuResponsive/>
 		</v-row>
+        <div class="revslider" data-alias="promoally"></div>
 	</v-app>
 </template>
 
