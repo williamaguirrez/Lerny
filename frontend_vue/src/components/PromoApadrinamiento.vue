@@ -74,7 +74,7 @@
     import MenuToolbar from './parts/MenuToolbar';
 	import MenuResponsive from './parts/MenuResponsive';
     export default {
-        name: 'PromoWallet',
+        name: 'PromoApadrinamiento',
         components: {
             MenuToolbar,
 		    MenuResponsive,

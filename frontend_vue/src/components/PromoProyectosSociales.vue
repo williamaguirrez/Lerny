@@ -202,7 +202,7 @@
 	import MenuToolbar from './parts/MenuToolbar';
 	import MenuResponsive from './parts/MenuResponsive';
     export default {
-    name: 'Nosotros',
+    name: 'PromoProyectosSociales',
     components: {
 		MenuToolbar,
 		MenuResponsive,

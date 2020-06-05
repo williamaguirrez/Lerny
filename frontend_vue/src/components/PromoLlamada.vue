@@ -138,7 +138,7 @@
     import MenuToolbar from './parts/MenuToolbar';
 	import MenuResponsive from './parts/MenuResponsive';
     export default {
-        name: 'Llamada',
+        name: 'PromoLlamada',
         components: {
             MenuToolbar,
 		    MenuResponsive,

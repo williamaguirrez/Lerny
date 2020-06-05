@@ -154,7 +154,7 @@
     import firebase from 'firebase';
 
     export default {
-        name: 'Monitorias',
+        name: 'PromoAcompanamiento',
         components: {
             MenuToolbar,
 		    MenuResponsive,
