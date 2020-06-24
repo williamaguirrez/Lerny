@@ -1,4 +1,4 @@
-# PROYECTO FINAL ME310/SUGAR 2019 2020
+# LERNY
 
 ## Instalar Vista
 ### Linux Ubuntu (frontend_vue)
