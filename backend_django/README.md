@@ -1,1 +1,1 @@
-# Backend Django Lerny
+# Backend Django Lerny.co
